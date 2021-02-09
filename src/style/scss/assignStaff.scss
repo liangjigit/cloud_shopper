@@ -1,0 +1,98 @@
+
+#assignStaff {
+  font-family: SourceHanSansCN-Regular;
+
+  .personInfo {
+    height: 182px;
+    background-color: #ffffff;
+    display: flex;
+    margin-top: 12px;
+
+    .assign {
+      padding: 38px 20px 0 25px;
+      img {
+        width: 98px;
+        height: 98px;
+        border-radius: 50%;
+      }
+    }
+
+    .assign_info .name {
+      padding-top: 38px;
+      font-size: 28px;
+      color: #333333;
+      display: flex;
+      align-items: center;
+
+      span {
+        display: inline-block;
+        width: 70px;
+        height: 40px;
+        background-color: #e89e4c;
+        border-radius: 15px;
+        font-size: 20px;
+        color: #efefef;
+        text-align: center;
+        line-height: 40px;
+        margin-left: 10px;
+      }
+    }
+
+    .store {
+      font-size: 22px;
+      color: #444444;
+      margin-top: 16px;
+    }
+
+    .phone {
+      font-family: MicrosoftYaHei;
+      font-size: 20px;
+      color: #666666;
+      margin-top: 14px;
+    }
+  }
+
+  .severalStaff {
+    text-align: center;
+    font-size: 29px;
+    color: #333333;
+    margin: 36px 0 42px 0;
+  }
+
+  .companyCollection{
+    margin: 0 32px 0 26px;
+    li {
+      height: 106px;
+      background-color: #ffffff;
+      border-radius: 6px;
+      line-height: 106px;
+      margin-bottom: 20px;
+      position: relative;
+
+      p {
+        margin-left: 38px;
+        font-size: 30px;
+        color: #333333;
+
+        span {
+          font-size: 28px;
+          color: #999999;
+          margin-left: 27px;
+        }
+      }
+    }
+
+    li::after {
+      content: '\e72b';
+      font-family: 'iconfont';
+      height: 106px;
+      position: absolute;
+      right: 27px;
+      top: 0;
+      line-height: 106px;
+      font-size: 34px;
+      color: #999;
+    }
+  }
+
+}

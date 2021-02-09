@@ -1,0 +1,93 @@
+#realityMoney{
+    .solid-pin{
+        padding-left: 0.2rem;
+        font-size: 0.45rem;
+        font-weight: 900;
+        color: black;
+        span:nth-child(1){
+          font-size: 0.45rem;
+          color: #ff8917;
+          font-weight: 900;
+        }
+        .increase{
+          color: #ee0a24;
+          font-size: 0.4rem;
+          font-weight: 900;
+        }
+        .fair{
+          color: #969799;
+          font-size: 0.4rem;
+          font-weight: 900;
+        }
+        .decrease{
+          color: #07c160;
+          font-size: 0.4rem;
+          font-weight: 900;
+        }
+        .icon-arrow-up2::before{
+          color: #ee0a24;
+          font-size: 0.35rem;
+        }
+        .icon-arrow-down2::before{
+          color: #07c160;
+          font-size: 0.35rem;
+        }
+      }
+      .hr{
+        display: flex;
+        justify-content: center;
+        margin-top: 0.1rem;
+        margin-bottom: 0.1rem;
+        .hr-line{
+          width: 100%;
+          height: 0.05rem;
+          background-color: #f0f0ef;
+        }
+      }
+      .Presentation{
+        display: flex;
+        width: 100%;
+        height: 2rem;
+        background-color: #fff;
+        padding: 0.1rem 0.2rem;
+        justify-content: space-between;
+        .single{
+          display: flex;
+          flex-direction: column;
+          justify-content: space-around;
+          align-items: center;
+          p:nth-of-type(1){
+            font-size: 0.4rem;
+            color: #000;
+          }
+          p:nth-of-type(2){
+            font-weight: bolder;
+            font-size: 0.4rem;
+            color: #000;
+          }
+          p:nth-child(3){
+            font-size: 0.35rem;
+          }
+          .increase{
+            color: #ee0a24;
+            font-size: 0.3rem;
+          }
+          .fair{
+            color: #969799;
+            font-size: 0.3rem;
+          }
+          .decrease{
+            color: #07c160;
+            font-size: 0.3rem;
+          }
+          .icon-arrow-up2::before{
+            color: #ee0a24;
+            font-size: 0.25rem;
+          }
+          .icon-arrow-down2::before{
+            color: #07c160;
+            font-size: 0.25rem;
+          }
+        }
+      }
+}

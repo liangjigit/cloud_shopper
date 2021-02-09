@@ -1,0 +1,232 @@
+#app {
+     background: #fff;
+    height: 100%;
+	 #ShoppersRanking {
+	     height: 100%;
+		 background: #fff;
+	     #datePicker {
+	         background:none ;
+	         ul.user_edit {
+	         }
+			 .contain{
+				 // background: #fff;
+			 }
+			 .time{
+				// background: #FFF;
+			 }
+	     }
+	     .iconfont {
+	         font-family: "iconfont" !important;
+	         // font-size: 16px;
+	         font-style: normal;
+	         -webkit-font-smoothing: antialiased;
+	         -webkit-text-stroke-width: 0.2px;
+	         -moz-osx-font-smoothing: grayscale;
+	     }
+	     .choose_title_box {
+	         width: 100%;
+	         border-top: 15px solid #f0f0f0;
+	         border-bottom: 15px solid #f0f0f0;
+	         background: #fff;
+	         position: fixed;
+	         top: 162px;
+	         z-index: 998;
+	         //      margin-top: 60px;
+	         .choose_title {
+	             height: 92px;
+	             line-height: 92px;
+	             width: 640px;
+	             margin: 0 auto;
+	             display: flex;
+	             justify-content: space-between;
+	             span:first-of-type {
+	                 font-family: SourceHanSansCN-Regular;
+	                 font-size: 28px;
+	                 color: #000000;
+	             }
+	             span:last-of-type {
+	                 font-family: SourceHanSansCN-Regular;
+	                 font-size: 28px;
+	                 color: #ff9a09;
+	                 .dropDown {
+	                     color: #000;
+	                     font-size: 30px;
+	                     float: right;
+	                 }
+	             }
+	         }
+	     }
+	     .mask {
+	         width: 100%;
+	         height: 100%;
+	         position: fixed;
+	         top: 284px;
+	         background: rgba(0, 0, 0, 0.4);
+	         z-index: 99;
+	         .choose_box {
+	             width: 100%;
+	             background: #f0f0f0;
+	             overflow: hidden;
+	         }
+	         .choose_main {
+	             width: 674px;
+	             margin: 0 auto;
+	             ul {
+	                 li.sale_targets,
+	                 li.member_targets {
+	                     overflow: hidden;
+	                     h4 {
+	                         margin-top: 29px;
+	                         font-family: MicrosoftYaHei;
+	                         font-size: 28px;
+	                         color: #333;
+	                     }
+	                     ul li {
+	                         margin-top: 27px;
+	                         margin-right: 20px;
+	                         padding: 18px 20px;
+	                         background: #fff;
+	                         font-size: 26px;
+	                         color: #666666;
+	                         font-family: SourceHanSansCN-Regular;
+	                         float: left;
+	                         border-radius: 10px;
+	                     }
+	                     .active {
+	                         color: #fff;
+	                         background: #ffac32;
+	                     }
+	                 }
+	                 li.member_targets {
+	                     padding-bottom: 30px;
+	                     margin-top: 23px;
+	                 }
+	             }
+	         }
+	         .btn_group {
+	             width: 100%;
+	             height: 89px;
+	             line-height: 89px;
+	             font-family: SourceHanSansCN-Regular;
+	             font-size: 28px;
+	             margin-top: 76px;
+	             span:first-of-type {
+	                 float: left;
+	                 width: 50%;
+	                 color: #000;
+	                 text-align: center;
+	                 background: #fff;
+	             }
+	             span:last-of-type {
+	                 float: right;
+	                 width: 50%;
+	                 background: #000;
+	                 color: #fff;
+	                 text-align: center;
+	             }
+	         }
+	     }
+		 .touch{
+		 	opacity: 0.5;
+		 	pointer-events: none;
+		 }
+	     .rankList {
+	         width: 100%;
+	         background: #FFFFFF;
+	         position: absolute;
+	         top:284px;
+	         bottom: 0px;
+	         ul {
+	             li {
+	                 width: 714px;
+	                 margin: 0 auto;
+	                 height: 166px;
+	                 line-height: 166px;
+	                 border-bottom: 1px solid #ddd;
+	                 div {
+	                     .champion {
+	                         vertical-align: middle;
+	                         margin: 0 28px;
+	                         width: 56px;
+	                         height: 56px;
+	                     }
+	                     .rank {
+	                         margin-left: 28px;
+	                         margin-right: 28px;
+	                         font-family: MicrosoftYaHei;
+	                         font-size: 22px;
+	                         color: #333333;
+	                     }
+	                     .logo {
+	                         width: 98px;
+	                         height: 98px;
+	                         display: inline-block;
+	                         position: relative;
+	                         img.avatar {
+	                             vertical-align: middle;
+	                             width: 100%;
+	                             height: 100%;
+	                             border-radius: 50%;
+	                         }
+	                         img.king {
+	                             position: absolute;
+	                             width: 54px;
+	                             right: -10px;
+	                             top: 10px;
+								 transform: rotate(30deg)
+	                         }
+	                     }
+	                     .name {
+	                         font-family: SourceHanSansCN-Regular;
+	                         font-size: 24px;
+	                         margin-left: 25px;
+	                         color: #333333;
+	                     }
+	                     .data {
+	                         float: right;
+	                         margin-right: 59px;
+	                         font-family: MicrosoftYaHei;
+	                         font-size: 24px;
+	                         color: #000000;
+	                     }
+	                 }
+	             }
+	             li.NO1 {
+	                 div {}
+	             }
+	         }
+	         .mint-loadmore {
+	             overflow-y: hidden;
+	         }
+	         .mint-loadmore-content {
+	             overflow: auto;
+	         }
+	     }
+	     .nullDataPage {
+	         .nullData {
+	             position: absolute;
+	             top: 50%;
+	             left: 50%;
+	             width: 100%;
+	             transform: translate(-50%, -50%);
+	             text-align: center;
+	             img {
+	                 width: 192px;
+	                 height: 195px;
+	             }
+	             p {
+	                 font-family: SourceHanSansCN-Regular;
+	                 font-size: 30px;
+	                 color: #666666;
+	                 margin-top: 30px;
+	             }
+	         }
+	     }
+	 }
+	 .page-infinite-loading {
+	     width: 100%;
+	     background: none;
+	 }
+}
+
+

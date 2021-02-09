@@ -1,0 +1,420 @@
+.container{
+    font-family: SourceHanSansCN-Regular;
+    color: #a3a3a3;
+    width: 100%;
+    height: 100%;
+
+    .tabin{
+        color: #000;
+        font-weight: bold;
+    }
+    .ScrollBox {
+        width: 100%;
+//      height: 78.6%;
+        position: fixed;
+        top: 286px;
+        bottom: 0px;
+        z-index: 2015;
+        background: #fff;
+    }
+    .ScrollBox_top{
+        top:362px;
+        height: 71%;
+        
+    }
+    .controler{
+        width: 100%;
+        height: 104px;
+//      display: -webkit-flex;
+//      display: flex;
+        display: none;
+        z-index: 2020;
+        background: #fff;
+        li{
+            display: inline-block;
+            width: 50%;
+            text-align: center;
+            line-height: 104px;
+            font-size: 32px;
+            height: 100%;
+            span{
+                display: inline-block;
+            }
+        }
+        .active{
+            border-bottom: 3px solid #000;
+            color: #000;
+            box-sizing: border-box;
+        }
+    }
+    .searchInput{
+        width: 100%;
+        overflow: hidden;
+        z-index: 2020;
+        background: #fff;   
+        position: fixed;
+        top: 0;
+        left: 0;
+        #searchInput{
+            height: 62px;
+            margin:20px;
+            .searchBar{
+                width: 602px;
+                height: 62px;
+                line-height: 62px;
+                text-indent: 1em;
+                color: #999;
+                font-size: 26px;
+                background-color: #f3f3f3;
+                border: none;
+                border-radius: 4px;
+                outline: none;
+            }
+            .searchBtn{
+                width: 100px;
+                height: 62px;
+                text-align: center;
+                line-height: 62px;
+                font-size: 26px;
+                color: #333;
+                border: none;
+                background: #fff;
+                outline: none;
+            }
+        }
+    }
+    .memberType{
+        width: 100%;
+        height: 94px;
+        display: -webkit-flex;
+        display: flex;
+        background: #fff;
+        position: fixed;
+        top: 102px;
+        left: 0;
+        span{
+            display: block;
+            width: 25%;
+            height: 94px;
+            line-height: 94px;
+            text-align: center;
+            font-size: 30px;
+            background-color: transparent;
+        }
+    }
+    .filter{
+        width: 100%;
+        min-height: 90px;
+        left: 112px;
+        background: #fff;
+        position: fixed;
+        top: 196px;
+        left: 0;
+        .memberNum{
+            font-size: 26px;
+            color: #666;
+            float: left;
+            margin-left: 50px;
+            line-height: 60px;
+        }
+        .filterIcon{
+            width: 37px;
+            height: 31px;
+            position: relative;
+            top: 10px;
+            right: 23px;
+            float: right;
+            display: inline-block;
+        }
+        .filterBar{
+            float: right;
+            font-size: 26px;
+            color: #2380f2;
+            margin-right: 50px;
+            line-height: 60px;
+        }
+
+        
+        
+    }
+    .filterDialog {
+        position: fixed;
+        top: 286px;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, .6);
+        z-index: 2022;
+        .memberSelect {
+            z-index: 999;
+            clear: both;
+            width: 100%;
+            background: #fff;
+            overflow: hidden;
+            li {
+                clear: both;
+                width: 650px;
+                margin: 0 auto;
+                height: 80px;
+                border-top: 1px solid #ddd;
+                line-height: 80px;
+                position: relative;
+                span {
+                    display: block;
+                    img {
+                        display: block;
+                        width: 40px;
+                        height: 40px;
+                    }
+                }
+                .selectName {
+                    font-size: 26px;
+                    color: #000;
+                    float: left;
+                }
+                .selectIcon {
+                    float: right;
+                    color: #c0c0c0;
+                    margin-right: 38px;
+                }
+                .selectDta {
+                    float: right;
+                    color: #666;
+                    font-size: 24px;
+                }
+                .dialog_val {
+                    float: right;
+                    min-width: 40px;
+                    height: 40px;
+                    line-height: 40px;
+                    margin: 20px 40px 20px;
+                    text-align: center;
+                    line-height: 40px;
+                    color: #000;
+                    b {
+                        font-weight: normal;
+                    }
+                }
+            }
+            li::after {
+                content: '\e72b';
+                font-family: 'iconfont';
+                height: 80px;
+                position: absolute;
+                right: 0;
+                line-height: 80px;
+                font-size: 34px;
+                color: #999;
+            }
+            .filterBtn {
+                width: 708px;
+                clear: both;
+                display: -webkit-flex;
+                display: flex;
+                margin: 60px auto 26px auto;
+                span {
+                    width: 354px;
+                    height: 100px;
+                    font-size: 28px;
+                    text-align: center;
+                    line-height: 100px;
+                }
+                .filterReset {
+                    background: #fff;
+                    box-sizing: border-box;
+                    border: 1px solid #000;
+                    color: #000;
+                }
+                .filterOk {
+                    background: #000;
+                    color: #fff;
+                }
+            }
+        }
+    }
+    .selectBtn{
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        opacity: 0;
+    }
+    .memberList{
+        clear: both;
+        font-family: MicrosoftYaHei;
+        margin-left: 34px;
+        z-index: 1;
+        li{
+            width: 100%;
+            height: 156px;
+            border-bottom: 1px solid #ddd;
+            .memberImg{
+                width: 120px;
+                height: 120px;
+                background: #fff;
+                border: 2px solid #DDDDDD;
+                float: left;
+                margin: 18px 0;
+                border-radius: 56px 56px;
+                box-shadow: 0.05rem 0.05rem 0.05rem #d9d9d9;
+                img{
+                    width: 114px;
+                    height: 114px;
+                    display: block;
+                    border-radius: 55px 55px;
+                    margin: 2px;
+                    float: left;
+                }
+            }
+
+            .memberData{
+                float: left;
+                height: 100%;
+                margin-left: 15px;
+                span{
+                    display: block;
+                }
+                .memberName{
+                    font-size: 28px;
+                    color: #333;
+                    padding-top:30px;
+                }
+                .memberCard{
+                    font-size: 22px;
+                    color: #444;
+                    padding: 9px 0;
+                }
+                .memberPay{
+                    font-size: 20px;
+                    color: #666;
+                }
+            }
+            .memberDate{
+                font-family: MicrosoftYaHei;
+                color: #333;
+                float: right;
+                margin-right: 50px;
+                span{
+                    display: block;
+                    font-size: 20px;
+                }
+                .registrationDate{
+                    padding : 54px 0 16px 0;
+                }
+                
+            }
+        }
+        li:last-child{
+            border: none;
+        }
+    }
+    .memberControler{
+        clear: both;
+        width: 100%;
+        height: 166px;
+        background: #eee;
+        display: -webkit-flex;
+        display: flex;
+//      display: none;
+        position: absolute;
+        top: 196px;
+        left: 0;
+        span{
+            background-color: transparent;
+        }
+        .memberControler_btn{
+            display: block;
+            width: 146px;
+            height: 112px;
+            border-radius: 4px;
+            box-sizing: border-box;
+            border: 2px solid #B1B1B1;
+            text-align: center;
+            margin:27px 0 27px 36px;
+            .memberControler-num{
+                display: block;
+                font-size: 34px;
+                color: #000;
+                margin: 12px 0;
+            }
+            .memberControler-name{
+                display: block;
+                font-size: 26px;
+                color: #666;
+            }
+        }
+        .tabin_in {
+            border: 4px solid #000!important;
+        }
+    }
+//  选择会员样式
+    .activeS,.activeM{
+        color: #ff0;
+    }
+    .mint-popup{
+        width: 100%;
+        height: 35%;
+    }
+    .pickerBtns{
+        width: 100%;
+        height: 82px;
+        background: #fff;
+        span{
+            padding: 26px;
+            font-size: 32px;
+            line-height: 1;
+        }
+        .pickerY{
+            float: right;
+            color: #fa8919;
+        }
+        .pickerN{
+            float: left;
+            color: #000;
+        }
+    }
+    .picker-item{
+        font-size: 28px;
+        color: #c0c0c0;
+    }
+    .picker-selected{
+        color: #000;
+    }
+//  .picker-items{
+//      margin-top: 84px;
+//  }
+    .mint-datetime-picker{
+        .picker-toolbar{
+            border: none;
+        }
+        span{
+            width: auto;
+            padding: 26px;
+            font-size: 32px;
+            line-height: 1;
+        }
+        .mint-datetime-confirm{
+            float: right;
+            color: #fa8919;
+        }
+        .mint-datetime-cancel{
+            color: #000;
+        }
+    }
+    .scroll-wrap{
+        z-index: 2016;   
+    }
+    .page-infinite-loading{
+        background: #fff;
+    }
+}
+
+
+
+@font-face {
+    font-family: 'iconfont';
+    /* project id 759672 */
+    src: url('//at.alicdn.com/t/font_759672_tkwseqp421g.eot');
+    src: url('//at.alicdn.com/t/font_759672_tkwseqp421g.eot?#iefix') format('embedded-opentype'), url('//at.alicdn.com/t/font_759672_tkwseqp421g.woff') format('woff'), url('//at.alicdn.com/t/font_759672_tkwseqp421g.ttf') format('truetype'), url('//at.alicdn.com/t/font_759672_tkwseqp421g.svg#iconfont') format('svg');
+}

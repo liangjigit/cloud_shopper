@@ -1,0 +1,62 @@
+{
+  "errcode": 0,
+  "data":[
+    {
+      "id":"0",
+      "name":"我的会员",
+      "img": "../../static/image/wdhy.png"
+    },
+    {
+      "id":"1",
+      "name":"分类邀约",
+      "img":"../../static/image/flyy.png"
+    },
+    {
+      "id":"2",
+      "name":"线上提现",
+      "img": "../../static/image/xstx.png"
+    },
+    {
+      "id":"3",
+      "name":"抢单发货",
+      "img": "../../static/image/qdfh.png"
+    }
+  ],
+  "dataCenter": [
+    {
+      "id":"0",
+      "name":"线上佣金",
+      "img": "../../static/image/xianshangyongjin.png"
+    },
+    {
+      "id":"1",
+      "name":"订单管理",
+      "img":"../../static/image/ddgl.png"
+    },
+    {
+      "id":"2",
+      "name":"我的业绩",
+      "img": "../../static/image/wdyj.png"
+    },
+    {
+      "id":"3",
+      "name":"导购排行",
+      "img": "../../static/image/dgph.png"
+    },
+    {
+      "id":"4",
+      "name":"商品分析",
+      "img": "../../static/image/spfx.png"
+    },
+    {
+      "id":"5",
+      "name":"会员分析",
+      "img":"../../static/image/hyfx.png"
+    },
+    {
+      "id":"6",
+      "name":"门店管理",
+      "img": "../../static/image/mdph.png"
+    }
+  ]
+}

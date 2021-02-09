@@ -1,0 +1,225 @@
+html,body{
+    background: #fff;
+}
+#cardIssueTo{
+    width: 100%;
+    height: 100%;
+    background: #fff;
+    .couponsList {
+        clear: both;
+        width: 100%;
+        margin: 0 auto;
+        overflow: hidden;
+        background: #f0f0ef;
+        position: absolute;
+        top: 0;
+        left: 0;
+        li {
+            width: 684px;
+            margin: 25px auto;
+        }
+        .card {
+            height: 170px;
+            border-radius: 4px;
+            //  background: url(../images/yhj.png) no-repeat;
+            background-size: 100% 170px;
+            display: flex;
+            flex-flow: nowrap row;
+            .cardLeft {
+                width: 476px;
+                height: 100%;
+                  .cardType {
+                      font-size: 28px;
+                      color: #fff;
+                      line-height: 36px;
+                      margin: 26px 0 0 40px;
+                  }
+                    .autoWidth {
+                        margin: 16px 0  0 40px;
+                        width: 380px;
+                        word-break: break-all;
+                        text-overflow: ellipsis; //显示为省略号
+                        display: -webkit-box; //对象作为伸缩盒子模型显示
+                        
+                        /*! autoprefixer: off */
+                        -webkit-box-orient: vertical;
+                        /* autoprefixer: on */
+
+                        -webkit-line-clamp: 2; //显示行数## 标题文字 ##
+                        overflow: hidden;
+                        background: #f8a120;
+                    }                  
+                  .cardType span {
+                      text-align: center;
+                      background-color: #f8a120;
+                      padding: 4px;
+                  }
+                .cardCode {
+                    font-size: 20px;
+                    color: #333;
+                    padding-left: 40px;
+                    line-height: 25px;
+                }
+                .cardTime {
+                    font-size: 20px;
+                    color: #999;
+                    padding-left: 40px;
+                    line-height: 60px;
+                    .cardCode_never {
+                        line-height: 50px;
+                    }
+                }
+                .lineheight{
+                    line-height: 40px;
+                }
+            }
+            .cardRight {
+                width: 234px;
+                height: 100%;
+                text-align: center;
+                  .cardValue {
+                      font-size: 36px;
+                      color: #fff;
+                      padding-top: 25px;
+                  }
+                  .cardFeature {
+                      /*font-size: 0.30rem;*/
+                      font-size: 24px;
+                      /*padding-top: 0.4rem;*/
+                      line-height: 170px;
+                      color: #fff;
+                  }
+                  .cardOnly {
+                      padding-top: 10px;
+                      line-height: 1;
+                  }
+                  .cardUsed {
+                      /*font-size: 0.30rem;*/
+                      font-size: 36px;
+                      /*padding-top: 0.4rem;*/
+                      line-height: 170px;
+                      color: #fff;
+                  }
+            }
+        }
+    }
+    .cardNum {
+        clear: both;
+        display: block;
+        overflow: hidden;
+        width: 660px;
+        position: absolute;
+        top: 240px;
+        left: 50%;
+        margin-left: -330px;
+        .people_num {
+            float: right;
+            height: 62px;
+            display: flex;
+            flex-flow: row nowrap;
+            font-size: 18px;
+            line-height: 62px;
+            color: #686868;
+        }
+        .cardTotal,
+        .cardsaLL {
+            font-size: 18px;
+            float: right;
+            line-height: 62px;
+            color: #686868;
+        }
+        .cardsaLL {
+            margin-right: 20px;
+        }
+    }
+    #wrapper {
+        clear: both;
+        width: 100%;
+        overflow: hidden;
+        position: absolute;
+        top: 322px;
+        left: 0;
+        bottom: 76px;
+        overflow-x: hidden;
+        overflow-y: auto;
+        .userAdd {
+            width: 648px;
+            margin: 0 auto;
+            /* overflow: hidden; */
+            li {
+                width: 108px;
+                /* overflow: hidden; */
+                font-size: 20px;
+                color: #666;
+                text-align: center;
+                line-height: 60px;
+                display: block;
+                float: left;
+                margin: 20px 26px 0 0;
+                position: relative;
+                .avatar {
+                    width: 108px;
+                    height: 108px;
+                    display: block;
+                    border-radius: 14px;
+                    border: 2px solid #eee;
+                }
+                p {
+                    width: 100%;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                    white-space: nowrap;
+                }
+                .delete {
+                    width: 35px;
+                    height: 35px;
+                    border-radius: 50%;
+                    position: absolute;
+                    right: -17.5px;
+                    top: -17.5px;
+                }
+            }
+            li:nth-child(5n+0) {
+                margin-right: 0;
+            }
+            .add,
+            .remove {
+                height: 108px;
+                box-sizing: border-box;
+                border: 2px solid #666;
+                border-radius: 6px;
+                text-align: center;
+                line-height: 100px!important;
+                color: #666;
+                font-size: 48px!important;
+                a{
+                    width: 100%;
+                    height: 100%;
+                    display: block;
+                    color: #000;
+                }
+            }
+        }
+    }
+    .sendCards {
+        width: 100%;
+        height: 76px;
+        overflow: hidden;
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        span {
+            display: block;
+            width: 512px;
+            height: 76px;
+            background: #000;
+            border: none;
+            text-align: center;
+            line-height: 76px;
+            font-size: 30px;
+            color: #fff;
+            margin: 0 auto;
+            border-radius: 6px;
+        }
+    }
+}

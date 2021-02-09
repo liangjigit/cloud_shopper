@@ -1,0 +1,277 @@
+#app {
+	background: #fff;
+	height: 100%;
+	#commissionPlan {
+		height: 100%;
+		overflow: hidden;
+		background: #fff;
+		.iconfont {
+			font-family: "iconfont" !important;
+			font-style: normal;
+			-webkit-font-smoothing: antialiased;
+			-webkit-text-stroke-width: 0.2px;
+			-moz-osx-font-smoothing: grayscale;
+		}
+		header {
+			width: 100%;
+			position: fixed;
+			top: 0;
+			z-index: 999;
+			.header_box {
+				width: 714px;
+				// height: 278px;
+				padding: 10px 0;
+				margin: 0 auto;
+				background: #f7f7f7;
+				 margin-top: 18px;
+				 overflow: hidden;
+				text-indent: 26px;
+				.title {
+					color: #913500;
+					font-size: 30px;
+					font-family: SourceHanSansCN-Regular;
+				}
+				h3 {
+					color: #913500;
+					font-size: 26px;
+					margin-top: 10px;
+					margin-bottom: 8px;
+					font-family: SourceHanSansCN-Regular;
+				}
+				p {
+					color: #2d2d2d;
+					font-size: 24px;
+					margin-top: 22px;
+					font-family: SourceHanSansCN-Regular;
+				}
+			}
+			
+			.commissionTitle {
+				margin: 20px 0;
+				border-left: 11px solid #913500;
+				display: inline-block;
+				margin-left: 28px;
+				text-indent: 14px;
+				font-size: 30px;
+				color: #913500;
+				font-weight: bold;
+				font-family: "microsoft yahei";
+			}
+			.commissionSearch{
+				width: 100%;
+				overflow: hidden;
+				.mask {
+					width:100%;
+					position: fixed;
+					left: 0;
+					bottom:0;
+					background: rgba(0, 0, 0, 0.5);
+					font-size: 28px;
+					color: #000;
+					z-index: 888;
+					.optionList {
+						position: absolute;
+						left: 40px;
+						top:0;
+						background: #fff;
+						width: 321px;
+						z-index: 5;
+						.option {
+							border-bottom: 1px solid #ddd;
+							width: 100%;
+							text-align: center;
+							text-indent: 0;
+							height: 71px;
+							line-height: 71px;
+						}
+					}
+					.optionListTwo{
+						position: absolute;
+						right: 40px;
+						top:0;
+						background: #fff;
+						width: 321px;
+						z-index: 5;
+						.option {
+							border-bottom: 1px solid #ddd;
+							width: 100%;
+							text-align: center;
+							text-indent: 0;
+							height: 71px;
+							line-height: 71px;
+						}
+					}
+				}
+			}
+			.goods_head {
+				width: 714px;
+				height: 95px;
+				line-height: 95px;
+				margin: 0px auto;
+				background: #f2f2f2;
+				z-index:666;
+				 margin-top:25px;
+				li {
+					font-family: SourceHanSansCN-Regular;
+					color: #333;
+					font-size: 24px;
+					float: left;
+					font-weight: bold;
+				}
+				li:nth-of-type(1) {
+					text-indent: 30px;
+					width: 40%;
+				}
+				.goods_right{
+					text-align: center;
+					width: 20%;
+				}
+			}
+		}
+		.navbox {
+			width: 100%;
+			display: flex;
+			align-items: center;
+			background: #fff;
+			.nav {
+				width: 670px;
+				margin: 0 auto;
+				display: flex;
+				justify-content: space-between;
+				.nav_first,
+				.nav_second {
+					height: 71px;
+					line-height: 71px;
+					border-radius: 10px;
+					width: 321px;
+					border: 2px solid #ababab;
+					text-indent: 24px;
+					font-family: "microsoft yahei";
+					font-size: 28px;
+					color: #000;
+					position: relative;
+					.dropDown {
+						float: right;
+						margin-right: 20px;
+						font-size: 50px;
+					}
+					
+				}
+			}
+		}
+		.goods_box {
+			width: 714px;
+			// height: 670px;
+			// overflow-y: scroll;
+			// margin: 0 auto;
+			position: fixed;
+			// top:600px;
+			left:18px;
+			bottom: 0;
+			// background: #f00;
+			ul{
+				li {
+					background: #fff;
+					.goods {
+						height: 138px;
+						border-bottom: 1px solid #ddd;
+						overflow: hidden;
+						.goods_left {
+							width: 40%;
+							margin-top: 21px;
+							display: flex;
+							justify-content: space-between;
+							float: left;
+							.avatar_box {
+								.avatar {
+									width: 96px;
+									height: 96px;
+									vertical-align: middle;
+								}
+							}
+							.goodsInfo_box {
+								margin-left: 16px;
+								.goodsName {
+									display: inline-block;
+									width: 196px;
+									overflow: hidden;
+									text-overflow: ellipsis;
+									white-space: nowrap;
+									margin: 16px 0;
+									font-size: 24px;
+									color: #333333;
+									font-family: SourceHanSansCN-Regular;
+								}
+								.goodsId {
+									font-family: MicrosoftYaHei;
+									width: 196px;
+									font-size: 20px;
+									color: #666666;
+									overflow: hidden;
+									text-overflow: ellipsis;
+									white-space: nowrap;
+									display: inline-block;
+								}
+							}
+						}
+						.goods_right {
+							float: left;
+							width: 20%;
+							text-align: center;
+							.goods_item {
+								display: inline-block;
+								font-size: 24px;
+								color: #444444;
+								font-family: MicrosoftYaHei;
+								margin-top: 52px;
+							}
+							.goodsPrice {
+								width: 128px;
+								text-align: center;
+							}
+							.developMember,
+							.promoteLinks {
+								width: 130px;
+								text-align: center;
+							}
+						}
+					}
+				}
+			} 
+		}
+		.goods_table{
+			width: 100%;
+			position: absolute;
+			top:522px;
+			overflow: hidden;
+		
+		}
+		
+	
+		.nullDataPage .nullData {
+			height: 100%;
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			width: 100%;
+			-webkit-transform: translate(-50%, -50%);
+			transform: translate(-50%, -50%);
+			text-align: center;
+			margin-top:40%;
+			img{
+				display: none;
+			}
+		}
+		.page-infinite-loading {
+			background: #fff;
+		}
+			.mint-loadmore-bottom {
+				padding: 0;
+			}
+		
+			.noMore {
+				background: #f0f0f0;
+			}
+	}
+
+}

@@ -1,0 +1,178 @@
+.container_order{
+    width: 100%;
+    height: 100%;
+    background: #fff;
+    li{
+        background-color: transparent;
+    }    
+    .ScrollBox {
+        width: 100%;
+//      height: 91.1%;
+        position: fixed;
+        top: 118px;
+        bottom: 0px;
+        z-index: 0;
+        background: #f0f0ef;
+    }
+    .orderControl{
+        width: 100%;
+        height: 118px;
+        justify-content: space-around;
+        padding: 0 1.25%;
+        position: fixed;
+        top: 0;
+        z-index: 66;
+        width: 100%;
+        max-width: 1024px;
+        background: #fff;
+        /*no*/
+        li{
+            width: 20%;
+            text-align: center;
+            display: inline-block;
+            height: 100%;
+            line-height: 118px;
+            flex: none;
+            font-size: 32px;
+            color: #a3a3a3;
+            span{
+                display: inline-block;
+                margin: 0 auto;
+            }
+        }
+        .active{
+            color: #000;
+            border-bottom: 4px solid #000;
+        }
+    }
+    .orderMain{
+        width: 100%;
+        background: #f0f0ef;
+        padding-top: 22px;
+        div:first-child{
+            margin: 0 auto;
+        }
+        .Consumption {
+            clear: both;
+            width: 720px;
+            margin: 22px auto 0 auto;
+            overflow: hidden;
+            background: #fff;
+            border-radius: 4px;
+            min-height: 200px;
+            .offline_his {
+                line-height: 130px;
+            }
+            .orderNo {
+                clear: both;
+                width: 682px;
+                font-size: 22px;
+                line-height: 74px;
+                overflow: hidden;
+                margin: 0 auto;
+                border-bottom: 2px solid #ebebeb;
+                color: #666;
+                .orderNum{
+                    float: left;
+                }
+                .orderDate {
+                    float: right;
+                }
+            }
+            .order-list {
+                clear: both;
+                width: 682px;
+                margin: 0 auto;
+                .order-item {
+                    clear: both;
+                    width: 100%;
+                    overflow: hidden;
+                    border-bottom: 2px solid #ebebeb;
+                    .order-img {
+                        width: 110px;
+                        height: 110px;
+                        display: block;
+                        float: left;
+                        margin: 40px 0;
+                    }
+                    .order-info {
+                        float: left;
+                        width: 535px;
+                        height: 110px;
+                        margin: 40px 0 40px 32px;
+                        span {
+                            display: block;
+                        }
+                        .order-name {
+                            width: 100%;
+                            overflow: hidden;
+                            text-overflow: ellipsis;
+                            white-space: nowrap;
+                            font-size: 24px;
+                            color: #333;
+                            padding: 2px 0 16px 0;
+                        }
+                        .order-specification,
+                        .order-sku {
+                            font-size: 24px;
+                            color: #999;
+                            padding-bottom: 16px;
+                            span {
+                                display: inline;
+                                color: #666;
+                            }
+                        }
+                        .order-sku {
+                            padding-bottom: 0;
+                        }
+                        .order-price {
+                            font-family: 'MicrosoftYaHei';
+                            font-size: 24px;
+                            color: #222;
+                            text-align: right;
+                        }
+                    }
+                }
+            }
+            .order-settlement {
+                width: 682px;
+                margin: 0 auto;
+                clear: both;
+                span {
+                    display: block;
+                    text-align: right;
+                }
+                .order-zoom{
+                    font-size: 22px;
+                    color: #666;
+                    padding: 30px 0 0 0;
+                    b {
+                        color: #333;
+                        min-width: 55px;
+                    }
+                }
+                .order-address {
+                    font-size: 22px;
+                    color: #666;
+                    padding: 30px 0 24px 0;
+                    b {
+                        color: #333;
+                        min-width: 55px;
+                    }
+                }
+                .order-total {
+                    font-size: 22px;
+                    color: #666;
+                    padding-bottom: 54px;
+                    b {
+                        color: #d71313;
+                        min-width: 55px;
+                    }
+                }
+            }
+        }
+    }
+    
+}
+
+

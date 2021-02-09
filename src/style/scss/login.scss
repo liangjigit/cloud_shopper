@@ -1,0 +1,69 @@
+#app {
+  height: 100%;
+  background: #fff;
+}
+
+#login {
+  font-family: SourceHanSansCN-Regular;
+  text-align: center;
+  height: 100%;
+  background: #fff;
+
+  .company_logo {
+    padding: 94px 0 53px 0;
+
+    img {
+      width: 108px;
+      height: 108px;
+    }
+  }
+
+  .login_tit {
+    font-size: 48px;
+    color: #000000;
+    margin-bottom: 164px;
+  }
+
+  ul {
+
+    li {
+      width: 636px;
+      height: 84px;
+      border-radius: 10px;
+      border: solid 2px #dddddd; /*no*/
+      margin: 0 auto 32px auto;
+
+      input {
+        width: 100%;
+        height: 100%;
+        outline: none;
+        border: none;
+        padding-left: 35px;
+        font-size: 28px;
+      }
+
+      input::-webkit-input-placeholder {
+        font-size: 28px;
+        color: #999999;
+      }
+    }
+
+    div {
+      text-align: right;
+      margin: 22px 54px 0 0;
+      font-size: 24px;
+      color: #adadad;
+    }
+  }
+
+  .loginBtn {
+    width: 634px;
+    height: 90px;
+    line-height: 90px;
+    text-align: center;
+    background-color: #000000;
+    font-size: 30px;
+    color: #ffffff;
+    margin: 56px auto 0 auto;
+  }
+}

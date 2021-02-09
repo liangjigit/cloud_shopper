@@ -1,0 +1,84 @@
+html,
+body {
+    background-color: white;
+    width: 100%;
+    height: 100%;
+}
+
+#noteT {
+    background-color: white;
+    height: 100%;
+    width: 100%;
+
+    .bscroll-vertical-scrollbar {
+        opacity: 1 !important;
+    }
+
+    .noteClass {
+        padding: 0.3rem 5% 0.3rem 5%;
+
+        ul {
+            display: flex;
+            justify-content: left;
+            flex-wrap: wrap;
+
+            li {
+                margin: 0.1rem;
+
+                .selected {
+                    background-color: #666666;
+                    color: white;
+                }
+
+                p {
+                    padding: 0.3rem;
+                    border: 1px solid #666666;
+                    background-color: #f2f2f2;
+                }
+            }
+        }
+    }
+
+    .noteContent {
+        padding: 0.3rem 5% 0.3rem 5%;
+
+        li {
+            display: flex;
+            margin: 0.3rem auto;
+
+            .content-left {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                width: 10%;
+
+                .left-circle {
+                    width: 0.5rem;
+                    height: 0.5rem;
+                    border: 0.05rem solid #666666;
+                    border-radius: 50%;
+                }
+
+                .sure-note {
+                    background-color: #666666;
+                }
+            }
+
+            .content-right {
+                width: 90%;
+                padding: 0.2rem;
+                font-size: 0.4rem;
+                border: 0.02rem solid black;
+            }
+        }
+    }
+
+    .noteButton {
+        position: fixed;
+        bottom: 0;
+        padding: 0.5rem 1.5rem;
+        width: 100%;
+        // z-index: 999;
+        // background-color: white;
+    }
+}

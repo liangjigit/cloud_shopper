@@ -1,0 +1,209 @@
+html,
+body {
+  background-color: #fff !important;
+}
+
+#app {
+  height: 100%;
+  background-color: white;
+
+  .invite {
+    height: 100%;
+    overflow: hidden;
+
+    .van-nav-bar {
+      height: 1.3rem;
+
+      .van-nav-bar__left {
+        .van-icon {
+          font-size: 0.6rem;
+        }
+      }
+
+      .van-nav-bar__title {
+        font-size: 0.5rem;
+        font-weight: bold;
+      }
+
+      .van-nav-bar__right {
+        font-size: 0.45rem;
+      }
+    }
+
+    .van-tabs {
+      height: 100%;
+
+      .van-tabs__wrap {
+        height: 1.5rem !important;
+
+        .van-tab {
+          font-size: 0.45rem;
+          line-height: 0.55rem;
+        }
+
+        .van-tab--active {
+          font-weight: 900;
+        }
+
+        .van-tabs__line {
+            // background-color: aqua !important;
+            width: 1.6rem;
+        }
+      }
+
+      .van-tabs__content {
+        margin-top: 5%;
+        height: 100%;
+
+        .is-binding {
+          margin-top: 0.5rem;
+
+          .van-collapse-item--border::after {
+            border-top: 0 !important;
+          }
+
+          .van-hairline--top-bottom::after {
+            border: 0 none white !important;
+          }
+
+          .van-cell::after {
+            border-bottom: 0 !important;
+          }
+
+          p {
+            background-color: #d6d0d0;
+            font-size: 0.45rem;
+            text-indent: 0.6rem;
+          }
+
+          .van-collapse {
+            margin-top: 0.3rem;
+            margin-left: 0.4rem;
+
+            .van-collapse-item {
+              margin-bottom: 0.5rem;
+            }
+
+            .van-cell__title {
+              font-size: 0.438rem;
+              color: black;
+            }
+
+            .van-collapse-item__wrapper {
+
+              // margin-top: 0.5rem;
+              .van-collapse-item__content {
+                padding-top: 0.5rem;
+
+                .second-item {
+                  display: flex;
+                  justify-content: space-between;
+                  padding-left: 0.2rem;
+
+                  p {
+                    font-size: 0.4rem;
+                    text-indent: 0;
+                    background-color: white;
+                    color: gray;
+                  }
+                }
+              }
+            }
+          }
+        }
+
+        .no-binding {
+          margin-top: 0.5rem;
+
+          .van-collapse-item--border::after {
+            content: "";
+            border-top: 0 !important;
+          }
+
+          .van-hairline--top-bottom::after {
+            border: 0 none white !important;
+          }
+
+          .van-cell::after {
+            border-bottom: 0 !important;
+          }
+
+          p {
+            background-color: #d6d0d0;
+            font-size: 0.45rem;
+            text-indent: 0.6rem;
+          }
+
+          .van-collapse {
+            margin-top: 0.3rem;
+            margin-left: 0.4rem;
+
+            .van-collapse-item {
+              margin-bottom: 0.5rem;
+            }
+
+            .van-cell__title {
+              font-size: 0.438rem;
+              color: black;
+            }
+
+            .van-collapse-item__wrapper {
+
+              // margin-top: 0.5rem;
+              .van-collapse-item__content {
+                padding-top: 0.5rem;
+
+                .second-item {
+                  display: flex;
+                  justify-content: space-between;
+                  padding-left: 0.2rem;
+
+                  p {
+                    font-size: 0.4rem;
+                    text-indent: 0;
+                    background-color: white;
+                    color: gray;
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+
+      .ScrollBox {
+        width: 100%;
+        height: 80%;
+        position: absolute;
+        z-index: 115;
+
+        .person-ul {
+          margin-top: 0.8rem;
+          font-size: 0.45rem;
+
+          .person-li {
+            position: relative;
+            display: flex;
+            justify-content: space-between;
+            width: 80%;
+            margin: 0.5rem auto;
+            padding-bottom: 0.3rem;
+            border-bottom-style: solid;
+            border-block-color: #d6d0d0;
+            border-bottom-width: 1px;
+
+            .next {
+              width: 0.4rem;
+              height: 0.4rem;
+              border-right-style: solid;
+              border-right-width: 1px;
+              border-bottom-style: solid;
+              border-bottom-width: 1px;
+              transform: rotate(-45deg);
+            }
+          }
+        }
+      }
+    }
+  }
+}

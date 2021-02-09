@@ -1,0 +1,265 @@
+.container{
+    width: 100%;
+    overflow-x: hidden;
+    .picker-slot{
+        margin-top: 190px;
+    }
+    .iconfont {
+        font-family: "iconfont" !important;
+        // font-size: 16px;
+        font-style: normal;
+        -webkit-font-smoothing: antialiased;
+        -webkit-text-stroke-width: 0.2px;
+        -moz-osx-font-smoothing: grayscale;
+    }
+    .dropDown {
+        color: #bbb;
+        font-size: 46px;
+        float: right;
+    }
+    .pop-up{
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, .6);
+        z-index: 2018;
+        position: absolute;
+        left: 0;
+        top:285px;
+        .rangeBox{
+            width: 100%;
+            background: #f0f0ef;
+            overflow: hidden;
+            overflow-y: auto;
+            max-height: 650px;
+            .select {
+                width: 650px;
+                margin: 30px auto 0 auto;
+                overflow: hidden;
+                background: #f0f0ef;
+                li {
+                    height: 60px;
+                    text-align: center;
+                    line-height: 60px;
+                    background: #fff;
+                    color: #000;
+                    float: left;
+                    margin: 0 30px 30px 0;
+                    font-size: 30px;
+                    border-radius: 10px;
+                    padding: 0 20px;
+                }
+                .active {
+                    background: #fead32!important;
+                    color: #fff!important;
+                }
+            }
+            
+        }
+        
+    }
+    ul.user_edit{
+        padding-bottom: 19px;
+    }
+    .picker-item{
+        top: -144px;
+    }
+    .choose {
+        width: 100%;
+        height: 90px;
+        background: #fff;
+        margin-bottom: 16px;
+//      display: none;
+        position: fixed;
+        top: 195px;
+        left: 0;
+        p {
+            font-size: 30px;
+            line-height: 90px;
+            float: left;
+            width: 325px;
+        }
+        .title {
+            color: #000;
+            margin-left: 50px;
+        }     
+        .btn {
+            color: #f8a120;
+            text-align: right;
+            position: relative;
+            overflow: hidden;
+        }   
+    }
+    .change{
+      top: 194px!important;  
+    }
+    #wrapper {
+        width: 100%;
+        position: absolute;
+        top: 300px;
+        left: 0;
+        bottom: 0;
+        z-index: 1;
+        clear: both;
+        .completion {
+            width: 100%;
+
+
+
+            background: #fff;
+            p {
+                margin-left: 46px;
+                padding-top: 20px;
+                padding-bottom: 35px;
+                font-size: 30px;
+                color: #000;
+                border-bottom: 2px solid #ddd;
+                span {
+                    font-size: 36px;
+                    color: #f8a120;
+                    font-weight: bold;
+                }
+            }
+        }
+        .sellData {
+            width: 100%;
+            background: #fff;
+            .sellInfo {
+                width: 624px;
+                display: flex;
+                flex-flow: row wrap;
+                margin: 0 auto;
+                li {
+                    width: 156px;
+                    text-align: center;
+                    margin-top: 60px;
+                    p:first-child {
+                        font-size: 28px;
+                        color: #636363;
+                        padding-bottom: 10px;
+                    }
+                    p:last-child {
+                        font-size: 30px;
+                        color: #000;
+                        font-weight: bold;
+                    }
+                }
+                li:last-child{
+                    margin-bottom: 60px;
+                }
+            }
+            
+        }
+        .dataTree {
+            width: 100%;
+            height: 790px;
+            overflow: hidden;
+            position: relative;
+            margin-top:16px;
+            background: #fff;
+            h1,h3,h4 {
+                width: 90%;
+                margin: 0 auto;
+            }
+            h3 {
+                    font-size: 26px;
+                    color: #666;
+                    padding: 25px 0 10px 0;
+                    text-align: center;
+                }
+            h1 {
+                font-size: 32px;
+                color: #000;
+                padding-bottom: 51px;
+                text-align: center;
+                height: 40px;
+                line-height: 40px;
+            }
+            h4 {
+                line-height: 26px;
+                font-size: 24px;
+                color: #666;
+                padding-bottom: 16px;
+                span {
+                    float: right;
+                    font-size: 26px;
+                    color: #ff9a09;
+                }
+            }
+            .brach_a {
+                width: 370px;
+                overflow: hidden;
+                border: 4px solid #3d93f4;
+                position: absolute;
+                top: 30px;
+                left: 120px;
+                
+            }
+            .linnkLine_a {
+                width: 2px;
+                height: 40px;
+                background-color: #3d93f4;
+                position: absolute;
+                top:194px;
+                left: 305px;
+            }
+            .linnkLine_b {
+                width: 300px;
+                height: 45px;
+                border: 2px solid #3d93f4;
+                border-bottom: none;
+                position: absolute;
+                top: 234px;
+                left: 154px;
+            }
+            .branch_b {
+                width: 254px;
+                overflow: hidden;
+                border: 4px solid #3d93f4;
+                position: absolute;
+                top: 280px;
+                left: 30px;
+            }
+            .branch_c {
+                width:254px;
+                overflow: hidden;
+                border: 4px solid #3d93f4;
+                position: absolute;
+                top: 280px;
+                left: 330px;
+            }
+            .linnkLine_c {
+                width: 2px;
+                height: 40px;
+                background-color: #3d93f4;
+                position: absolute;
+                top: 444px;
+                left: 454px;
+            }
+            .linnkLine_d {
+                width: 300px;
+                height: 45px;
+                border: 2px solid #3d93f4;
+                border-bottom: none;
+                position: absolute;
+                top: 484px;
+                left: 300px;
+            }  
+            .branch_d {
+                width: 254px;
+                overflow: hidden;
+                border: 4px solid #3d93f4;
+                position: absolute;
+                top: 530px;
+                left: 178px;
+            }
+            .branch_e {
+                width: 254px;
+                overflow: hidden;
+                border: 4px solid #3d93f4;
+                position: absolute;
+                top: 530px;
+                left: 470px;
+            }
+        }
+    }
+}

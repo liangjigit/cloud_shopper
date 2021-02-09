@@ -1,0 +1,316 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    //-webkit-tap-highlight-color: transparent
+}
+
+html {
+    -webkit-text-size-adjust: none;
+    -webkit-font-smoothing: antialiased;
+}
+
+body {
+    padding-top: constant(safe-area-inset-top); //为导航栏+状态栏的高度 88px
+    padding-left: constant(safe-area-inset-left); //如果未竖屏时为0
+    padding-right: constant(safe-area-inset-right); //如果未竖屏时为0
+    padding-bottom: constant(safe-area-inset-bottom); //为底下圆弧的高度 34px
+}
+
+body,
+html {
+    width: 100%;
+    height: 100%;
+    background: rgb(240, 240, 239);
+    font-family: -apple-system, system-ui, BlinkMacSystemFont, "Microsoft YaHei", "Segoe UI", Roboto, "Helvetica Neue",
+        Arial, "PingFang SC", "Hiragino Sans GB", sans-serif;
+    // max-width: 1024px;
+    /*no*/
+    margin: 0 auto;
+}
+
+a {
+    text-decoration: none;
+}
+
+ul,
+ol,
+li {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+img {
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
+    -webkit-user-select: none;
+    -moz-user-focus: none;
+    -moz-user-select: none;
+    user-select: none;
+}
+
+input {
+    outline: none;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+
+input:focus {
+    outline: none;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+}
+
+input[type="number"] {
+    -moz-appearance: textfield;
+}
+
+a {
+    -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
+    -webkit-user-select: none;
+    -moz-user-focus: none;
+    -moz-user-select: none;
+}
+
+a,
+a:hover,
+a:active,
+a:visited,
+a:link,
+a:focus {
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    -webkit-tap-highlight-color: transparent;
+    outline: none;
+    background: none;
+    text-decoration: none;
+}
+
+// 加载更多
+.mint-loadmore-bottom {
+    font-size: 24px;
+    //padding-top: 20px;
+}
+
+.page-infinite-loading {
+    padding: 33px 0 56px 0;
+    text-align: center;
+    font-size: 24px;
+    color: #919191;
+    background: #fff;
+}
+
+.spinner {
+    width: 150px;
+    margin: 0 auto;
+}
+
+.spinner>div {
+    width: 20px;
+    height: 20px;
+    background-color: #919191;
+    border-radius: 100%;
+    display: inline-block;
+    -webkit-animation: bouncedelay 1.4s infinite ease-in-out;
+    animation: bouncedelay 1.4s infinite ease-in-out;
+    /* Prevent first frame from flickering when animation starts */
+    -webkit-animation-fill-mode: both;
+    animation-fill-mode: both;
+}
+
+.spinner .bounce1 {
+    -webkit-animation-delay: -0.32s;
+    animation-delay: -0.32s;
+}
+
+.spinner .bounce2 {
+    -webkit-animation-delay: -0.16s;
+    animation-delay: -0.16s;
+}
+
+.nullDataPage {
+    .nullData {
+        height: 100%;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 100%;
+        -webkit-transform: translate(-50%, -50%);
+        transform: translate(-50%, -50%);
+        text-align: center;
+        margin-top: 50%;
+
+        img {
+            width: 192px;
+            height: 195px;
+        }
+
+        p {
+            font-family: SourceHanSansCN-Regular;
+            font-size: 30px;
+            color: #666666;
+            margin-top: 30px;
+        }
+    }
+}
+
+@-webkit-keyframes bouncedelay {
+
+    0%,
+    80%,
+    100% {
+        -webkit-transform: scale(0);
+    }
+
+    40% {
+        -webkit-transform: scale(1);
+    }
+}
+
+@keyframes bouncedelay {
+
+    0%,
+    80%,
+    100% {
+        transform: scale(0);
+        -webkit-transform: scale(0);
+    }
+
+    40% {
+        transform: scale(1);
+        -webkit-transform: scale(1);
+    }
+}
+
+._v-container>._v-content>.loading-layer .spinner-holder .arrow[data-v-ecaca2b0],
+._v-container>._v-content>.pull-to-refresh-layer .spinner-holder .arrow[data-v-ecaca2b0] {
+    width: 40px;
+    height: 40px;
+}
+
+._v-container>._v-content>.loading-layer .spinner-holder .text[data-v-ecaca2b0],
+._v-container>._v-content>.pull-to-refresh-layer .spinner-holder .text[data-v-ecaca2b0] {
+    font-size: 20px;
+}
+
+._v-container>._v-content>.loading-layer .spinner-holder .text[data-v-ecaca2b0],
+._v-container>._v-content>.pull-to-refresh-layer .spinner-holder .text[data-v-ecaca2b0] {
+    line-height: 20px;
+}
+
+._v-container>._v-content>.pull-to-refresh-layer[data-v-ecaca2b0] {
+    margin-top: -74px;
+}
+
+._v-container>._v-content>.loading-layer .spinner-holder .spinner[data-v-ecaca2b0],
+._v-container>._v-content>.pull-to-refresh-layer .spinner-holder .spinner[data-v-ecaca2b0] {
+    width: 32px;
+    height: 32px;
+}
+
+// 没有数据
+._v-container>._v-content>.loading-layer>.no-data-text[data-v-ecaca2b0] {
+    position: absolute;
+    left: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    top: 30px;
+    font-size: 28px;
+}
+
+// 解决ios 滑动卡顿
+.mint-tab-container {
+    -webkit-overflow-scrolling: touch;
+}
+
+// 弹框
+.mint-msgbox {
+    font-family: SourceHanSansCN-Regular;
+    background-color: #ffffff;
+    border-radius: 6px;
+    border: solid 1px #bfbfbf;
+}
+
+.mint-msgbox-header {
+    padding: 39px 0 33px 43px;
+    background-color: #f3f3f3;
+}
+
+.mint-msgbox-title {
+    text-align: left;
+    font-size: 28px;
+    color: #333333;
+}
+
+.mint-msgbox-content {
+    padding: 65px 0 42px 28px;
+    font-size: 28px;
+    color: #333333;
+    border: none;
+}
+
+.mint-msgbox-message {
+    text-align: left;
+    color: #333;
+}
+
+.mint-msgbox-btns {
+    height: 95px;
+    //margin-left: 27px;
+}
+
+.mint-msgbox-btn {
+    flex: none;
+}
+
+.mint-msgbox-cancel,
+.mint-msgbox-confirm {
+    font-size: 24px;
+    color: #333333;
+    width: 286px;
+    height: 63px;
+    border-radius: 6px;
+    border: solid 2px #333333;
+}
+
+.mint-msgbox-btns {
+    margin: 0 10px;
+    justify-content: space-around;
+}
+
+.mint-msgbox-confirm {
+    background-color: #1a191e;
+    color: #fff;
+}
+
+.mint-msgbox-confirm:active {
+    background: #000000;
+    color: #fff;
+}
+
+// 提示, 自动消失
+.mint-toast-text {
+    font-size: 28px;
+}
+
+//翻转icon
+
+.flip {
+    transform-origin: center;
+    transform: rotateX(180deg);
+}
+
+@font-face {
+    font-family: "iconfont";
+    /* project id 759672 */
+    src: url("//at.alicdn.com/t/font_759672_2eh5x6zdfof.eot");
+    src: url("//at.alicdn.com/t/font_759672_2eh5x6zdfof.eot?#iefix") format("embedded-opentype"),
+        url("//at.alicdn.com/t/font_759672_2eh5x6zdfof.woff") format("woff"),
+        url("//at.alicdn.com/t/font_759672_2eh5x6zdfof.ttf") format("truetype"),
+        url("//at.alicdn.com/t/font_759672_2eh5x6zdfof.svg#iconfont") format("svg");
+}

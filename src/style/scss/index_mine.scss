@@ -1,0 +1,107 @@
+#app {
+  height: 100%;
+  background: #f0f0ef;
+}
+
+#index_mine {
+  background: #f0f0ef;
+  font-family: SourceHanSansCN-Regular;
+
+  .mine_top {
+    height: 296px;
+    background-color: #1a1a1a;
+    position: relative;
+    color: #fff;
+
+    .mine_img {
+      height: 130px;
+      border-radius: 50%;
+      background: #ffffff;
+      position: absolute;
+      left: 37px;
+      top: 67px;
+      margin-right: 27px;
+    }
+
+    .mine_info {
+      font-size: 34px;
+      position: absolute;
+      left: 194px;
+      top: 83px;
+      width: 70%;
+      .mine_person {
+        display: flex;
+
+        .mine_name {
+          font-family: MicrosoftYaHei;
+        }
+
+        .mine_position {
+          max-width: 75%;
+          font-size: 24px;
+          padding: 12px;
+          background: #353438;
+          margin-left: 29px;
+          border-radius: 15px;
+        }
+      }
+
+      .mine_store {
+        font-size: 24px;
+        color: #efefef;
+        margin-top: 20px;
+      }
+    }
+  }
+
+  .code_employees {
+    ul {
+      position: relative;
+      background: #fff;
+
+      li {
+        height: 105px;
+        display: flex;
+        align-items: center;
+        position: relative;
+
+        img {
+          height: 57px;
+          margin: 0 20px 0 23px;
+        }
+
+        span {
+          font-size: 28px;
+          color: #333333;
+        }
+      }
+
+      li::after {
+        content: "\e72b";
+        font-family: "iconfont";
+        height: 105px;
+        position: absolute;
+        right: 27px;
+        top: 0;
+        line-height: 105px;
+        font-size: 34px;
+        color: #999;
+      }
+
+      #mine_line {
+        height: 1px; /*no*/
+        background: #eee;
+        width: 656px;
+        position: absolute;
+        right: 0;
+      }
+    }
+  }
+  .code_employees ul:nth-child(1) {
+    margin-top: 19px;
+  }
+
+  .code_employees ul:nth-child(2) {
+    margin-top: 21px;
+  }
+}

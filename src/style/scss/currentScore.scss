@@ -1,0 +1,58 @@
+#detail {
+    width: 100%;
+    height: 100%;
+    background-color: #fff;
+    .can-use {
+        position: relative;
+        top: 1rem;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        p {
+            font-size: 0.7rem;
+        }
+        .all-points {
+            font-size: 0.7rem;
+        }
+    }
+    .detail-points {
+        position: relative;
+        top: 1.5rem;
+        display: flex;
+        justify-content: space-around;
+        ul.dpoints {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            li:nth-child(1) {
+                font-size: 0.6rem;
+                line-height: 1.5rem;
+            }
+            li {
+                font-size: 0.5rem;
+                line-height: 1rem;
+            }
+        }
+        ul.etime {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            li:nth-child(1) {
+                font-size: 0.6rem;
+                line-height: 1.5rem;
+            }
+            li {
+                font-size: 0.5rem;
+                line-height: 1rem;
+            }
+        }
+    }
+}
+
+#app {
+    height: 100%;
+    background: #f0f0ef;
+}

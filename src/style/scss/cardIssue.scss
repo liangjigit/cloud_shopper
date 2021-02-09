@@ -1,0 +1,324 @@
+#app {
+  height: 100%;
+}
+
+// tab切换
+#cardIssue .myScroll {
+  overflow-y: auto;
+}
+#cardIssue a {
+  background-color: transparent;
+}
+#cardIssue .mint-navbar {
+  height: 110px;
+  justify-content: space-around;
+  padding: 0 10px;
+  position: fixed;
+  z-index: 9;
+  width: 100%;
+  max-width: 1024px; /*no*/
+}
+
+#cardIssue .mint-navbar .mint-tab-item {
+  color: #a2a2a2;
+}
+
+#cardIssue .mint-tab-item-label {
+  font-family: SourceHanSansCN-Regular;
+  font-size: 32px;
+}
+
+#cardIssue .mint-navbar .mint-tab-item.is-selected {
+  border-bottom: 4px solid #000;
+  color: #000;
+  margin: 0;
+}
+
+#cardIssue .mint-navbar .mint-tab-item {
+  padding: 53px 10px 23px 10px;
+  flex: none;
+}
+
+#cardIssue .mint-tab-container {
+  background: #f0f0ef;
+  width: 100%;
+  //height: 91.7%;
+  //height: 90%;
+  height: inherit;
+  position: absolute;
+  top: 115px;
+  z-index: 0;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  max-width: 1024px; /*no*/
+}
+
+#cardIssue ._v-container[data-v-ecaca2b0] {
+  top: 21px;
+}
+
+#cardIssue {
+  height: 100%;
+  .staff {
+      //我的卡券
+      .cardBox {
+          position: relative;
+          margin-top: 25px;
+          .card {
+              width: 578px;
+              height: 170px;
+              border-radius: 4px;
+              //  background: url(../images/yhj.png) no-repeat;
+              background-size: 100% 170px;
+              display: flex;
+              flex-flow: nowrap row;
+              margin: 0 auto;
+              .cardLeft {
+                  width: 476px;
+                  height: 100%;
+                  .cardType {
+//                    height: 34px;
+                      font-size: 24px;
+                      color: #fff;
+                      line-height: 40px;
+                      margin: 26px 0 0 20px;
+                  }
+                    .autoWidth {
+                        margin: 12px 0 0 20px;
+                        width: 350px;
+                        word-break: break-all;
+                        text-overflow: ellipsis; //显示为省略号
+                        display: -webkit-box; //对象作为伸缩盒子模型显示
+                        
+                        /*! autoprefixer: off */
+                        -webkit-box-orient: vertical;
+                        /* autoprefixer: on */
+                        
+                        -webkit-line-clamp: 2; //显示行数## 标题文字 ##
+                        overflow: hidden;
+                        background: #f8a120;
+                    }                  
+                  .cardType span {
+                      text-align: center;
+                      background-color: #f8a120;
+                      padding: 6px;
+                  }
+                  .cardCode {
+                      font-size: 20px;
+                      color: #999;
+                      padding-left: 20px;
+                      height: 25px;
+                      line-height: 25px;
+                  }
+                  .cardTime {
+                      font-size: 20px;
+                      color: #999;
+                      padding-left: 20px;
+                      .cardCode_never {
+                          line-height: 50px;
+                      }
+                  }
+                  .lineheight{
+                      .cardCode_never {
+                          line-height: 40px;
+                      }
+                  }
+              }
+              .cardRight {
+                  width: 234px;
+                  height: 100%;
+                  text-align: center;
+                  .cardValue {
+                      font-size: 36px;
+                      color: #fff;
+                      padding-top: 25px;
+                  }
+                  .cardFeature {
+                      /*font-size: 0.30rem;*/
+                      font-size: 24px;
+                      /*padding-top: 0.4rem;*/
+                      line-height: 170px;
+                      color: #fff;
+                  }
+                  .cardOnly {
+                      padding-top: 10px;
+                      line-height: 1;
+                  }
+                  .cardUsed {
+                      /*font-size: 0.30rem;*/
+                      font-size: 36px;
+                      /*padding-top: 0.4rem;*/
+                      line-height: 170px;
+                      color: #fff;
+                  }
+              }
+          }
+          .closeTime {
+              display: block;
+              width: 558px;
+              margin: 0 auto;
+              clear: both;
+              font-size: 24px;
+              color: #000;
+              line-height: 60px;
+          }
+          .cardNum {
+              display: block;
+              width: 12%;
+              position: absolute;
+              right: 0;
+              bottom: 130px;
+              /*bottom: .785rem;*/
+              font-size: 20px;
+              text-align: center;
+          }
+          label {
+              width: 40px;
+              height: 40px;
+              //            border: 1px solid #000;
+              display: block;
+              border-radius: 50%;
+              position: absolute;
+              left: 30px;
+              /*bottom: .785rem;*/
+              bottom: 130px;
+              .circle {
+                  display: none;
+                  width: 100%;
+                  height: 100%;
+              }
+              .circle_check {
+                  display: block;
+                  border-radius: 50%;
+                  width: 100%;
+                  height: 100%;
+              }
+          }
+          input {
+              display: none;
+          }
+      }
+      .recordItem {
+          width: 95%;
+          overflow: hidden;
+          box-sizing: border-box;
+          border: 1px solid #999;
+          box-shadow:0 2px 3px #999;
+          margin:20px auto 0 auto;
+          img {
+              width: 59px;
+              height: 38px;
+              vertical-align: middle;
+              display: block;
+              float: left;
+              margin: 95px 50px;
+          }
+          .message {
+              float: left;
+              overflow: hidden;
+              .sendCards{
+                  width: 520px;
+                  word-break: break-all;
+                  text-overflow: ellipsis;
+                  display: -webkit-box;
+                  -webkit-box-orient: vertical;
+                  -webkit-line-clamp: 2;
+                  overflow: hidden;
+              }
+              p:first-child {
+                  margin-top: 15px;
+              }
+              p {
+                  font-size: 24px;
+                  color: #101010;
+                  margin-bottom: 15px;
+              }
+          }
+      }
+  }
+//  我要发券
+  .wantSend {
+      width: 100%;
+      height: 76px;
+      overflow: hidden;
+      position: fixed;
+      left: 0;
+      bottom: 0;
+      z-index: 996;
+      span {
+          display: block;
+          width: 512px;
+          height: 76px;
+          background: #000;
+          border: none;
+          text-align: center;
+          line-height: 76px;
+          font-size: 30px;
+          color: #fff;
+          margin: 0 auto;
+          border-radius: 6px;
+      }
+  }
+  .allType {
+      width: 100%;
+      overflow: hidden;
+      position: fixed;
+      top: 130px;
+      background: #fff;
+      left: 0;
+      display: block;
+      span {
+          display: block;
+          width: 552px;
+          height: 78px;
+          color: #333;
+          text-align: center;
+          overflow: hidden;
+          font-size: 28px;
+          line-height: 74px;
+          box-sizing: border-box;
+          margin: 34px auto;
+          border: 2px solid #b5b5b5;
+          border-radius: 4px;
+          background-size: 17px 12px;
+          background-repeat: no-repeat;
+          background-position: 65% center;
+      }
+  }
+  
+  
+  /*弹窗*/
+  
+  .dialog {
+      width: 100%;
+      height: 100%;
+      position: fixed;
+      left: 0;
+      top: 243px;
+      background-color: rgba(0, 0, 0, 0.61);
+      z-index: 999;
+      display: none;
+      .cardsType {
+          display: none;
+          width: 552px;
+          overflow: hidden;
+          margin: 0 auto;
+          border-radius: 0 0 4px 4px;
+          background: #fff;
+          li {
+              width: 100%;
+              height: 78px;
+              text-align: center;
+              line-height: 77px;
+              box-sizing: border-box;
+              border: 1px solid #ddd;
+              border-top: none;
+              font-size: 28px;
+          }
+      }
+  }
+  
+}
+
+
+

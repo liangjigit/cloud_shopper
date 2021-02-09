@@ -1,0 +1,177 @@
+#cardSubmit {
+  width: 100%;
+  overflow: hidden;
+  background: #fff;
+  position: relative;
+
+  .cardIpt {
+    width: 652px;
+    height: 78px;
+    border: 2px solid #b5b5b5;
+    border-radius: 8px;
+    display: block;
+    text-align: center;
+    margin: 60px auto 40px auto;
+  }
+  .cardNum {
+    width: 540px;
+    height: 74px;
+    border: none;
+    outline: none;
+    text-align: center;
+  }
+  .wechartS {
+    width: 70px;
+    height: 70px;
+    position: absolute;
+    top: 64px;
+    right: 54px;
+    z-index: 99999;
+    /* background: #0ff; */
+    img {
+      display: block;
+      width: 50%;
+      height: 50%;
+      margin: 25% auto;
+    }
+  }
+  .cardSub {
+    width: 515px;
+    height: 75px;
+    line-height: 75px;
+    border: none;
+    font-size: 30px;
+    color: #fff;
+    background: #000;
+    display: block;
+    border-radius: 8px;
+    margin: 0 auto 45px auto;
+  }
+}
+
+.logoutTit {
+  width: 652px;
+  height: 120px;
+  margin: 0 auto;
+  line-height: 120px;
+  font-size: 32px;
+  color: #333;
+}
+
+.couponsList {
+  clear: both;
+  width: 700px;
+  margin: 0 auto;
+  overflow: hidden;
+
+  li {
+    clear: both;
+    width: 100%;
+    overflow: hidden;
+    margin-top: 25px;
+    background: #fff;
+    .cardInfo {
+      width: 636px;
+      display: block;
+      line-height: 60px;
+      margin: 0 auto;
+      font-size: 24px;
+      color: #333;
+      span {
+        display: block;
+        width: 100%;
+        b {
+          font-weight: normal;
+          color: #666;
+        }
+      }
+      span:last-child {
+        line-height: 1;
+        padding-bottom: 0.2rem;
+      }
+    }
+    .card {
+      width: 636px;
+      height: 168px;
+      margin: 0 auto 25px auto;
+      box-shadow: 3px 3px 10px #ddd;
+      border-top: 1px solid #ddd;
+      border-left: 1px solid #ddd;
+      background-size: 100% 100%;
+      background-repeat: no-repeat;
+      background-position: center center;
+      .memberCard-item-left {
+        float: left;
+        margin-left: 30px;
+        .cardType {
+          display: inline-block;
+          //                      width: 104px;
+          //                  height: 34px;
+          line-height: 34px;
+          background: #f8a120;
+          color: #fff;
+          margin: 16px 0 15px 0;
+          font-size: 25px;
+          text-align: center;
+          padding: 0 10px;
+        }
+        .autoWidth {
+          margin: 25px 0 15px 0;
+          width: 395px;
+          word-break: break-all;
+          text-overflow: ellipsis; //显示为省略号
+          display: -webkit-box; //对象作为伸缩盒子模型显示
+          /*! autoprefixer: off */
+          -webkit-box-orient: vertical;
+          /* autoprefixer: on */
+          -webkit-line-clamp: 2; //显示行数## 标题文字 ##
+          overflow: hidden;
+        }
+        .cardCode {
+          padding-bottom: 15px;
+          font-size: 24px;
+        }
+        .cardDate {
+          font-size: 20px;
+          color: #999;
+        }
+      }
+
+      .memberCard-item-right {
+        width: 200px;
+        float: right;
+        color: #fff;
+        text-align: center;
+        .cardEffect {
+          font-size: 34px;
+          margin: 50px 0 28px 0;
+          font-weight: normal;
+        }
+        .cardWay {
+          font-size: 22px;
+        }
+        .cardline {
+          line-height: 194px;
+          padding-top: 0px;
+        }
+        .cardFeature {
+          font-size: 24px;
+          padding-top: 15px;
+          color: #fff;
+        }
+        .paddingtop {
+          padding-top: 50px !important;
+        }
+        .cardDiscount {
+          font-size: 36px;
+          color: #fff;
+          padding-top: 15px;
+        }
+      }
+    }
+
+  }
+  li:first-child {
+    margin-top: 0;
+  }
+}

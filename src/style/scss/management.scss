@@ -1,0 +1,396 @@
+#app {
+  background: #f0f0ef;
+  height: 100%;
+
+  .iconfont {
+    font-family: "iconfont" !important;
+    font-style: normal;
+    -webkit-font-smoothing: antialiased;
+    -webkit-text-stroke-width: 0.2px;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  #management {
+    background: #f0f0ef;
+    height: 100%;
+
+    //顶部
+    header {
+      width: 100%;
+      background: #FFFFFF;
+
+      .choose_box {
+        width: 650px;
+        margin: 0 auto;
+        height: 118px;
+        line-height: 118px;
+        display: flex;
+        justify-content: space-between;
+
+        .chooseSpace {
+          font-size: 30px;
+          font-family: SourceHanSansCN-Regular;
+          color: #444444;
+        }
+
+        .chooseVal {
+          font-size: 22px;
+          color: #f8a120;
+          font-family: SourceHanSansCN-Regular;
+
+          i {
+            font-size: 30px;
+            color: #000;
+            float: right;
+          }
+        }
+      }
+
+      .mask {
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.5);
+        position: fixed;
+        top: 118px;
+        z-index: 999;
+
+        .box {
+          width: 100%;
+          background: #f0f0ef;
+
+          .allPerson {
+            width: 664px;
+            margin: 0 auto;
+            padding-bottom: 30px;
+            overflow: hidden;
+
+            .person {
+              background: #fff;
+              padding: 18px 26px;
+              margin-left: 29px;
+              border-radius: 10px;
+              margin-top: 30px;
+              display: inline-block;
+              font-size: 28px;
+              color: #333;
+            }
+
+            .active {
+              background: #f8a120;
+              color: #fff;
+              border-radius: 10px;
+            }
+          }
+        }
+      }
+    }
+
+    .change {
+      top: 14px !important;
+    }
+
+    .ScrollBox {
+      // height: 89.5%;
+      width: 100%;
+      position: absolute;
+      top: 138px;
+
+      .dateTitle {
+        height: 118px;
+        line-height: 118px;
+        width: 100%;
+        background: #Fff;
+        text-indent: 50px;
+        font-size: 30px;
+        font-family: SourceHanSansCN-Regular;
+        color: #444444;
+        margin-top: 14px;
+      }
+
+      .invitationSchedule {
+        width: 96%;
+        margin: 0 auto;
+        background: #FFFFFF;
+        overflow: hidden;
+        border-radius: 10px;
+
+        .invitationTitle {
+          height: 94px;
+          line-height: 94px;
+          font-size: 30px;
+          color: #444;
+          text-indent: 34px;
+        }
+
+        .invitationInfo {
+          width: 100%;
+          overflow: hidden;
+          padding-bottom: 40px;
+
+          .invitationList {
+            width: 100%;
+            float: left;
+            display: flex;
+            height: 1.5rem;
+            align-items: center;
+
+            li {
+              flex: 1;
+              text-align: center;
+              border-right: 2px solid #e9e9e9;
+              display: flex;
+              flex-direction: column;
+              justify-content: space-between;
+              height: 100%;
+              &:nth-child(2){
+                border-right:none
+              }
+              &:nth-child(4){
+                border-right:none
+              }
+							p{
+								&:nth-child(2){
+                  color: #f8a120;
+								}
+							}
+
+              // p {
+              //   font-size: 36px;
+              //   color: #f8a120;
+              //   padding-top: 16px;
+              //   padding-bottom: 20px;
+              // }
+            }
+
+            li:last-of-type {
+              border-right: 0;
+            }
+          }
+        }
+      }
+
+      //  日历
+      .calendar {
+        width: 100%;
+
+        .wh_container {
+          max-width: 100%;
+          max-height: 100%;
+          background: #fff !important;
+
+          .wh_content_all {
+            background: #fff;
+            padding-bottom: 50px;
+
+            .wh_top_changge {
+              li:first-of-type {
+                padding-left: 50px;
+              }
+
+              li:last-of-type {
+                padding-right: 50px;
+              }
+
+              li:first-of-type::after {
+                content: '上一月';
+                color: #913500;
+                border: 2px solid #913500;
+                padding: 20px 20px 20px 30px;
+                border-radius: 10px;
+                position: relative;
+                right: 14%;
+              }
+
+              li:last-of-type::before {
+                content: '下一月';
+                color: #913500;
+                border: 2px solid #913500;
+                padding: 20px 30px 20px 20px;
+                border-radius: 10px;
+                position: relative;
+                left: 14%;
+              }
+
+              li:first-of-type,
+              li:last-of-type {
+                position: relative;
+              }
+
+              li:last-of-type:hover {
+                border: none !important;
+                background: #f2f2f2;
+              }
+
+              li:focus {
+                background: #f2f2f2;
+              }
+
+              li {
+                color: #000;
+                font-size: 30px;
+                padding: 58px 0;
+                background: #f2f2f2;
+                position: relative;
+                display: flex;
+                flex: auto;
+
+                .wh_jiantou1 {
+                  border: none;
+                  transform: rotate(0deg);
+                }
+
+                .wh_jiantou2 {
+                  border: none;
+                  transform: rotate(0deg);
+                }
+
+                .iconPrev {
+                  font-size: 20px;
+                  position: absolute;
+                  left: 60px;
+                  top: 40%;
+                  color: #913500;
+                }
+
+                .iconNext {
+                  font-size: 20px;
+                  position: absolute;
+                  right: 60px;
+                  top: 40%;
+                  color: #913500;
+                }
+              }
+            }
+
+            .wh_content {
+              .wh_item_date:hover {
+                background: none;
+                cursor: pointer;
+              }
+
+              .wh_content_item {
+                color: #000;
+                font-size: 28px;
+                font-family: SourceHanSansCN-Regular;
+                padding-bottom: 60px;
+                padding-top: 20px;
+
+                .wh_item_date {
+                  padding-bottom: 60px;
+                  padding-top: 20px;
+                }
+
+                .wh_item_date .wh_other_dayhide {
+                  color: #bfbfbf;
+                }
+
+                .wh_item_date.mark1::after {
+                  content: '';
+                  width: 15px;
+                  height: 15px;
+                  background: #f00;
+                  border-radius: 50%;
+                  position: absolute;
+                  bottom: -10%;
+                  left: 42%;
+                }
+
+                @media screen and (min-width:460px) {
+                  .wh_item_date:hover {
+                    cursor: pointer;
+                  }
+                }
+
+                .calendar .wh_container .wh_content_item {
+                  color: #000 !important;
+                  font-size: 30px !important;
+                }
+              }
+
+              .wh_content_item .wh_isToday {
+                background: #fff;
+                border-radius: 5px;
+                padding-bottom: 60px;
+              }
+
+              .wh_content_item .wh_chose_day {
+                background: #f8a120;
+                border-radius: 10px;
+                padding-bottom: 60px;
+                color: #fff;
+                width: 65px;
+              }
+            }
+          }
+        }
+      }
+
+      //底部人员信息
+      footer {
+        width: 100%;
+        background: #fff;
+        margin-top: 22px;
+        font-family: SourceHanSansCN-Regular;
+        padding-bottom: 100px;
+
+        .footerTitle {
+          font-size: 30px;
+          color: #444;
+          padding-bottom: 13px;
+          padding-top: 38px;
+        }
+
+        .headPortrait {
+          width: 100px;
+          height: 100px;
+          float: left;
+
+          img {
+            max-width: 100%;
+            max-height: 100%;
+            border-radius: 50%;
+          }
+        }
+
+        .details.nopadding {
+          padding-bottom: 0;
+          padding-top: 0;
+          position: relative;
+          border-bottom: 1px solid #bfbfbf;
+          padding-bottom: 1rem;
+        }
+
+        .details {
+          margin-left: 40px;
+          overflow: hidden;
+
+          .message {
+            width: 560px;
+            float: left;
+            margin-left: 14px;
+            margin-top: 18px;
+
+            .thisName {
+              font-size: 28px;
+              color: #333;
+            }
+
+            .badge {
+              padding: 4px 18px;
+              font-size: 20px;
+            }
+
+            .comment {
+              margin-top: 18px;
+              background: #e5e5e5;
+              line-height: 0.5rem;
+              font-size: 0.35rem;
+              color: #666;
+              display: block;
+            }
+          }
+        }
+      }
+    }
+  }
+}

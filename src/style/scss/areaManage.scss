@@ -1,0 +1,109 @@
+#areaManage{
+  header{
+    height: 1.2rem;
+    padding: 0.2rem 0;
+    .time{
+      height: 100%;
+      ul{
+        display: flex;
+        justify-content: space-evenly;
+        li{
+          border: 1px solid #f0f0ef;
+          background-color: #FFFFFF;
+          padding: 0.2rem 0.4rem;
+          border-radius: 0.1rem;
+          font-weight: bolder;
+        }
+        .seleStyle{
+          background-color: #000000;
+          color: #FFFFFF;
+        }
+      }
+    }
+  }
+  main{
+    background-color: #FFFFFF;
+    height:auto;
+    .back-line{
+      height: 0.3rem;
+      background-color: #f0f0ef;
+    }
+    header{
+      display: flex;
+      align-items: center;
+      .title{
+        padding-left: 0.2rem;
+        font-size: 0.45rem;
+        font-weight: 900;
+        color: black
+      }
+      img{
+        margin: 0 0.2rem;
+      }
+      input{
+        width: 4rem;
+        height: 0.6rem;
+        border-radius: 0.1rem;
+        margin-left: 0.5rem;
+      }
+      .search{
+        margin-left: 0.3rem;
+        font-weight:bolder;
+      }
+    }
+    article{
+      section{
+        display: flex;
+        padding-left: 0.2rem;
+        margin: 0.3rem 0;
+        height: 1rem;
+        .number{
+          align-self:center;
+          flex: 1;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          p{
+            width: 0.4rem;
+            height:0.4rem;
+            border-radius: 50%;
+            border: 1px solid black;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+          }
+        }
+        .data{
+          flex:19;
+          display: flex;
+          p{
+            flex: 4;
+            display: flex;
+            align-items: center;
+          }
+          .people{
+            flex: 2;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+          }
+          .back{
+            flex: 2;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+          }
+          .noInvite{
+            flex: 2;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+          }
+        }
+      }
+    }
+  }
+}

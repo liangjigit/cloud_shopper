@@ -1,0 +1,130 @@
+#app {
+  background: #fff;
+  height: 100%;
+	.iconfont {
+	  font-family: "iconfont" !important;
+	  font-style: normal;
+	  -webkit-font-smoothing: antialiased;
+	  -webkit-text-stroke-width: 0.2px;
+	  -moz-osx-font-smoothing: grayscale;
+	}
+	#onlineCommission {
+	  background: #fff;
+	  height: 100%;
+	
+	  header {
+	    width: 100%;
+	    overflow: hidden;
+	    .header_box {
+	      width: 634px;
+	      margin: 0 auto;
+	      display: flex;
+	      justify-content: space-between;
+	      margin-top: 87px;
+	      .header_left {
+	        width: 340px;
+	        p {
+	          font-size: 52px;
+	          color: #333;
+	          font-family: "microsoft yahei";
+	          font-weight: bold;
+	          width: 100%;
+	          margin-top: 30px;
+	        }
+	        span {
+	          font-size: 28px;
+	          color: #333;
+	          margin-top: 30px;
+	          display: inline-block;
+	          font-family: SourceHanSansCN-Regular;
+	        }
+	      }
+	      .header_right {
+	        width: 160px;
+	        height: 160px;
+	        img {
+	          width: 160px;
+	          height: 160px;
+	          border-radius: 50%;
+	        }
+	      }
+	    }
+	  }
+	  .guideInfo {
+	    width: 100%;
+	    display: flex;
+	    justify-content: space-between;
+	    margin-top: 80px;
+	    .guideInfo_item {
+	      flex: 1;
+	      text-align: center;
+	      border-right: 1px solid #ddd;
+	      p {
+	        font-family: MicrosoftYaHei;
+	        font-size: 32px;
+	        font-weight: normal;
+	        color: #f8a120;
+	      }
+	      span {
+	        display: inline-block;
+	        font-family: SourceHanSansCN-Regular;
+	        font-size: 28px;
+	        font-weight: normal;
+	        font-stretch: normal;
+	        color: #444444;
+	        margin-top: 26px;
+	      }
+	    }
+	    .guideInfo_item:last-of-type {
+	      border-right: none;
+	    }
+	  }
+	  .line {
+	    width: 100%;
+	    height: 19px;
+	    background: #f0f0ef;
+	    margin-top: 47px;
+	  }
+	
+	  footer {
+	    width: 100%;
+	    .footer_box {
+	      width: 634px;
+	      margin: 0 auto;
+	      .border {
+	        width: 692px;
+	
+	        height: 1px;
+	        background: #ddd;
+	      }
+	      .footer_item {
+	        display: flex;
+	        justify-content: space-between;
+	        height: 127px;
+	        line-height: 127px; //          border-bottom: 1px solid #ddd;
+	        span {
+	          font-family: SourceHanSansCN-Regular;
+	          font-size: 30px;
+	          color: #444444;
+	          img {
+	            vertical-align: middle;
+	            margin-right: 10px;
+	            width: 38px;
+	          }
+	        }
+	        .more {
+	          font-size: 40px;
+	          color: #e3e3e3;
+	        }
+	      }
+	      .footer_item:last-of-type {
+	        border-bottom: none;
+	      }
+	    }
+	  }
+	}
+	
+	
+}
+
+

@@ -1,0 +1,165 @@
+html, body {
+  background: #fff;
+}
+
+.container {
+  width: 100%;
+  //  height: 100%;
+  overflow-x: hidden;
+  .mint-cell-wrapper {
+    background-size: 120% 0;
+    align-items: flex-start;
+  }
+  .mint-cell:last-child {
+    background-size: 100% 0;
+  }
+  .contactbox {
+    width: 100%;
+    //      height: 220px;
+    background: #fff;
+    .contactTitle {
+      font-size: 28px;
+      padding: 30px 0 30px 45px;
+    }
+    .mode {
+      display: flex;
+      flex-flow: row nowrap;
+      justify-content: space-between;
+      width: 664px;
+      margin: 0 auto;
+      li {
+        width: 104px;
+        height: 58px;
+        text-align: center;
+        box-sizing: border-box;
+        border: 2px solid #000;
+        line-height: 58px;
+        background-color: #fff;
+        font-size: 26px;
+        color: #000;
+      }
+      .li_active {
+        background-color: #000 !important;
+        color: #fff;
+      }
+    }
+  }
+  .matter {
+    width: 100%;
+    background-color: #fff;
+    form {
+      margin-left: 46px;
+      font-size: 26px;
+      color: #333;
+      line-height: 50px;
+      padding-bottom: 1px;
+      .mint-radiolist-title {
+        font-size: 28px;
+        padding: 48px 0 52px 0;
+        margin: 0px;
+        color: #000;
+      }
+      .mint-cell {
+        margin-bottom: 50px;
+        .mint-cell-wrapper {
+          font-size: 26px;
+          align-items: flex-start;
+
+          .mint-radio {
+            width: 50px;
+            height: 50px;
+            .mint-radio-core {
+              width: 40px;
+              height: 40px;
+
+            }
+            .mint-radio-input:checked + .mint-radio-core {
+              background-color: #F8A120;
+              border-color: #F8A120;
+            }
+            .mint-radio-core {
+              border-width: 2px;
+            }
+            .mint-radio-core::after {
+              width: 20px;
+              height: 20px;
+              left: 8px;
+              top: 8px;
+            }
+          }
+        }
+      }
+
+    }
+  }
+  .remarkInformation {
+    width: 100%;
+    height: 400px;
+    background: #fff;
+    //      div {
+    //          height: 82px;
+    //          padding-top: 26px;
+    //          clear: both;
+    //          h1 {
+    //              font-size: 28px;
+    //              float: left;
+    //              line-height: 82px;
+    //          }
+    //          textarea {
+    //              display: inline-block;
+    //              width: 466px;
+    //              height: 260px;
+    //              color: #000;
+    //              font-size: 26px;
+    //              padding: 20px;
+    //              background-color: #f3f3f3;
+    //              resize: none;
+    //              border-radius: 4px;
+    //              border: none;
+    //          }
+    //      }
+    .mint-field {
+      margin-left: 46px;
+      padding-top: 26px;
+      .mint-field-core {
+        background: #f3f3f3;
+        padding: 10px 20px;
+        resize: none;
+        font-size: 24px;
+      }
+      .mint-cell-title {
+        width: auto;
+        font-size: 28px;
+        color: #000;
+        //margin-top: -300px;
+      }
+    }
+
+  }
+  .contact {
+    width: 100%;
+    height: 138px;
+    display: flex;
+    flex-flow: nowrap row;
+    justify-content: center;
+    clear: both;
+    background: #fff;
+    button {
+      width: 350px;
+      height: 98px;
+      margin-bottom: 40px;
+      box-sizing: border-box;
+      border: 2px solid #000;
+      text-align: center;
+      font-size: 28px;
+    }
+    button:first-child {
+      background: #fff;
+      color: #000;
+    }
+    button:last-child {
+      color: #fff;
+      background: #000;
+    }
+  }
+}

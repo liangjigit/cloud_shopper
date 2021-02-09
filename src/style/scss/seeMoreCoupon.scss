@@ -1,0 +1,360 @@
+.container_coupon {
+  width: 100%;
+
+  li {
+    background-color: transparent;
+  }
+
+  .ScrollBox {
+    width: 100%;
+    position: fixed;
+    top: 1.5rem;
+    bottom: 0px;
+    z-index: 1999;
+    background-color: #f0f0ef;
+  }
+
+  .dialog,
+  .dialog_status {
+    width: 100%;
+    height: 100%;
+    margin-top: 104px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background: rgba(0, 0, 0, 0.3);
+    z-index: 2000;
+
+    .coupons_select {
+      width: 100%;
+      position: absolute;
+      top: 0;
+      left: 0;
+      z-index: 666;
+    }
+
+    li {
+      width: 50%;
+      background-color: #fff;
+
+      div:first-child {
+        border-top: 2px solid #ddd;
+      }
+
+      div {
+        width: 100%;
+        height: 104px;
+        box-sizing: border-box;
+        border-bottom: 1px solid #ddd;
+        text-align: center;
+        line-height: 104px;
+        font-size: 34px;
+        color: #000;
+      }
+    }
+
+    .coupons_status {
+      float: right;
+    }
+
+    .coupons_type {
+      float: left;
+    }
+  }
+
+  .coupons {
+    width: 100%;
+    height: 104px;
+    margin: 0 auto;
+    display: flex;
+    flex-flow: row nowrap;
+    background-color: #fff;
+
+    li:first-child {
+      box-sizing: border-box;
+      border-right: 2px solid #ddd;
+    }
+
+    li {
+      width: 50%;
+      flex-grow: 1;
+      text-align: center;
+      line-height: 104px;
+      color: #000;
+      font-size: 34px;
+      //          background: url(../images/downx3.png) no-repeat right center;
+      background-size: 26px 18px;
+      background-position: 325px 44px;
+    }
+  }
+
+  .toggle {
+    display: flex;
+    padding-top: 0.3rem;
+
+    li {
+      width: 50%;
+      text-align: center;
+
+      .mint-button--normal {
+        width: 60%;
+        height: 0.9rem;
+        font-size: 0.4rem;
+      }
+    }
+  }
+
+  .memberCard-List {
+    clear: both;
+    width: 710px;
+    margin: 0 auto;
+    overflow: hidden;
+
+    .bancard_li {
+      opacity: 0.3;
+      pointer-events: none;
+      z-index: 10;
+      position: relative;
+
+      .card_icon {
+        display: block;
+        width: 185px;
+        height: 100px;
+        position: absolute;
+        right: 10px;
+        bottom: 10px;
+        z-index: 999;
+      }
+    }
+
+    li {
+      clear: both;
+      width: 100%;
+      height: 3.6rem;
+      margin-top: 25px;
+      background-size: 100% 100%;
+      background-repeat: no-repeat;
+      background-position: center center;
+      border-bottom: 1px solid #afafaf;
+      background-color: #fff;
+      border-radius: 0.3rem;
+
+      .memberCard-box {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        height: 3rem;
+
+        .memberCard-time {
+          position: relative;
+          width: 100%;
+          left: 10%;
+
+          span:nth-child(2) {
+            color: #afafaf;
+          }
+        }
+
+        .member-card {
+          display: flex;
+          position: relative;
+          top: 0.4rem;
+          width: 100%;
+
+          .card-image {
+            width: 50%;
+            text-align: center;
+
+            img {
+              width: 3rem;
+            }
+          }
+
+          .member-content {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+
+            p:nth-child(1) {
+              font-size: 0.45rem;
+            }
+
+            p:nth-child(2) {
+              span:nth-child(1) {
+                color: red;
+                font-size: 0.3rem;
+              }
+
+              span:nth-child(2) {
+                color: red;
+                font-size: 0.5rem;
+              }
+
+              span:nth-child(3) {
+                color: #afafaf;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .couponsList {
+    clear: both;
+    width: 710px;
+    margin: 0 auto;
+    overflow: hidden;
+
+    li {
+      clear: both;
+      width: 100%;
+      height: 194px;
+      margin-top: 25px;
+      background-size: 100% 100%;
+      background-repeat: no-repeat;
+      background-position: center center;
+
+      .memberCard-box {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+
+        .member-card {
+          display: flex;
+          width: 100%;
+
+          .card-image {
+            width: 50%;
+            text-align: center;
+
+            img {
+              width: 3rem;
+            }
+          }
+
+          .member-content {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+
+            p:nth-child(1) {
+              font-size: 0.45rem;
+            }
+
+            p:nth-child(2) {
+              span:nth-child(1) {
+                color: red;
+                font-size: 0.3rem;
+              }
+
+              span:nth-child(2) {
+                color: red;
+                font-size: 0.5rem;
+              }
+
+              span:nth-child(3) {
+                color: #afafaf;
+              }
+            }
+          }
+        }
+      }
+
+      .memberCard-item-left {
+        float: left;
+        margin-left: 40px;
+
+        .cardType {
+          display: inline-block;
+          //                      width: 104px;
+          //                  height: 34px;
+          line-height: 34px;
+          background: #f8a120;
+          color: #fff;
+          margin: 34px 0 24px 0;
+          font-size: 25px;
+          text-align: center;
+          padding: 0 10px;
+        }
+
+        .autoWidth {
+          margin: 25px 0 15px 0;
+          width: 395px;
+          word-break: break-all;
+          text-overflow: ellipsis; //显示为省略号
+          display: -webkit-box; //对象作为伸缩盒子模型显示
+          /*! autoprefixer: off */
+          -webkit-box-orient: vertical;
+          /* autoprefixer: on */
+          -webkit-line-clamp: 2; //显示行数## 标题文字 ##
+          overflow: hidden;
+        }
+
+        .cardCode {
+          padding-bottom: 15px;
+          font-size: 24px;
+        }
+
+        .cardDate {
+          font-size: 20px;
+          color: #999;
+        }
+      }
+
+      .memberCard-item-right {
+        width: 240px;
+        float: right;
+        color: #fff;
+        text-align: center;
+
+        .cardEffect {
+          font-size: 34px;
+          margin: 50px 0 28px 0;
+          font-weight: normal;
+        }
+
+        .cardWay {
+          font-size: 22px;
+        }
+
+        .cardline {
+          line-height: 194px;
+          padding-top: 0px;
+        }
+
+        .cardFeature {
+          font-size: 24px;
+          padding-top: 15px;
+          color: #fff;
+        }
+
+        .paddingtop {
+          padding-top: 50px !important;
+        }
+
+        .cardDiscount {
+          font-size: 36px;
+          color: #fff;
+          padding-top: 30px;
+        }
+      }
+    }
+
+    .ban_li {
+      opacity: 0.3;
+      pointer-events: none;
+      z-index: 10;
+      position: relative;
+
+      .icon {
+        display: block;
+        width: 185px;
+        height: 100px;
+        position: absolute;
+        right: 10px;
+        bottom: 10px;
+      }
+    }
+  }
+}

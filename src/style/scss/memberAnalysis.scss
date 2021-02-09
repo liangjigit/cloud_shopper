@@ -1,0 +1,186 @@
+.container_Analysis{
+    width: 100%;
+    height: 100%;
+    .change{
+      top: 190px!important;  
+    }           
+    .container_scroll {
+        width: 100%;
+        position: absolute;
+        z-index: 5;
+        top: 296px;
+        bottom: 0;
+        left: 0;
+        clear: both;
+    }
+    .iconfont {
+        font-family: "iconfont" !important;
+        // font-size: 16px;
+        font-style: normal;
+        -webkit-font-smoothing: antialiased;
+        -webkit-text-stroke-width: 0.2px;
+        -moz-osx-font-smoothing: grayscale;
+    }
+    
+    .dropDown {
+        color: #bbb;
+        font-size: 46px;
+        float: right;
+    }
+    .disabled {
+        pointer-events: none;
+    }
+    .choose {
+        width: 100%;
+        height: 90px;
+        background: #fff;
+        margin-bottom: 16px;
+        //      display: none;
+        position: fixed;
+        top: 190px;
+        left: 0;
+        p {
+            font-size: 30px;
+            line-height: 90px;
+            float: left;
+            width: 325px;
+        }
+        .title {
+            color: #000;
+            margin-left: 50px;
+        }
+        .btn {
+            color: #f8a120;
+            text-align: right;
+            position: relative;
+            overflow: hidden;
+        }
+    }
+    .pop-up {
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, .6);
+        z-index: 2018;
+        position: absolute;
+        left: 0;
+        top: 296px;
+        .rangeBox {
+            width: 100%;
+            background: #f0f0ef;
+            overflow: hidden;
+            overflow-y: auto;
+            max-height: 650px;
+            .select {
+                width: 650px;
+                margin: 30px auto 0 auto;
+                overflow: hidden;
+                background: #f0f0ef;
+                li {
+                    height: 60px;
+                    text-align: center;
+                    line-height: 60px;
+                    background: #fff;
+                    color: #000;
+                    float: left;
+                    margin: 0 30px 30px 0;
+                    font-size: 30px;
+                    border-radius: 10px;
+                    padding: 0 20px;
+                }
+                .active {
+                    background: #fead32!important;
+                    color: #fff!important;
+                }
+            }
+        }
+    }
+    .number {
+        width: 100%;
+        overflow: hidden;
+        display: flex;
+        flex-flow: row;
+//      position: absolute;
+//      top: 296px;
+//      left: 0;
+        background: #fff;
+        .head {
+            width: 100%;
+            overflow: hidden;
+            background: #fff;
+            margin: 74px 0 94px 0;
+            li{
+                text-align: center;
+            }
+            li:first-child {
+                font-size: 52px;
+                color: #000;
+                margin: 0 0 30px 0;
+                font-weight: bold;
+                height: 52px;
+                line-height: 52px;
+            }
+            li:last-child {
+                font-size: 28px;
+                color: #000;
+                font-weight: bold;
+                line-height: 28px;
+            }
+        }
+    }
+}
+.vipData {
+    display: flex;
+    flex-flow: row wrap;
+    margin-bottom: 16px;
+    background: #fff;
+    overflow: hidden;
+//  position: absolute;
+//  top: 572px;
+//  left: 0;
+    width: 100%;
+    li {
+        width: 33.3%;
+        height: 84px;
+        box-sizing: border-box;
+        border-right: 2px solid #ddd;
+        text-align: center;
+        margin-bottom: 65px;
+        h3 {
+            color: #000;
+            font-size: 32px;
+            line-height: 20px;
+            height: 32px;
+        }
+        .c_orange {
+            color: #f8a120!important;
+        }
+        p {
+            font-size: 24px;
+            color: #484848;
+            line-height: 24px;
+            padding-top: 24px;
+        }
+    }
+    li:nth-child(-n+3){
+        margin-top: 20px;
+    }
+}
+.echartsBox {
+    width: 100%;
+    background: #fff;
+//  position: relative;
+//  top:886px;
+//  left: 0;
+    .item {
+        width: 720px;
+        height: 720px;
+        margin: 0 auto;
+        border-bottom:2px solid #ddd;
+        text-align: center;
+        line-height: 720px;
+        font-size: 30px;
+    }
+    .item:last-child {
+        border-bottom: none;
+    }
+}

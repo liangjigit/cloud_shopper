@@ -1,0 +1,104 @@
+#app, #myQRCode, .myQRCodeMain {
+  width: 100%;
+  height: 100%;
+  position: relative;
+
+  // 公共
+  .myQRCodeCom {
+    width: 130px;
+    height: 130px;
+    border-radius: 50%;
+    box-shadow: 1px 1px 3px 0px
+    rgba(10, 2, 4, 0.1);
+    border: solid 1px #d3d3d3;
+  }
+
+  .member_avatar {
+    padding-top: 136px;
+
+    .member_logo{
+      margin: 0 auto;
+    }
+  }
+
+  .menbre_Info {
+    width: 100%;
+    margin-top: 20px;
+
+    .menbre_name {
+      font-family: SimHei;
+      font-size: 17px;
+
+      .menbre_popularize {
+        font-family: MicrosoftYaHei;
+        position: relative;
+
+        .menbre_share {
+          font-family: MicrosoftYaHei;
+          width: 610px;
+          margin: 37px auto 36px auto;
+         }
+      }
+
+      .member_codeCom {
+        width: 213px;
+        height: 217px;
+      }
+
+      .member_code {
+        margin: 75px auto 0 auto;
+      }
+    }
+  }
+}
+
+.myQRCodeMain  {
+  text-align: center;
+}
+
+// 模板二
+
+.member_avatar2 {
+  text-align: left;
+
+  .member_avatarInfo {
+    padding: 144px 0 0 156px;
+    display: flex;
+  }
+
+  .menbre_Info2 {
+    font-family: MicrosoftYaHei;
+    padding: 24px 0 0 30px;
+  }
+
+  .menbre_popularize2 {
+    margin-top: 30px;
+  }
+
+  .menbre_share2 {
+    padding-top: 98px;
+    margin: 0 65px 0 75px;
+  }
+
+  .member_code2 {
+    text-align: right;
+    display: flex;
+    align-items: center;
+    position: absolute;
+    right: 34px;
+    bottom: 108px;
+
+    //span {
+    //  padding-right: 20px;
+    //  font-family: MicrosoftYaHei;
+    //  font-size: 22px;
+    //  color: #666666;
+    //}
+
+    img {
+      width: 202px;
+      height: 202px;
+    }
+  }
+}
+

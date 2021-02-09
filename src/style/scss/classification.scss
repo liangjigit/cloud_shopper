@@ -1,0 +1,212 @@
+#app {
+  	height: 100%;
+  	width: 100%;
+		background: #fff;
+  	#classification {
+  		width: 100%;
+  		height: 100%;
+			background: #fff;
+  		.iconfont {
+  			font-family: "iconfont" !important;
+  			font-style: normal;
+  			-webkit-font-smoothing: antialiased;
+  			-webkit-text-stroke-width: 0.2px;
+  			-moz-osx-font-smoothing: grayscale;
+  		}
+  		.header {
+  			width: 100%;
+  			background: #fff;
+  			overflow: hidden;
+  			// margin-bottom: 20px;
+  			position: fixed;
+  			top: 0;
+  			z-index: 8888;
+  		}
+  		.page-title {
+  			width: 690px;
+  			text-align: center;
+  			font-size: 34px;
+  			color: #333;
+  			font-family: SourceHanSansCN-Regular;
+  			height: 88px;
+  			line-height: 88px;
+  			margin: 0 auto;
+  			display: flex;
+  			justify-content: space-between;
+				.backBtn,
+				.more {
+					font-size: 30px;
+					color: #000;
+				}
+  		}
+
+  		.management {
+        padding: 0 20px;
+  			font-size: 28px;
+  			color: #333;
+  		}
+  		.page-part {
+  			width: 100%;
+  			position: fixed;
+  			top: 88px;
+  			z-index: 8888;
+  			a {
+  				width: 50%;
+  				display: inline-block;
+  			}
+  		}
+  		.page-part .mint-tab-item.is-selected {
+  			border: none!important;
+  		}
+  		.page-part .mint-tab-item div.mint-tab-item-label {
+  			padding-bottom: 22px;
+  		}
+  		.page-part .mint-tab-item.is-selected div.mint-tab-item-label {
+  			color: #333;
+  			font-size: 32px!important;
+  			display: inline-block;
+  			border-bottom: 4px solid #000;
+  		}
+  		#wrap {
+  			background: #FFFFFF;
+  			// height: 85%;
+  			width: 100%;
+  			position: absolute;
+  		bottom: 0;
+  		}
+  		.totalNum_container {
+  			width: 100%;
+  			background: #fff;
+  		}
+  		.box {
+  			overflow: hidden;
+  		}
+  		.totalNum {
+  			width: 616px;
+  			margin: 0 auto;
+  			font-size: 28px;
+  			.title {
+  				width: 100%;
+	            margin: 40px auto!important;
+  				position: relative;
+  				display: flex;
+  				justify-content: space-between;
+  				.toggle {
+  					font-size: 40px;
+  					position: absolute;
+  					left: -40px;
+  					top: -20%;
+  					transform-origin: center;
+  					transform: rotateZ(-90deg);
+  				}
+					.active {
+						transform-origin: center;
+						transform: rotateZ(0deg);
+					}
+  				.totalLeft {
+  					font-size: 28px;
+  					color: #444;
+  					font-family: SourceHanSansCN-Regular;
+  					position: relative;
+  				}
+  			}
+  			.labelList {
+					li{
+					    display: block;
+// 						height:80px;
+// 						line-height: 80px;
+//						margin-top: 30px;
+                        margin: 0 auto;
+						overflow: hidden;
+		                border-bottom: 1px solid #eee;
+		                .lable {
+		                    width: 98%;
+		                    float: right;
+		                    //   					height: 118px;
+		                    //   					line-height: 118px;
+		                    margin: 40px auto;
+		                    display: flex;
+		                    justify-content: space-between;
+		                    span {
+		                        font-family: SourceHanSansCN-Regular;
+		                        font-size: 26px;
+		                        color: #666666;
+		                    }
+		                }
+
+		                .lable:last-of-type {
+		                    border: none;
+		                }
+					}
+
+  			}
+  		}
+			.totalNum:last-of-type{
+				margin-bottom: 0;
+			}
+
+  		.totalRight {
+  			font-size: 26px;
+  			color: #666;
+  		}
+  		.main_container {
+  			width: 616px;
+  			margin-left: 61px;
+  			display: flex;
+  			justify-content: space-between;
+  			padding: 40px 0;
+  			border-bottom: 1px solid #eee;
+  			font-family: SourceHanSansCN-Regular;
+  			font-size: 26px;
+  			color: #000;
+  			// margin-top: 25px;
+				padding-top: 40px;
+  		}
+  		.mint-tab-container {
+  			overflow: inherit;
+  			height: 100%;
+  		}
+  		.navTitle {
+  			border: none;
+  			div:last-child {
+  				font-size: 32px;
+  				color: #a3a3a3;
+  			}
+  		}
+
+  		.nullDataPage {
+  			.nullData {
+  				position: absolute;
+  				z-index: 0;
+  				top: 50%;
+  				left: 50%;
+  				width: 100%;
+  				transform: translate(-50%, 100%);
+  				text-align: center;
+					margin-top: 40%;
+  				img {
+  					width: 192px;
+  					height: 195px;
+  				}
+  				p {
+  					font-family: SourceHanSansCN-Regular;
+  					font-size: 30px;
+  					color: #666666;
+  					margin-top: 30px;
+  				}
+  			}
+  		}
+
+  		.mint-tab-containerList {
+  			width: 100%;
+  			height: 100%;
+  			position: absolute;
+  			top: 0;
+  			z-index: 0;
+  			max-width: 13.653333rem;
+  		}
+  		.page-infinite-loading {
+  			 background: none;
+  		}
+  	}
+  }
