@@ -12,7 +12,7 @@
         <p v-if="dataInfo.invitenum_tb < 0" class="decrease">{{Math.abs(dataInfo.invitenum_tb)}}&nbsp;<span class="icon-arrow-down2"></span></p>
       </div>
       <div class="single">
-        <p>回购率&nbsp;
+        <p style="display: flex;justify-content: center;">回购率&nbsp;
           <van-icon name="warning" @click="showWarning" />
         </p>
         <p>{{dataInfo.returnrate}}%</p>
@@ -66,7 +66,7 @@
     props: {
       timeData: {
         type: String,
-        default: 'D'
+        default: ''
       }
     },
     data() {
@@ -74,13 +74,14 @@
         param: {
           userId: '',
           dataType: 'PROVINCE',
-          timeType: 'D'
+          timeType: ''
         },
         dataInfo: {},
         isShowToast: false
       }
     },
     created() {
+      this.param.timeType = this.timeData
       let user = window.localStorage.getItem('user')
       if (user) {
         this.param.userId = user.replace(/\"/g, "")

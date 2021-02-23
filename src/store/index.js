@@ -11,7 +11,8 @@ const store = new Vuex.Store({
       isLogin: '0',
       memberPhone: '',
       memberId: '',
-      guideId: ''
+      guideId: '',
+      currentTime:0
     }
   },
   getters: {
@@ -45,6 +46,9 @@ const store = new Vuex.Store({
       state.memberPhone = payload.phone
       state.memberId = payload.memberId
       state.guideId = payload.guideId
+    },
+    $_setCurrentTime(state,payload){
+      state.currentTime = payload
     }
   }
 })

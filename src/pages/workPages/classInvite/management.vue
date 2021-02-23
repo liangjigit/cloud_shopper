@@ -54,7 +54,7 @@
                   </template>
                 </li>
                 <li class="invitationItem">
-                  <p>回购率&nbsp;
+                  <p  style="display: flex;justify-content: center;">回购率&nbsp;
                     <van-icon name="warning" @click="showWarning" />
                   </p>
                   <p>{{ inviteTimeInfo[1].data == null ? 0 : inviteTimeInfo[1].data.returnrate }}%</p>
@@ -84,7 +84,7 @@
                   </template>
                 </li>
                 <li class="invitationItem">
-                  <p>回购率&nbsp;
+                  <p  style="display: flex;justify-content: center;">回购率&nbsp;
                     <van-icon name="warning" @click="showWarning" />
                   </p>
                   <p>{{ inviteTimeInfo[2].data == null ? 0 : inviteTimeInfo[2].data.returnrate }}%</p>
