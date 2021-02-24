@@ -1,11 +1,19 @@
 <template>
   <div id="areaManage">
-    <header style="background-color: #f0f0ef;">
-      <div class="time">
+    <header style="background-color: #f0f0ef;height: auto;padding: 0;">
+      <!-- <div class="time">
         <ul>
           <li v-for="(item,index) in timeData" @click="seleTime(index)" :class="seleId == index ? 'seleStyle' : ''">{{item}}</li>
         </ul>
         <p>{{timeVal}}</p>
+      </div> -->
+      <div class="chooseTime">
+        <div class="around">
+          <ul>
+            <li v-for="(item,index) in timeData" :key="index" @click="seleTime(index)" :class="seleId == index ? 'click-li' : ''">{{item}}</li>
+          </ul>
+          <p>{{timeVal}}</p>
+        </div>
       </div>
     </header>
     <survey :timeData="changeTime" />
@@ -274,8 +282,51 @@
   }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
   @import '@/style/scss/areaManage.scss';
+
+  .chooseTime {
+    background-color: #fff;
+    margin-bottom: 0.2rem;
+    width: 100%;
+    height: 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .around {
+      background-color: #f0f0ef;
+      width: 95%;
+      height: 1.7rem;
+
+      ul {
+        width: 100%;
+        display: flex;
+        justify-content: space-around;
+        padding-top: 0.25rem;
+
+        li {
+          background-color: #fff;
+          padding: 0.18rem 0.6rem 0.18rem 0.6rem;
+          font-size: 0.4rem;
+          font-weight: bolder;
+          border-radius: 0.2rem;
+        }
+
+        .click-li {
+          background-color: black;
+          color: white;
+        }
+      }
+
+      p {
+        margin-left: 0.3rem;
+        margin-top: 0.15rem;
+        color: #888;
+        font-weight: bolder;
+      }
+    }
+  }
 
   .waringbox {
     line-height: 2 !important;
