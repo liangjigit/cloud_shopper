@@ -52,12 +52,12 @@
             </div>
             <div class="memberCard-item-right">
               <!--<h1 class="cardEffect">满1000元使用</h1>-->
-              <p class="cardDiscount" v-if="item.typeCode =='000'">¥{{item.value}}</p>
-              <p class="cardDiscount" v-if="item.typeCode =='001'">{{item.value}}折</p>
-              <p class="cardDiscount paddingtop" v-if="item.typeCode =='002'">{{item.typename}}</p>
-              <p class="cardFeature" v-if="item.payOver!=null&&item.typeCode =='000'">满{{item.payOver}}元使用</p>
-              <p class="cardFeature" v-if="item.payOver!=null&&item.typeCode =='001'">满{{item.payOver}}使用</p>
-              <p class="cardFeature" v-if="item.payOver==null&&item.typeCode =='000'||item.payOver==null&&item.typeCode =='001'">无门槛</p>
+              <p class="cardDiscount" v-if="item.typeCode =='DJQ'">¥{{item.value}}</p>
+              <p class="cardDiscount" v-if="item.typeCode =='ZKQ'">{{item.value}}折</p>
+              <p class="cardDiscount paddingtop" v-if="item.typeCode != 'DJQ' &&item.typeCode != 'ZKQ'">{{item.typename}}</p>
+              <p class="cardFeature" v-if="item.payOver!=null&&item.typeCode =='DJQ'">满{{item.payOver}}元使用</p>
+              <p class="cardFeature" v-if="item.payOver!=null&&item.typeCode =='ZKQ'">满{{item.payOver}}使用</p>
+              <p class="cardFeature" v-if="item.payOver==null&&item.typeCode =='DJQ'||item.payOver==null&&item.typeCode =='ZKQ'">无门槛</p>
               <!--<p class="cardFeature" v-if='item.payOver!=null||item.payOver!=""'>{{item.payOver}}</p>-->
               <p class="cardFeature" v-if="item.useRange==0">通用</p>
               <p class="cardFeature" v-if="item.useRange==1">线上</p>

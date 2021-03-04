@@ -44,7 +44,7 @@
             </div>
             <div class="head-right">
               <img alt :src="memberInfo.avatar" />
-              <!-- <img src="../../../static/image/best_card.png" v-if="isShowCard"> -->
+              <img src="../../../static/image/best_card.png" v-if="isShowCard">
             </div>
             <div class="head-down">
               <span>
@@ -160,22 +160,22 @@
                         </div>
                         <div class="memberCard-item-right">
                           <!--<h1 class="cardEffect">满1000元使用</h1>-->
-                          <p class="cardDiscount" v-if="item.typeCode == '000'">
+                          <p class="cardDiscount" v-if="item.typeCode =='DJQ'">
                             ¥{{ item.value }}
                           </p>
-                          <p class="cardDiscount" v-if="item.typeCode == '001'">
+                          <p class="cardDiscount" v-if="item.typeCode =='ZKQ'">
                             {{ item.value }}折
                           </p>
-                          <p class="cardDiscount paddingtop" v-if="item.typeCode == '002'">
+                          <p class="cardDiscount paddingtop" v-if="item.typeCode != 'DJQ' &&item.typeCode != 'ZKQ'">
                             {{ item.typename }}
                           </p>
-                          <p class="cardFeature" v-if="item.payOver != null && item.typeCode == '000'">
+                          <p class="cardFeature" v-if="item.payOver != null && item.typeCode =='DJQ'">
                             满{{ item.payOver }}元使用
                           </p>
-                          <p class="cardFeature" v-if="item.payOver != null && item.typeCode == '001'">
+                          <p class="cardFeature" v-if="item.payOver != null && item.typeCode =='ZKQ'">
                             满{{ item.payOver }}使用
                           </p>
-                          <p class="cardFeature" v-if="(item.payOver == null && item.typeCode == '000') || (item.payOver == null && item.typeCode == '001')">
+                          <p class="cardFeature" v-if="(item.payOver == null && item.typeCode =='DJQ') || (item.payOver == null && item.typeCode =='ZKQ')">
                             无门槛
                           </p>
                           <p class="cardFeature" v-if="item.useRange == 0">
@@ -513,7 +513,7 @@ export default {
     this.compMember = this.$route.query.compMember;
     //获取会员信息
     this.getMemberInfo().then(function () {
-      // _this.hasBestCard()
+      _this.hasBestCard()
     });
     //获取卡券信息
     this.getCardInfo();
@@ -1056,7 +1056,7 @@ export default {
         vipId: _this.memberInfo.cardNum,
         type: "AMYXK"
       }, res => {
-        // console.log(res)
+        console.log(res)
         if (res.errcode == 0) {
           res.data.length ? _this.isShowCard = true : _this.isShowCard = false
         }
