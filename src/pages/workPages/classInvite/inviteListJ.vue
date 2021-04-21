@@ -9,7 +9,9 @@
                 <img :src="item.avatar" alt class="memberHead" />
               </div>
               <div class="memberData">
-                <span class="memberName">{{item.name}}</span>
+                <span class="memberName">{{item.name}}
+                <span class="unbind"
+                    v-if="item.unbindSoon == 1 && item.unbindPeriod == true">即将解绑</span></span>
                 <span class="memberCard">{{item.card}}</span>
                 <span class="memberPay">
                   累计消费：¥
@@ -315,4 +317,14 @@ export default {
 </script>
 <style lang="scss">
 @import "../../../style/scss/inviteListJ";
+.unbind {
+    color: red;
+    border: 2px solid red;
+    width: fit-content;
+    display: inline !important;
+    border-radius: 8px;
+    font-size: 0.1rem;
+    padding: 0.05rem;
+    margin-left: 0.2rem;
+  }
 </style>

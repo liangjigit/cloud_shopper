@@ -1,6 +1,7 @@
 <template>
   <keep-alive>
-    <scroll ref="pullrefresh" :pullup="isShow" @scrollToEnd="loadBottom" :data="orderList" :nullDataAll="nullDataAllLeft" :isDone="isLoading">
+    <scroll ref="pullrefresh" :pullup="isShow" @scrollToEnd="loadBottom" :data="orderList"
+      :nullDataAll="nullDataAllLeft" :isDone="isLoading">
       <ul class="orderList">
         <li v-for="item in myOrderList" :key="item.orderId" @click="orderDetail($event)" :id="item.orderId">
           <!-- 订单号/状态 -->
@@ -12,20 +13,26 @@
             <img :src="itemChild.goodsSkuPicture ? imgURL + itemChild.goodsSkuPicture : imgCom" alt="" />
             <div class="order_goods_info">
               <div>
-                <img class="order_goods_info_img" v-if="item.distributionType == '1'" src="../../../../static/image/logistics.png" alt="" />
-                <img class="order_goods_info_img" v-if="item.distributionType == '2'" src="../../../../static/image/logistics_store.png" alt="" />
-                <img class="order_goods_info_img" v-if="item.distributionType == '3'" src="../../../../static/image/logistics_city.png" alt="" />
+                <img class="order_goods_info_img" v-if="item.distributionType == '1'"
+                  src="../../../../static/image/logistics.png" alt="" />
+                <img class="order_goods_info_img" v-if="item.distributionType == '2'"
+                  src="../../../../static/image/logistics_store.png" alt="" />
+                <img class="order_goods_info_img" v-if="item.distributionType == '3'"
+                  src="../../../../static/image/logistics_city.png" alt="" />
                 <p class="order_goods_tit">{{ itemChild.goodsName }}</p>
               </div>
               <p class="order_goods_sku">
                 <span class="title" v-if="itemChild.specificationOneName">{{ itemChild.specificationOneName }}：</span>
-                <span class="value" v-if="itemChild.specificationOneCode">{{ itemChild.specificationOneCode ? itemChild.specificationOneCode : "" }}</span>
+                <span class="value"
+                  v-if="itemChild.specificationOneCode">{{ itemChild.specificationOneCode ? itemChild.specificationOneCode : "" }}</span>
                 &nbsp;&nbsp;
                 <span class="title" v-if="itemChild.specificationTwoName">{{ itemChild.specificationTwoName }}：</span>
                 <span class="value" v-if="itemChild.specificationTwoCode">{{ itemChild.specificationTwoCode }}</span>
                 &nbsp;&nbsp;
-                <span class="title" v-if="itemChild.specificationThreeName">{{ itemChild.specificationThreeName }}：</span>
-                <span class="value" v-if="itemChild.specificationThreeeCode">{{ itemChild.specificationThreeeCode }}</span>
+                <span class="title"
+                  v-if="itemChild.specificationThreeName">{{ itemChild.specificationThreeName }}：</span>
+                <span class="value"
+                  v-if="itemChild.specificationThreeeCode">{{ itemChild.specificationThreeeCode }}</span>
               </p>
               <p class="price">
                 ￥{{ itemChild.price }} <span>x{{ itemChild.count }}</span>
@@ -51,134 +58,141 @@
 </template>
 
 <script>
-import scroll from "../../../../components/scroll";
+  import scroll from "../../../../components/scroll";
 
-export default {
-  name: "pendingReceiving",
-  props: {
-    searchTxtFar: {
-      type: String,
-      default: false,
+  export default {
+    name: "pendingReceiving",
+    props: {
+      searchTxtFar: {
+        type: String,
+        default: false,
+      },
+      OrderTypeN: {
+        type: Number,
+        default: 1,
+      },
     },
-    OrderTypeN: {
-      type: Number,
-      default: 1,
+    components: {
+      scroll
     },
-  },
-  components: { scroll },
-  data() {
-    return {
-      // 导购id
-      MEMBERID: this.GLOBAL.MEMBERID,
-      // 图片地址
-      imgURL: this.GLOBAL.imgURL,
-      imgCom: require("../../../../static/image/zhanwei.png"),
-      page: 1,
-      // 全部数据
-      myOrderList: [],
-      // 每次获取的数据
-      orderList: [],
-      // 是否上拉
-      isShow: true,
-      // 重复加载
-      isData: false,
-      // 提示语
-      isLoading: true,
-      nullDataAllLeft: false,
-    };
-  },
-  created() {
-    let user = localStorage.getItem("user");
-    this.MEMBERID = user.replace(/\"/g, "");
-  },
-  mounted() {
-    this.allOrderMoreData(); //初次访问查询列表
-  },
-  watch: {
-    OrderTypeN(val) {
-      this.page = 1;
-      this.myOrderList = [];
-      this.allOrderMoreData();
+    data() {
+      return {
+        // 导购id
+        MEMBERID: this.GLOBAL.MEMBERID,
+        // 图片地址
+        imgURL: this.GLOBAL.imgURL,
+        imgCom: require("../../../../static/image/zhanwei.png"),
+        page: 1,
+        // 全部数据
+        myOrderList: [],
+        // 每次获取的数据
+        orderList: [],
+        // 是否上拉
+        isShow: true,
+        // 重复加载
+        isData: false,
+        // 提示语
+        isLoading: true,
+        nullDataAllLeft: false,
+      };
     },
-    searchTxtFar(val) {
-      this.page = 1;
-      this.myOrderList = [];
-      this.allOrderMoreData();
+    created() {
+      let user = localStorage.getItem("user");
+      this.MEMBERID = user.replace(/\"/g, "");
     },
-  },
-  methods: {
-    // 全部
-    loadBottom() {
-      const that = this;
-      if (!that.isData) {
-        if (that.page == 0) {
-          return;
-        } else {
-          that.isData = true;
-          that.nullDataLight = false;
-          that.page++;
-          this.$refs.pullrefresh.$emit("infinitescroll.reInit");
-          setTimeout(function () {
-            that.allOrderMoreData();
-          }, 1000);
-        }
-      }
+    mounted() {
+      this.allOrderMoreData(); //初次访问查询列表
     },
-    // 订单数据
-    allOrderMoreData() {
-      const that = this
-      let listData = [];
-      that.$api.get(
-        "Myorder",
-        {
-          guideId: that.MEMBERID,
-          orderState: "003",
-          keywords: that.searchTxtFar,
-          size: 10,
-          page: that.page,
-          type: that.OrderTypeN,
-        },
-        (res) => {
-          const list = res.data;
-          this.orderList = list;
-          listData = listData.concat(list);
-          if (list.length < 10) {
-            that.isLoading = false;
-            that.myOrderList = that.myOrderList.concat(listData);
-            this.page = 0;
-            this.$refs.pullrefresh.$emit("infinitescroll.loadedDone");
+    watch: {
+      OrderTypeN(val) {
+        this.page = 1;
+        this.myOrderList = [];
+        this.allOrderMoreData();
+      },
+      searchTxtFar(val) {
+        this.page = 1;
+        this.myOrderList = [];
+        this.allOrderMoreData();
+      },
+    },
+    methods: {
+      // 全部
+      loadBottom() {
+        const that = this;
+        if (!that.isData) {
+          if (that.page == 0) {
+            return;
           } else {
-            that.isLoading = true;
-            that.myOrderList = that.myOrderList.concat(listData);
-            this.$refs.pullrefresh.$emit("infinitescroll.finishLoad");
+            that.isData = true;
+            that.nullDataLight = false;
+            that.page++;
+            this.$refs.pullrefresh.$emit("infinitescroll.reInit");
+            setTimeout(function() {
+              that.allOrderMoreData();
+            }, 1000);
           }
-          if (that.myOrderList.length == 0) {
-            that.nullDataAllLeft = true;
-          } else {
-            that.nullDataAllLeft = false;
-          }
-          that.isData = false;
-        },
-        (err) => {
-          console.log(err)
         }
-      );
+      },
+      // 订单数据
+      allOrderMoreData() {
+        const that = this
+        let listData = [];
+        that.$api.get(
+          "Myorder", {
+            guideId: that.MEMBERID,
+            orderState: "003",
+            keywords: that.searchTxtFar,
+            size: 10,
+            page: that.page,
+            type: that.OrderTypeN,
+          },
+          (res) => {
+            if (res.data.orderData) {
+              that.nullDataAllLeft = false;
+            } else {
+              that.nullDataAllLeft = true;
+              return false
+            }
+            const list = res.data.orderData;
+            this.orderList = list;
+            listData = listData.concat(list);
+            if (list.length < 10) {
+              that.isLoading = false;
+              that.myOrderList = that.myOrderList.concat(listData);
+              this.page = 0;
+              this.$refs.pullrefresh.$emit("infinitescroll.loadedDone");
+            } else {
+              that.isLoading = true;
+              that.myOrderList = that.myOrderList.concat(listData);
+              this.$refs.pullrefresh.$emit("infinitescroll.finishLoad");
+            }
+            if (that.myOrderList.length == 0) {
+              that.nullDataAllLeft = true;
+            } else {
+              that.nullDataAllLeft = false;
+            }
+            that.isData = false;
+          },
+          (err) => {
+            console.log(err)
+          }
+        );
+      },
+      orderDetail($event) {
+        const that = this
+        let id = $event.currentTarget.id;
+        that.$router.push({
+          path: "/orderDetails",
+          name: "orderDetails",
+          query: {
+            id: id,
+          },
+        });
+      },
     },
-    orderDetail($event) {
-      const that = this
-      let id = $event.currentTarget.id;
-      that.$router.push({
-        path: "/orderDetails",
-        name: "orderDetails",
-        query: {
-          id: id,
-        },
-      });
-    },
-  },
-};
+  };
 </script>
 
 <style lang="scss">
-@import "../../../../style/scss/orderManagement";
+  @import "../../../../style/scss/orderManagement";
 </style>

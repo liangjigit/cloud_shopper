@@ -89,7 +89,8 @@
                         </li>
                       </template>
                       <template v-for="item in memberInfo.label">
-                        <li v-if="item.source == 2 || item.source == 3" :type="item.source" :key="item.labelId" :lableid="item.labelId" class="custom_lable">
+                        <li v-if="item.source == 2 || item.source == 3" :type="item.source" :key="item.labelId"
+                          :lableid="item.labelId" class="custom_lable">
                           #{{ item.labelName }}
                           <b class="dlt" @click="delCustom_label" v-show="isDlt">
                             <img src="../../../static/image/close_.png" alt class="img" />
@@ -145,13 +146,15 @@
                       暂无相关数据
                     </div>
                     <ul class="memberCard-list" v-if="memberInfoFirst.length != 0">
-                      <li :style="{ backgroundImage: 'url(' + bgImg + ')' }" v-for="(item, index) in memberInfoFirst" ref="cardDetails" @click="details(index)" :class="
+                      <li :style="{ backgroundImage: 'url(' + bgImg + ')' }" v-for="(item, index) in memberInfoFirst"
+                        ref="cardDetails" @click="details(index)" :class="
                           item.status == 4 || item.status == 7 ? 'ban_li' : ''
                         " :key="index">
                         <img src="../../../static/image/used.png" alt class="icon" v-if="item.status == '4'" />
                         <img src="../../../static/image/Expired.png" alt class="icon" v-if="item.status == '7'" />
                         <div class="memberCard-item-left">
-                          <span class="cardType" :class="item.name.length > 15 ? 'autoWidth' : ''">{{ item.name }}</span>
+                          <span class="cardType"
+                            :class="item.name.length > 15 ? 'autoWidth' : ''">{{ item.name }}</span>
                           <!--<span class="cardType autoWidth">暂无相关数据暂无相关据暂无相关数据暂无相关数据暂无相关数据暂无相关据暂无相关数据暂无相关数据</span>-->
                           <p class="cardCode">卡券券码：{{ item.code }}</p>
                           <p class="cardDate">
@@ -175,7 +178,8 @@
                           <p class="cardFeature" v-if="item.payOver != null && item.typeCode =='ZKQ'">
                             满{{ item.payOver }}使用
                           </p>
-                          <p class="cardFeature" v-if="(item.payOver == null && item.typeCode =='DJQ') || (item.payOver == null && item.typeCode =='ZKQ')">
+                          <p class="cardFeature"
+                            v-if="(item.payOver == null && item.typeCode =='DJQ') || (item.payOver == null && item.typeCode =='ZKQ')">
                             无门槛
                           </p>
                           <p class="cardFeature" v-if="item.useRange == 0">
@@ -280,7 +284,8 @@
                         <template v-if="item.orderMx">
                           <ul class="order-list">
                             <li class="order-item" v-for="(shop, idx) in item.orderMx" :key="idx">
-                              <img :src="path + shop.goodsSkuPicture" alt class="order-img" v-if="shop.goodsSkuPicture != null" />
+                              <img :src="path + shop.goodsSkuPicture" alt class="order-img"
+                                v-if="shop.goodsSkuPicture != null" />
                               <img src="../../../static/image/phone_error.png" alt class="order-img" v-else />
                               <div class="order-info">
                                 <span class="order-name">SKU码：{{ shop.goodsSku }}</span>
@@ -323,7 +328,8 @@
                       <template v-if="line.orderMx !=null">
                         <ul class="order-list">
                           <li class="order-item" v-for="(projact, index) in line.orderMx" :key="index">
-                            <img :src="path + projact.goodsSkuPicture" alt class="order-img" v-if="projact.goodsSkuPicture != null" />
+                            <img :src="path + projact.goodsSkuPicture" alt class="order-img"
+                              v-if="projact.goodsSkuPicture != null" />
                             <img src="../../../static/image/phone_error.png" alt class="order-img" v-else />
                             <div class="order-info">
                               <span class="order-name">{{
@@ -428,893 +434,954 @@
   </div>
 </template>
 <script>
-import scroll from "../../../components/scroll";
-import { MessageBox, Toast, Indicator } from "mint-ui";
-export default {
-  name: "customerInformation",
-  components: {
-    scroll,
-  },
-  data() {
-    return {
-      public_lable: "public_lable",
-      wximg: "wximg",
-      ban_in: "ban_in",
-      wxspan: "wxspan",
-      autoWidth: "autoWidth",
-      path: this.GLOBAL.imgURL,
-      tel: "tel:",
-      sms: "sms:",
-      double_: "double_",
-      //			个人资料
-      memberInfo: [],
-      //取个人资料的第一个数组
-      memberInfoFirst: [],
-      goodsList: [],
-      //			消费记录
-      memberConsumption: [],
-      //			门店消费
-      offline: [],
-      offlineOrderMx: [],
-      //			线上消费
-      line: [],
-      lineOrderMx: [],
-      //			邀约回访
-      invitedReview: [],
-      selected: "1",
-      bgImg: require("../../../static/image/yhj.png"),
-      banners: ["/1.jpg", "/2.jpg", "/3.jpg"],
-      swiperOption: {
-        initialSlide: 0,
-        direction: "horizontal",
-        autoplay: {
-          delay: 2000, //1秒切换一次
-          disableOnInteraction: false,
+  import scroll from "../../../components/scroll";
+  import {
+    MessageBox,
+    Toast,
+    Indicator
+  } from "mint-ui";
+  export default {
+    name: "customerInformation",
+    components: {
+      scroll,
+    },
+    data() {
+      return {
+        public_lable: "public_lable",
+        wximg: "wximg",
+        ban_in: "ban_in",
+        wxspan: "wxspan",
+        autoWidth: "autoWidth",
+        path: this.GLOBAL.imgURL,
+        tel: "tel:",
+        sms: "sms:",
+        double_: "double_",
+        //			个人资料
+        memberInfo: [],
+        //取个人资料的第一个数组
+        memberInfoFirst: [],
+        goodsList: [],
+        //			消费记录
+        memberConsumption: [],
+        //			门店消费
+        offline: [],
+        offlineOrderMx: [],
+        //			线上消费
+        line: [],
+        lineOrderMx: [],
+        //			邀约回访
+        invitedReview: [],
+        selected: "1",
+        bgImg: require("../../../static/image/yhj.png"),
+        banners: ["/1.jpg", "/2.jpg", "/3.jpg"],
+        swiperOption: {
+          initialSlide: 0,
+          direction: "horizontal",
+          autoplay: {
+            delay: 2000, //1秒切换一次
+            disableOnInteraction: false,
+          },
+          loop: true,
+          loopAdditionalSlides: 0,
+          slidesPerView: 3,
+          spaceBetween: 10,
+          observer: true, //修改swiper自己或子元素时，自动初始化swiper
+          observeParents: true, //修改swiper的父元素时，自动初始化swiper
         },
-        loop: true,
-        loopAdditionalSlides: 0,
-        slidesPerView: 3,
-        spaceBetween: 10,
-        observer: true, //修改swiper自己或子元素时，自动初始化swiper
-        observeParents: true, //修改swiper的父元素时，自动初始化swiper
-      },
-      memberid: "",
-      guideId: "",
-      not: "-",
-      //		        标签参数
-      status: "0",
-      lables_disable: "",
-      lables: "",
-      isDlt: false,
-      //		        删除标签传的参数
-      labelId: "",
-      type: "",
-      clientHeight: "",
-      //				企业微信聊天参数
-      href: "",
-      organizationId: "",
-      _url: "",
-      compMember: "",
-      loginGuideId: "",
-      copyP: null,
-      totalIntegral: 0,
-      //确认JSsdk初始化
-      isSdk: false,
-      //判断优享卡展示
-      isShowCard: false
-    };
-  },
-  created() {
-    const _this = this
-    this.href = location.origin;
-    this._url = this.href + "/doublev2v-crm-v2-wechat/wxcp/self";
-    this.memberid = this.$route.query.memberId;
-    this.guideId = this.$route.query.guideId;
-    this.compMember = this.$route.query.compMember;
-    //获取会员信息
-    this.getMemberInfo().then(function () {
-      _this.hasBestCard()
-    });
-    //获取卡券信息
-    this.getCardInfo();
-    //注册企业微信权限
-    this.getWeChat().then(function () {
-      _this.isSdk = true
-    });
-    this.getMemberConsumption();
-    this.getInvitedReview();
-  },
-  mounted() {
-    window.onresize = function () {
-      this.clientHeight = "${document.documentElement.clientHeight}";
-    };
-  },
-  methods: {
-    /**
-     * 获取顶部会员数据
-     */
-    getMemberInfo() {
+        memberid: "",
+        guideId: "",
+        not: "-",
+        //		        标签参数
+        status: "0",
+        lables_disable: "",
+        lables: "",
+        isDlt: false,
+        //		        删除标签传的参数
+        labelId: "",
+        type: "",
+        clientHeight: "",
+        //				企业微信聊天参数
+        href: "",
+        organizationId: "",
+        _url: "",
+        compMember: "",
+        loginGuideId: "",
+        copyP: null,
+        totalIntegral: 0,
+        //确认JSsdk初始化
+        isSdk: false,
+        //判断优享卡展示
+        isShowCard: false
+      };
+    },
+    created() {
       const _this = this
-      return new Promise(function (resolve, reject) {
-        let user = window.localStorage.getItem("user");
-        let guideId = user.replace(/\"/g, "");
-        _this.$api.get(
-          "/memberInfo",
-          {
-            memberId: _this.memberid,
-            requestName: "0",
+      this.href = location.origin;
+      this._url = this.href + "/doublev2v-crm-v2-wechat/wxcp/self";
+      this.memberid = this.$route.query.memberId;
+      this.guideId = this.$route.query.guideId;
+      this.compMember = this.$route.query.compMember;
+      //获取会员信息
+      this.getMemberInfo().then(function() {
+        _this.hasBestCard()
+      });
+      //获取卡券信息
+      this.getCardInfo();
+      //注册企业微信权限
+      this.getWeChat().then(function() {
+        _this.isSdk = true
+      });
+      this.getMemberConsumption();
+      this.getInvitedReview();
+      // this.getWeChatApp()
+    },
+    mounted() {
+      window.onresize = function() {
+        this.clientHeight = "${document.documentElement.clientHeight}";
+      };
+    },
+    methods: {
+      /**
+       * 获取顶部会员数据
+       */
+      getMemberInfo() {
+        const _this = this
+        return new Promise(function(resolve, reject) {
+          let user = window.localStorage.getItem("user");
+          let guideId = user.replace(/\"/g, "");
+          _this.$api.get(
+            "/memberInfo", {
+              memberId: _this.memberid,
+              requestName: "0",
+            },
+            (res) => {
+              if (res.errcode == 0) {
+                // console.log(res.data);
+                const info = res.data;
+                _this.memberInfo = info;
+                _this.getIntegral(res.data.cardNum);
+                _this.goodsList = info.goodsList;
+                let memberId = _this.$route.query.memberId;
+                _this.$store.commit({
+                  type: "$_setMemberInfo",
+                  phone: info.phone,
+                  memberId,
+                  guideId,
+                });
+                resolve()
+              }
+            },
+            (err) => {
+              console.log(err);
+              reject()
+            }
+          );
+        })
+      },
+      /**
+       * 获取当前积分
+       */
+      getIntegral(cstId) {
+        this.$api.post(
+          "findMemerIntegral", {
+            cstId,
           },
           (res) => {
+            // console.log(res);
             if (res.errcode == 0) {
-              // console.log(res.data);
-              const info = res.data;
-              _this.memberInfo = info;
-              _this.getIntegral(res.data.cardNum);
-              _this.goodsList = info.goodsList;
-              let memberId = _this.$route.query.memberId;
-              _this.$store.commit({
-                type: "$_setMemberInfo",
-                phone: info.phone,
-                memberId,
-                guideId,
-              });
-              resolve()
+              if (res.data == null) {
+                this.totalIntegral = 0;
+              } else {
+                this.totalIntegral = res.data.totalIntegral;
+              }
             }
           },
           (err) => {
             console.log(err);
-            reject()
           }
         );
-      })
-    },
-    /**
-     * 获取当前积分
-     */
-    getIntegral(cstId) {
-      this.$api.post(
-        "findMemerIntegral",
-        {
-          cstId,
-        },
-        (res) => {
-          // console.log(res);
-          if (res.errcode == 0) {
-            if (res.data == null) {
-              this.totalIntegral = 0;
-            } else {
-              this.totalIntegral = res.data.totalIntegral;
-            }
-          }
-        },
-        (err) => {
-          console.log(err);
-        }
-      );
-    },
-    /**
-     * 输入备注名
-     */
-    openPrompt() {
-      const _this = this
-      const htmlS = `
+      },
+      /**
+       * 输入备注名
+       */
+      openPrompt() {
+        const _this = this
+        const htmlS = `
 				    <input placeholder="请输入备注名！" ref="remark" maxlength="5" type="text" id="remark">
        			<div class="message">
 				     备注请不要超过5个字！
 				    </div>
        `;
-      MessageBox.confirm("", {
-        message: htmlS,
-        title: "添加备注",
-      })
-        .then((action) => {
-          if (action == "confirm") {
-            if (document.querySelector('#remark')) {
-              let value = document.querySelector('#remark').value
-              _this.memberInfo.remarkName = value;
-              //添加备注成功并请求接口
-              _this.$api.get(
-                "/updateMemberName",
-                {
-                  memberId: _this.memberid,
-                  memberName: value,
-                },
-                (res) => {
-                  // console.log(res)
-                  if (res.errcode != 0) {
-                    console.log("错误码" + res.errcode);
+        MessageBox.confirm("", {
+            message: htmlS,
+            title: "添加备注",
+          })
+          .then((action) => {
+            if (action == "confirm") {
+              if (document.querySelector('#remark')) {
+                let value = document.querySelector('#remark').value
+                _this.memberInfo.remarkName = value;
+                //添加备注成功并请求接口
+                _this.$api.get(
+                  "/updateMemberName", {
+                    memberId: _this.memberid,
+                    memberName: value,
+                  },
+                  (res) => {
+                    // console.log(res)
+                    if (res.errcode != 0) {
+                      console.log("错误码" + res.errcode);
+                    }
+                  },
+                  (err) => {
+                    console.log(err)
                   }
-                },
-                (err) => {
-                  console.log(err)
-                }
-              );
-              document.querySelector('#remark').value = '';
+                );
+                document.querySelector('#remark').value = '';
+              }
             }
-          }
+          })
+          .catch((err) => {
+            if (err == "cancel") {
+              if (document.querySelector('#remark')) {
+                document.querySelector('#remark').value = '';
+              }
+            }
+          });
+      },
+      /**
+       * 给当前页面注入企业微信权限
+       */
+      getWeChat() {
+        const _this = this
+        return new Promise(function(resolve, reject) {
+          let loCa = location.href.split("#")[0];
+          _this.organizationId = window.localStorage.organizationId;
+          _this.$api.post(
+            "my/getCpParameter", {
+              organizationId: _this.organizationId,
+              url: loCa,
+            },
+            (res) => {
+              // console.log(res);
+              const info = res.data
+              //获取签名
+              const jsList = [
+                "selectExternalContact",
+                "openEnterpriseChat",
+                "setClipboardData",
+                "getCurExternalContact"
+              ]
+              wx.config({
+                beta: true, // 必须这么写，否则wx.invoke调用形式的jsapi会有问题
+                debug: false, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
+                appId: info.corpId, // 必填，企业微信的corpID
+                timestamp: info.timestamp, // 必填，生成签名的时间戳
+                nonceStr: info.random, // 必填，生成签名的随机串
+                signature: info.signature, // 必填，签名，见附录1
+                jsApiList: jsList, // 必填，需要使用的JS接口列表，所有JS接口列表见附录2
+              })
+              setTimeout(function() {
+                resolve()
+              }, 500)
+            },
+            (err) => {
+              console.log(err);
+            }
+          );
         })
-        .catch((err) => {
-          if (err == "cancel") {
-            if (document.querySelector('#remark')) {
-              document.querySelector('#remark').value = '';
+      },
+      /**
+       * 复制手机号码
+       */
+      copyPhone() {
+        const _this = this;
+        wx.setClipboardData({
+          data: _this.memberInfo.phone, // 设置的
+          success: function(res) {
+            // console.log(res.errMsg);
+            _this.$toast({
+              message: "成功复制手机号码到剪切板",
+              position: "middle",
+            });
+          },
+          fail: function(err) {
+            console.log(err);
+          },
+        });
+      },
+      /**
+       * 切换绑定关系code为017时
+       */
+      changeRelationship() {
+        const _this = this;
+        if (this.compMember == "017") {
+          let user = window.localStorage.getItem("user");
+          _this.loginGuideId = user.replace(/\"/g, "");
+          this.$api.post(
+            "/whetherAssignable", {
+              memberId: _this.memberid,
+              userId: _this.loginGuideId,
+            },
+            (res) => {
+              // console.log(res);
+              if (res.errcode == 0) {
+                _this.$router.push({
+                  name: "replaceSuperior",
+                  query: {
+                    memberId: this.memberid,
+                  },
+                });
+              }
+            },
+            (error) => {
+              // console.log(error);
+              switch (error.errcode) {
+                case "102":
+                  Toast({
+                    message: error.errmsg,
+                    position: "middle",
+                  });
+                  break;
+                case "103":
+                  Toast({
+                    message: error.errmsg,
+                    position: "middle",
+                  });
+                  break;
+                case "506":
+                  Toast({
+                    message: error.errmsg,
+                    position: "middle",
+                  });
+                  break;
+                case "507":
+                  Toast({
+                    message: "该会员暂无绑定导购，不支持修改绑定关系",
+                    position: "middle",
+                  });
+                  break;
+                case "508":
+                  Toast({
+                    message: error.errmsg,
+                    position: "middle",
+                  });
+                  break;
+                case "509":
+                  Toast({
+                    message: "该会员绑定的是其他区域导购，如有修改需求，可联系当地区域经理",
+                    position: "middle",
+                  });
+                  break;
+                case "300":
+                  Toast({
+                    message: error.errmsg,
+                    position: "middle",
+                  });
+                  break;
+
+                default:
+                  Toast({
+                    message: "请联系管理员",
+                    position: "middle",
+                  });
+                  break;
+              }
             }
+          );
+        }
+      },
+      /**
+       * 删除个人资料中的标签
+       */
+      delCustom_label(e) {
+        if (this.isDlt) {
+          // console.log(e.target.className);
+          if (e.target.getAttribute("class") == "img") {
+            this.labelId = e.target.parentNode.parentNode.getAttribute("lableid");
+            this.type = e.target.parentNode.parentNode.getAttribute("type");
+            e.target.parentNode.parentNode.remove();
+          } else {
+            this.labelId = e.target.getAttribute("lableid");
+            this.type = e.target.getAttribute("type");
+            e.target.remove();
+          }
+          this.$api.get(
+            "/deleteLabel", {
+              memberId: this.memberid,
+              labelId: this.labelId,
+              type: this.type,
+            },
+            (res) => {
+              // console.log(res)
+            },
+            (err) => {
+              console.log(err);
+            }
+          );
+        }
+      },
+      /**
+       * 个人资料标签加
+       */
+      add() {
+        this.$router.push({
+          name: "addTag",
+          query: {
+            status: this.status,
+            memberId: this.memberid,
           }
         });
-    },
-    /**
-     * 给当前页面注入企业微信权限
-     */
-    getWeChat() {
-      const _this = this
-      return new Promise(function (resolve, reject) {
-        let loCa = location.href.split("#")[0];
-        _this.organizationId = window.localStorage.organizationId;
-        _this.$api.post(
-          "my/getCpParameter",
-          {
-            organizationId: _this.organizationId,
-            url: loCa,
-          },
-          (res) => {
-            // console.log(res);
-            const info = res.data
-            //获取签名
-            const jsList = [
-              "selectExternalContact",
-              "openEnterpriseChat",
-              "setClipboardData",
-            ]
-            wx.config({
-              beta: true, // 必须这么写，否则wx.invoke调用形式的jsapi会有问题
-              debug: false, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
-              appId: info.corpId, // 必填，企业微信的corpID
-              timestamp: info.timestamp, // 必填，生成签名的时间戳
-              nonceStr: info.random, // 必填，生成签名的随机串
-              signature: info.signature, // 必填，签名，见附录1
-              jsApiList: jsList, // 必填，需要使用的JS接口列表，所有JS接口列表见附录2
-            })
-            setTimeout(function () {
-              resolve()
-            }, 500)
-          },
-          (err) => {
-            console.log(err);
-          }
-        );
-      })
-    },
-    /**
-     * 复制手机号码
-     */
-    copyPhone() {
-      const _this = this;
-      wx.setClipboardData({
-        data: _this.memberInfo.phone, // 设置的
-        success: function (res) {
-          // console.log(res.errMsg);
-          _this.$toast({
-            message: "成功复制手机号码到剪切板",
-            position: "middle",
-          });
-        },
-        fail: function (err) {
-          console.log(err);
-        },
-      });
-    },
-    /**
-     * 切换绑定关系code为017时
-     */
-    changeRelationship() {
-      const _this = this;
-      if (this.compMember == "017") {
-        let user = window.localStorage.getItem("user");
-        _this.loginGuideId = user.replace(/\"/g, "");
-        this.$api.post(
-          "/whetherAssignable",
-          {
-            memberId: _this.memberid,
-            userId: _this.loginGuideId,
-          },
-          (res) => {
-            // console.log(res);
-            if (res.errcode == 0) {
-              _this.$router.push({
-                name: "replaceSuperior",
-                query: {
-                  memberId: this.memberid,
-                },
-              });
-            }
-          },
-          (error) => {
-            // console.log(error);
-            switch (error.errcode) {
-              case "102":
-                Toast({
-                  message: error.errmsg,
-                  position: "middle",
-                });
-                break;
-              case "103":
-                Toast({
-                  message: error.errmsg,
-                  position: "middle",
-                });
-                break;
-              case "506":
-                Toast({
-                  message: error.errmsg,
-                  position: "middle",
-                });
-                break;
-              case "507":
-                Toast({
-                  message: "该会员暂无绑定导购，不支持修改绑定关系",
-                  position: "middle",
-                });
-                break;
-              case "508":
-                Toast({
-                  message: error.errmsg,
-                  position: "middle",
-                });
-                break;
-              case "509":
-                Toast({
-                  message:
-                    "该会员绑定的是其他区域导购，如有修改需求，可联系当地区域经理",
-                  position: "middle",
-                });
-                break;
-              case "300":
-                Toast({
-                  message: error.errmsg,
-                  position: "middle",
-                });
-                break;
-
-              default:
-                Toast({
-                  message: "请联系管理员",
-                  position: "middle",
-                });
-                break;
+      },
+      /**
+       * 个人标签减
+       */
+      del() {
+        this.$nextTick(function() {
+          let tagType = document.getElementById("infoTag-list");
+          let public_lable = tagType.getElementsByClassName("public_lable");
+          for (let i = 0; i < public_lable.length; i++) {
+            if (public_lable[i].className == "public_lable") {
+              public_lable[i].classList.add('opcity')
             }
           }
-        );
-      }
-    },
-    /**
-     * 删除个人资料中的标签
-     */
-    delCustom_label(e) {
-      if (this.isDlt) {
-        // console.log(e.target.className);
-        if (e.target.getAttribute("class") == "img") {
-          this.labelId = e.target.parentNode.parentNode.getAttribute("lableid");
-          this.type = e.target.parentNode.parentNode.getAttribute("type");
-          e.target.parentNode.parentNode.remove();
-        } else {
-          this.labelId = e.target.getAttribute("lableid");
-          this.type = e.target.getAttribute("type");
-          e.target.remove();
-        }
-        this.$api.get(
-          "/deleteLabel",
-          {
+          this.isDlt = true;
+        })
+      },
+      /**
+       * 去往当前积分
+       */
+      toCurrentScore() {
+        this.$router.push({
+          name: "currentScore",
+          query: {
+            cstId: this.memberInfo.cardNum,
+          },
+        });
+      },
+      /**
+       * 查看更多卡券
+       */
+      seeMoreCoupon() {
+        this.$router.push({
+          name: "seeMoreCoupon",
+          query: {
             memberId: this.memberid,
-            labelId: this.labelId,
-            type: this.type,
+            phone: this.memberInfo.phone,
+          },
+        });
+      },
+      /**
+       * 获取卡券信息
+       */
+      getCardInfo() {
+        this.$api.post(
+          "/CardVoucher/findCouponByVip", {
+            memberId: this.memberid,
           },
           (res) => {
-            // console.log(res)
+            // console.log(res.data);
+            if (res.errcode == 0) {
+              this.memberInfoFirst = res.data.filter(function(n, i) {
+                return i <= 2;
+              });
+              // console.log(this.memberInfoFirst);
+            }
           },
           (err) => {
             console.log(err);
           }
         );
-      }
-    },
-    /**
-     * 个人资料标签加
-     */
-    add() {
-      this.$router.push({
-        name: "addTag",
-        query: {
-          status: this.status,
-          memberId: this.memberid,
+      },
+      /**
+       * 点击优惠券
+       */
+      details(idx) {
+        let htmls = ``;
+        if (this.memberInfoFirst[idx].getLimit == null) {
+          htmls += `<p><b>每人限领:</b>不限制</p>`;
+        } else {
+          htmls +=
+            `<p><b>每人限领:</b>` +
+            this.memberInfoFirst[idx].getLimit +
+            `张</p>`;
         }
-      });
-    },
-    /**
-     * 个人标签减
-     */
-    del() {
-      this.$nextTick(function () {
+        if (this.memberInfoFirst[idx].vipGrade == null) {
+          htmls += `<p><b>会员等级:</b>全部</p>`;
+        } else {
+          htmls +=
+            `<p><b>会员等级:</b>` +
+            this.memberInfoFirst[idx].vipGrade +
+            `</p>`;
+        }
+        if (
+          this.memberInfoFirst[idx].couponRemark == null ||
+          this.memberInfoFirst[idx].couponRemark == ""
+        ) {
+          htmls += `<p><b>使用说明:</b>无</p>`;
+        } else {
+          htmls += `<p><b>使用说明:</b></p>`;
+          let remark = this.memberInfoFirst[idx].couponRemark.split("\n");
+          for (let r = 0; r < remark.length; r++) {
+            htmls += `<p>` + remark[r] + `</p>`;
+          }
+        }
+        this.$messagebox
+          .alert("", {
+            message: htmls,
+            title: "提示",
+            confirmButtonText: "确定",
+          })
+          .then((action) => {
+            //确认的回调
+            if (action == "confirm") {}
+          });
+      },
+      /**
+       * 获取消费记录数据
+       */
+      getMemberConsumption() {
+        this.$api.get(
+          "/memberConsumption", {
+            memberId: this.memberid,
+            requestName: "1",
+          },
+          (res) => {
+            if (res.errcode == 0) {
+              const info = res.data;
+              this.memberConsumption = info;
+              this.offline = info.offLine;
+              this.offlineOrderMx = this.offline.orderMx;
+              this.line = info.line[0];
+              this.lineOrderMx = this.line.orderMx;
+              // console.log(this.line);
+            }
+          },
+          (err) => {
+            console.log(err);
+          }
+        );
+      },
+      /**
+       * 消费记录-查看更多
+       */
+      seeMoreOrder(e) {
+        let id = e.target.id;
+        this.$router.push({
+          name: "seeMoreOrder",
+          query: {
+            status: id,
+            memberId: this.memberid,
+          },
+        });
+      },
+      /**
+       * 邀约回访-新增
+       */
+      newOffer() {
+        this.$router.push({
+          name: "newOffer",
+          query: {
+            memberId: this.memberid,
+            guideId: this.guideId,
+          },
+        });
+      },
+      /**
+       * 获取联系轨迹数据
+       */
+      getInvitedReview() {
+        this.$api.get(
+          "/invitedReview", {
+            memberId: this.memberid,
+            requestName: "2",
+          },
+          (res) => {
+            if (res.errcode == 0) {
+              const info = res.data;
+              this.invitedReview = info;
+              // console.log(this.invitedReview)
+            }
+          },
+          (err) => {
+            console.log(err);
+          }
+        );
+      },
+      /**
+       * 查看更多轨迹数据
+       */
+      seeMoreInvitation() {
+        this.$router.push({
+          name: "seeMoreInvitation",
+          query: {
+            memberId: this.memberid,
+          },
+        });
+      },
+      /**
+       * 发送短信，选取短信模板
+       */
+      sendNote() {
+        this.$router.push("selectNote");
+      },
+      /**
+       * 动态修改高度
+       */
+      changeFixed(clientHeight) {
+        //动态修改样式
+        if (document.querySelector('.memberContact')) {
+          this.$refs.homePage.style.height =
+            clientHeight - document.querySelector('.memberContact').offsetHeight + "px";
+        }
+      },
+      /**
+       * 隐藏删除标记
+       */
+      hide() {
+        this.isDlt = false;
         let tagType = document.getElementById("infoTag-list");
         let public_lable = tagType.getElementsByClassName("public_lable");
         for (let i = 0; i < public_lable.length; i++) {
-          if (public_lable[i].className == "public_lable") {
-            public_lable[i].classList.add('opcity')
+          if (public_lable[i].className != "") {
+            public_lable[i].classList.remove("opcity");
           }
         }
-        this.isDlt = true;
-      })
-    },
-    /**
-     * 去往当前积分
-     */
-    toCurrentScore() {
-      this.$router.push({
-        name: "currentScore",
-        query: {
-          cstId: this.memberInfo.cardNum,
-        },
-      });
-    },
-    /**
-     * 查看更多卡券
-     */
-    seeMoreCoupon() {
-      this.$router.push({
-        name: "seeMoreCoupon",
-        query: {
-          memberId: this.memberid,
-          phone: this.memberInfo.phone,
-        },
-      });
-    },
-    /**
-     * 获取卡券信息
-     */
-    getCardInfo() {
-      this.$api.post(
-        "/CardVoucher/findCouponByVip",
-        {
-          memberId: this.memberid,
-        },
-        (res) => {
-          // console.log(res.data);
+      },
+      /**
+       * 判断是否有优享卡角标
+       */
+      hasBestCard() {
+        const _this = this
+        _this.$api.post('findMemberBenefit', {
+          vipId: _this.memberInfo.cardNum,
+          type: "AMYXK"
+        }, res => {
+          console.log(res)
           if (res.errcode == 0) {
-            this.memberInfoFirst = res.data.filter(function (n, i) {
-              return i <= 2;
-            });
-            // console.log(this.memberInfoFirst);
+            res.data.length ? _this.isShowCard = true : _this.isShowCard = false
           }
-        },
-        (err) => {
-          console.log(err);
-        }
-      );
-    },
-    /**
-     * 点击优惠券
-     */
-    details(idx) {
-      let htmls = ``;
-      if (this.memberInfoFirst[idx].getLimit == null) {
-        htmls += `<p><b>每人限领:</b>不限制</p>`;
-      } else {
-        htmls +=
-          `<p><b>每人限领:</b>` +
-          this.memberInfoFirst[idx].getLimit +
-          `张</p>`;
-      }
-      if (this.memberInfoFirst[idx].vipGrade == null) {
-        htmls += `<p><b>会员等级:</b>全部</p>`;
-      } else {
-        htmls +=
-          `<p><b>会员等级:</b>` +
-          this.memberInfoFirst[idx].vipGrade +
-          `</p>`;
-      }
-      if (
-        this.memberInfoFirst[idx].couponRemark == null ||
-        this.memberInfoFirst[idx].couponRemark == ""
-      ) {
-        htmls += `<p><b>使用说明:</b>无</p>`;
-      } else {
-        htmls += `<p><b>使用说明:</b></p>`;
-        let remark = this.memberInfoFirst[idx].couponRemark.split("\n");
-        for (let r = 0; r < remark.length; r++) {
-          htmls += `<p>` + remark[r] + `</p>`;
-        }
-      }
-      this.$messagebox
-        .alert("", {
-          message: htmls,
-          title: "提示",
-          confirmButtonText: "确定",
+        }, err => {
+          // console.log(err)
         })
-        .then((action) => {
-          //确认的回调
-          if (action == "confirm") {
-          }
-        });
-    },
-    /**
-     * 获取消费记录数据
-     */
-    getMemberConsumption() {
-      this.$api.get(
-        "/memberConsumption",
-        {
-          memberId: this.memberid,
-          requestName: "1",
-        },
-        (res) => {
-          if (res.errcode == 0) {
-            const info = res.data;
-            this.memberConsumption = info;
-            this.offline = info.offLine;
-            this.offlineOrderMx = this.offline.orderMx;
-            this.line = info.line[0];
-            this.lineOrderMx = this.line.orderMx;
-            // console.log(this.line);
-          }
-        },
-        (err) => {
-          console.log(err);
-        }
-      );
-    },
-    /**
-     * 消费记录-查看更多
-     */
-    seeMoreOrder(e) {
-      let id = e.target.id;
-      this.$router.push({
-        name: "seeMoreOrder",
-        query: {
-          status: id,
-          memberId: this.memberid,
-        },
-      });
-    },
-    /**
-     * 邀约回访-新增
-     */
-    newOffer() {
-      this.$router.push({
-        name: "newOffer",
-        query: {
-          memberId: this.memberid,
-          guideId: this.guideId,
-        },
-      });
-    },
-    /**
-     * 获取联系轨迹数据
-     */
-    getInvitedReview() {
-      this.$api.get(
-        "/invitedReview",
-        {
-          memberId: this.memberid,
-          requestName: "2",
-        },
-        (res) => {
-          if (res.errcode == 0) {
-            const info = res.data;
-            this.invitedReview = info;
-            // console.log(this.invitedReview)
-          }
-        },
-        (err) => {
-          console.log(err);
-        }
-      );
-    },
-    /**
-     * 查看更多轨迹数据
-     */
-    seeMoreInvitation() {
-      this.$router.push({
-        name: "seeMoreInvitation",
-        query: {
-          memberId: this.memberid,
-        },
-      });
-    },
-    /**
-     * 发送短信，选取短信模板
-     */
-    sendNote() {
-      this.$router.push("selectNote");
-    },
-    /**
-     * 动态修改高度
-     */
-    changeFixed(clientHeight) {
-      //动态修改样式
-      if (document.querySelector('.memberContact')) {
-        this.$refs.homePage.style.height =
-          clientHeight - document.querySelector('.memberContact').offsetHeight + "px";
-      }
-    },
-    /**
-     * 隐藏删除标记
-     */
-    hide() {
-      this.isDlt = false;
-      let tagType = document.getElementById("infoTag-list");
-      let public_lable = tagType.getElementsByClassName("public_lable");
-      for (let i = 0; i < public_lable.length; i++) {
-        if (public_lable[i].className != "") {
-          public_lable[i].classList.remove("opcity");
-        }
-      }
-    },
-    /**
-     * 判断是否有优享卡角标
-     */
-    hasBestCard() {
-      const _this = this
-      _this.$api.post('findMemberBenefit', {
-        vipId: _this.memberInfo.cardNum,
-        type: "AMYXK"
-      }, res => {
-        console.log(res)
-        if (res.errcode == 0) {
-          res.data.length ? _this.isShowCard = true : _this.isShowCard = false
-        }
-      }, err => {
-        // console.log(err)
-      })
-    },
-    /**
-     * 判断是否企业微信聊天，创建会话群
-     */
-    chatWeChat() {
-      Indicator.open();
-      const _this = this
-      _this.$api.post('/my/getWorkWeChatParameter', {
-        guideId: _this.guideId,
-        memberId: _this.memberid
-      }, res => {
-        // console.log(res)
-        Indicator.close();
-        let userIds = res.data.userId
-        let externalUserIds = res.data.externalUserId
-        // console.log(userIds, externalUserIds)
-        //通过接口掉起讨论群
-        wx.openEnterpriseChat({
-          userIds,    //参与会话的企业成员列表，格式为userid1;userid2;...，用分号隔开。
-          externalUserIds, // 参与会话的外部联系人列表，格式为userId1;userId2;…，用分号隔开。
-          groupName: '爱慕云导购',  // 必填，会话名称。单聊时该参数传入空字符串""即可。
-          success: function (res) {
-            // console.log(res)
-            // 回调
-          },
-          fail: function (res) {
-            // console.log(res)
-            if (res.errMsg.indexOf('function not exist') > -1) {
-              alert('版本过低，请升级')
-            }
-          }
-        });
-      }, err => {
-        Indicator.close();
-        // console.log(err)
-        let code = err.errcode
-        switch (code) {
-          case '103':
-            Toast({
-              message: err.errmsg,
-              position: "middle",
-            });
-            break
-          case '300':
-            Toast({
-              message: err.errmsg,
-              position: "middle",
-            });
-            break
-          case '515':
-            Toast({
-              message: '无法查询中台会员卡信息，请联系技术人员',
-              position: "middle",
-            });
-            break
-          case '516':
-            Toast({
-              message: '无法查询中台会员信息，请联系技术人员',
-              position: "middle",
-            });
-            break
-          case '517':
-            Toast({
-              message: '无法查询中台会员信息unionid，请联系技术人员',
-              position: "middle",
-            });
-            break
-          case '518':
-            Toast({
-              message: '没有外部联系人信息，请先加会员好友',
-              position: "middle",
-            });
-            break
-        }
-      })
-    },
-
-
-    /**
-     * 给当前页面注入应用微信权限
-     */
-    getWeChatApp() {
-      let loCa = location.href.split("#")[0];
-      this.$api.post('my/getCpParameterApplication', {
-        url: loCa
-      }, res => {
-        // console.log(res.data)
-        const info = res.data
-        wx.agentConfig({
-          corpid: info.corpId, // 必填，企业微信的corpid，必须与当前登录的企业一致
-          agentid: info.agentId, // 必填，企业微信的应用id （e.g. 1000247）
-          timestamp: info.timestamp, // 必填，生成签名的时间戳
-          nonceStr: info.random, // 必填，生成签名的随机串
-          signature: info.signature,// 必填，签名，见附录-JS-SDK使用权限签名算法
-          jsApiList: ["launchMiniprogram"], //必填
-          success: function (res) {
-            console.log(res)
-            wx.invoke('launchMiniprogram', {
-              "appid": "wxb9cdf9a4c34263c5", // 需跳转的小程序appid
-              "path": "pages/index/index", // 所需跳转的小程序内页面路径及参数。非必填
-            }, function (res) {
-              if (res.err_msg == "launchMiniprogram:ok") {
-                // 正常
-                console.log(res)
-              } else {
-                // 错误处理
-                console.log(res)
+      },
+      /**
+       * 判断是否企业微信聊天，创建会话群
+       */
+      chatWeChat() {
+        Indicator.open();
+        const _this = this
+        _this.$api.post('/my/getWorkWeChatParameter', {
+          guideId: _this.guideId,
+          memberId: _this.memberid
+        }, res => {
+          // console.log(res)
+          Indicator.close();
+          let userIds = res.data.userId
+          let externalUserIds = res.data.externalUserId
+          // console.log(userIds, externalUserIds)
+          //通过接口掉起讨论群
+          wx.openEnterpriseChat({
+            userIds, //参与会话的企业成员列表，格式为userid1;userid2;...，用分号隔开。
+            externalUserIds, // 参与会话的外部联系人列表，格式为userId1;userId2;…，用分号隔开。
+            groupName: '爱慕云导购', // 必填，会话名称。单聊时该参数传入空字符串""即可。
+            success: function(res) {
+              // console.log(res)
+              // 回调
+            },
+            fail: function(res) {
+              // console.log(res)
+              if (res.errMsg.indexOf('function not exist') > -1) {
+                alert('版本过低，请升级')
               }
             }
-            );
-            // 回调
-          },
-          fail: function (res) {
-            console.log(res)
-            if (res.errMsg.indexOf('function not exist') > -1) {
-              alert('版本过低请升级')
-            }
+          });
+        }, err => {
+          Indicator.close();
+          // console.log(err)
+          let code = err.errcode
+          switch (code) {
+            case '103':
+              Toast({
+                message: err.errmsg,
+                position: "middle",
+              });
+              break
+            case '300':
+              Toast({
+                message: err.errmsg,
+                position: "middle",
+              });
+              break
+            case '515':
+              Toast({
+                message: '无法查询中台会员卡信息，请联系技术人员',
+                position: "middle",
+              });
+              break
+            case '516':
+              Toast({
+                message: '无法查询中台会员信息，请联系技术人员',
+                position: "middle",
+              });
+              break
+            case '517':
+              Toast({
+                message: '无法查询中台会员信息unionid，请联系技术人员',
+                position: "middle",
+              });
+              break
+            case '518':
+              Toast({
+                message: '没有外部联系人信息，请先加会员好友',
+                position: "middle",
+              });
+              break
           }
-        });
-      }, err => { })
-    },
+        })
+      },
 
-    // btn1() {
-    //   console.log(1111111);
-    //   wx.invoke(
-    //     "selectExternalContact",
-    //     {
-    //       filterType: 0, //0表示展示全部外部联系人列表，1表示仅展示未曾选择过的外部联系人。默认值为0；除了0与1，其他值非法。在企业微信2.4.22及以后版本支持该参数
-    //     },
-    //     function (res) {
-    //       if (res.err_msg == "selectExternalContact:ok") {
-    //         var userIds = res.userIds; //返回此次选择的外部联系人userId列表，数组类型
-    //         if (userIds.length != 1) {
-    //           alert("只能选取一个联系人");
-    //           return;
-    //         }
-    //         var userId = userIds + "";
-    //         alert(userId);
-    //         this.$api.get(
-    //           "" + this._url + "/getExternalContact",
-    //           {
-    //             memberUserId: userId,
-    //             memberId: this.memberId,
-    //           },
-    //           (res) => {
-    //             if (res.errcode == "0") {
-    //               if ($(".memberContact .testButton2").length == 0) {
-    //                 $(".testButton1").remove();
-    //                 $(".memberContact .sms").before(
-    //                   '<a href="javascript:;" class="wx testButton2">' +
-    //                   '<img src="../images/qywx_live.png" alt="" class="sms" />' +
-    //                   "<p>企业微信</p></a>"
-    //                 );
-    //                 $(".memberContact .wx").css("color", "#000");
-    //               }
-    //               this.conversation(userIds);
-    //             } else if (res.errcode == "100") {
-    //               MessageBox({
-    //                 title: "警告",
-    //                 message: "系统异常！",
-    //                 showCancelButton: false,
-    //               });
-    //             } else if (res.errcode == "502") {
-    //               MessageBox({
-    //                 title: "警告",
-    //                 message: "会员与外部联系人信息不一致，请重新选择！",
-    //                 showCancelButton: false,
-    //               });
-    //             }
-    //           },
-    //           (err) => {
-    //             console.log(err);
-    //             let code = err.code;
-    //           }
-    //         );
-    //       } else if (res.err_msg == "selectExternalContact:fail") {
-    //         //错误处理
-    //         //				alert(res.err_msg)
-    //       }
-    //     }
-    //   );
-    // },
-    // //企业微信
-    // conversation(userIds) {
-    //   let userId = userIds + "";
-    //   console.log(userId);
-    //   wx.openEnterpriseChat({
-    //     externalUserIds: userId,
-    //     groupName: "123",
-    //     success: function (res) { },
-    //     fail: function (res) {
-    //       if (res.errMsg.indexOf("function not exist") > -1) {
-    //         alert("版本过低请升级");
-    //       }
-    //     },
-    //   });
-    // },
-    // btn2() {
-    //   console.log(2222222);
-    //   this.$api.get(
-    //     "memberInfo",
-    //     {
-    //       memberId: this.memberid,
-    //     },
-    //     (res) => {
-    //       console.log(res);
-    //       var info = res.data;
-    //       var cpUserId = info.cpUserId;
-    //       wx.openEnterpriseChat({
-    //         externalUserIds: cpUserId,
-    //         groupName: "123",
-    //         success: function (res) {
-    //           // 回调
-    //           console.log(res);
-    //           //alert(res.err_msg);
-    //         },
-    //         fail: function (res) {
-    //           console.log(res);
-    //           if (res.errMsg.indexOf("function not exist") > -1) {
-    //             alert("版本过低请升级");
-    //           }
-    //         },
-    //       });
-    //     },
-    //     (err) => {
-    //       console.log(err);
-    //       let code = err.code;
-    //     }
-    //   );
-    // },
-  },
-  computed: {
-    swiper() {
-      return this.$refs.mySwiper.swiper;
+
+      /**
+       * 给当前页面注入应用微信权限
+       */
+      getWeChatApp() {
+        console.log(1111111)
+        const _this = this
+        let loCa = location.href.split("#")[0];
+        _this.organizationId = window.localStorage.organizationId;
+            wx.agentConfig({
+              corpid: 'ww0965c429fd719e09', // 必填，企业微信的corpid，必须与当前登录的企业一致
+              agentid: '1000003', // 必填，企业微信的应用id （e.g. 1000247）
+              timestamp: '1616577174653', // 必填，生成签名的时间戳
+              nonceStr: '1F47E0623', // 必填，生成签名的随机串
+              signature: '7eef8a2711664aeb96051dd6474efe1dee8be83c', // 必填，签名，见附录-JS-SDK使用权限签名算法
+              jsApiList: ["getCurExternalContact"], //必填
+              success: function(res) {
+                console.log(33333)
+                console.log(res)
+                // wx.invoke('launchMiniprogram', {
+                //   "appid": "wxb9cdf9a4c34263c5", // 需跳转的小程序appid
+                //   "path": "pages/index/index", // 所需跳转的小程序内页面路径及参数。非必填
+                // }, function(res) {
+                //   if (res.err_msg == "launchMiniprogram:ok") {
+                //     // 正常
+                //     console.log(res)
+                //   } else {
+                //     // 错误处理
+                //     console.log(res)
+                //   }
+                // });
+                wx.invoke('getCurExternalContact', {}, function(res) {
+                  if (res.err_msg == "getCurExternalContact:ok") {
+                    // userId = res.userId; //返回当前外部联系人userId
+                    alert(res.userId)
+                  } else {
+                    //错误处理
+                    alert(res.err_msg)
+                  }
+                });
+                // 回调
+              },
+              fail: function(res) {
+                console.log(44444)
+                console.log(res)
+                if (res.errMsg.indexOf('function not exist') > -1) {
+                  alert('版本过低请升级')
+                }
+              }
+            });
+        // _this.$api.post(
+        //   "my/getCpParameter", {
+        //     organizationId: _this.organizationId,
+        //     url: loCa,
+        //   }
+        //   // this.$api.post('my/getCpParameterApplication', {
+        //   //   url: loCa
+        //   // }
+        //   , res => {
+        //     console.log(22222)
+        //     console.log(res.data)
+        //     const info = res.data
+        //     wx.agentConfig({
+        //       corpid: info.corpId, // 必填，企业微信的corpid，必须与当前登录的企业一致
+        //       agentid: info.agentId, // 必填，企业微信的应用id （e.g. 1000247）
+        //       timestamp: info.timestamp, // 必填，生成签名的时间戳
+        //       nonceStr: info.random, // 必填，生成签名的随机串
+        //       signature: info.signature, // 必填，签名，见附录-JS-SDK使用权限签名算法
+        //       jsApiList: ["launchMiniprogram", "getCurExternalContact"], //必填
+        //       success: function(res) {
+        //         console.log(33333)
+        //         console.log(res)
+        //         // wx.invoke('launchMiniprogram', {
+        //         //   "appid": "wxb9cdf9a4c34263c5", // 需跳转的小程序appid
+        //         //   "path": "pages/index/index", // 所需跳转的小程序内页面路径及参数。非必填
+        //         // }, function(res) {
+        //         //   if (res.err_msg == "launchMiniprogram:ok") {
+        //         //     // 正常
+        //         //     console.log(res)
+        //         //   } else {
+        //         //     // 错误处理
+        //         //     console.log(res)
+        //         //   }
+        //         // });
+        //         wx.invoke('getCurExternalContact', {}, function(res) {
+        //           if (res.err_msg == "getCurExternalContact:ok") {
+        //             // userId = res.userId; //返回当前外部联系人userId
+        //             alert(res.userId)
+        //           } else {
+        //             //错误处理
+        //             alert(res.err_msg)
+        //           }
+        //         });
+        //         // 回调
+        //       },
+        //       fail: function(res) {
+        //         console.log(44444)
+        //         console.log(res)
+        //         if (res.errMsg.indexOf('function not exist') > -1) {
+        //           alert('版本过低请升级')
+        //         }
+        //       }
+        //     });
+        //   }, err => {})
+      },
+
+      // btn1() {
+      //   console.log(1111111);
+      //   wx.invoke(
+      //     "selectExternalContact",
+      //     {
+      //       filterType: 0, //0表示展示全部外部联系人列表，1表示仅展示未曾选择过的外部联系人。默认值为0；除了0与1，其他值非法。在企业微信2.4.22及以后版本支持该参数
+      //     },
+      //     function (res) {
+      //       if (res.err_msg == "selectExternalContact:ok") {
+      //         var userIds = res.userIds; //返回此次选择的外部联系人userId列表，数组类型
+      //         if (userIds.length != 1) {
+      //           alert("只能选取一个联系人");
+      //           return;
+      //         }
+      //         var userId = userIds + "";
+      //         alert(userId);
+      //         this.$api.get(
+      //           "" + this._url + "/getExternalContact",
+      //           {
+      //             memberUserId: userId,
+      //             memberId: this.memberId,
+      //           },
+      //           (res) => {
+      //             if (res.errcode == "0") {
+      //               if ($(".memberContact .testButton2").length == 0) {
+      //                 $(".testButton1").remove();
+      //                 $(".memberContact .sms").before(
+      //                   '<a href="javascript:;" class="wx testButton2">' +
+      //                   '<img src="../images/qywx_live.png" alt="" class="sms" />' +
+      //                   "<p>企业微信</p></a>"
+      //                 );
+      //                 $(".memberContact .wx").css("color", "#000");
+      //               }
+      //               this.conversation(userIds);
+      //             } else if (res.errcode == "100") {
+      //               MessageBox({
+      //                 title: "警告",
+      //                 message: "系统异常！",
+      //                 showCancelButton: false,
+      //               });
+      //             } else if (res.errcode == "502") {
+      //               MessageBox({
+      //                 title: "警告",
+      //                 message: "会员与外部联系人信息不一致，请重新选择！",
+      //                 showCancelButton: false,
+      //               });
+      //             }
+      //           },
+      //           (err) => {
+      //             console.log(err);
+      //             let code = err.code;
+      //           }
+      //         );
+      //       } else if (res.err_msg == "selectExternalContact:fail") {
+      //         //错误处理
+      //         //				alert(res.err_msg)
+      //       }
+      //     }
+      //   );
+      // },
+      // //企业微信
+      // conversation(userIds) {
+      //   let userId = userIds + "";
+      //   console.log(userId);
+      //   wx.openEnterpriseChat({
+      //     externalUserIds: userId,
+      //     groupName: "123",
+      //     success: function (res) { },
+      //     fail: function (res) {
+      //       if (res.errMsg.indexOf("function not exist") > -1) {
+      //         alert("版本过低请升级");
+      //       }
+      //     },
+      //   });
+      // },
+      // btn2() {
+      //   console.log(2222222);
+      //   this.$api.get(
+      //     "memberInfo",
+      //     {
+      //       memberId: this.memberid,
+      //     },
+      //     (res) => {
+      //       console.log(res);
+      //       var info = res.data;
+      //       var cpUserId = info.cpUserId;
+      //       wx.openEnterpriseChat({
+      //         externalUserIds: cpUserId,
+      //         groupName: "123",
+      //         success: function (res) {
+      //           // 回调
+      //           console.log(res);
+      //           //alert(res.err_msg);
+      //         },
+      //         fail: function (res) {
+      //           console.log(res);
+      //           if (res.errMsg.indexOf("function not exist") > -1) {
+      //             alert("版本过低请升级");
+      //           }
+      //         },
+      //       });
+      //     },
+      //     (err) => {
+      //       console.log(err);
+      //       let code = err.code;
+      //     }
+      //   );
+      // },
     },
-    invitedReviewFive() {
-      return this.invitedReview.slice(0, 5)
-    }
-  },
-  watch: {
-    // 如果 `clientHeight` 发生改变，这个函数就会运行
-    clientHeight() {
-      this.changeFixed(this.clientHeight);
+    computed: {
+      swiper() {
+        return this.$refs.mySwiper.swiper;
+      },
+      invitedReviewFive() {
+        return this.invitedReview.slice(0, 5)
+      }
     },
-  },
-  filters: {
-    modTime(data) {
-      return data.substr(0, 10);
+    watch: {
+      // 如果 `clientHeight` 发生改变，这个函数就会运行
+      clientHeight() {
+        this.changeFixed(this.clientHeight);
+      },
+      isSdk(v) {
+        if (v == true) {
+          console.log(111)
+        }
+      }
     },
-  },
-};
+    filters: {
+      modTime(data) {
+        return data.substr(0, 10);
+      },
+    },
+  };
 </script>
 <style lang="scss">
-@import "../../../style/scss/customerInfomation";
+  @import "../../../style/scss/customerInfomation";
 </style>
