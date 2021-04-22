@@ -50,12 +50,12 @@
             </p>
           </div>
           <!-- 佣金 -->
-          <div class="commission">
+          <!-- <div class="commission">
             <p>
               佣金：￥{{ item.commissionPrice }}&nbsp;&nbsp;
               <span>{{ item.createTime }}</span>
             </p>
-          </div>
+          </div> -->
         </li>
       </ul>
     </scroll>

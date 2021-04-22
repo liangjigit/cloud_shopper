@@ -23,12 +23,14 @@
             <li>|</li>
             <li>
               <p>昨日佣金</p>
-              <p>{{ bannerData.yesterdayCommission == null ? '0' : bannerData.yesterdayCommission }}</p>
+              <!-- <p>{{ bannerData.yesterdayCommission == null ? '0' : bannerData.yesterdayCommission }}</p> -->
+              <p>\</p>
             </li>
             <li>|</li>
             <li>
               <p>累计佣金</p>
-              <p>{{ bannerData.allCommission == null ? '0' : bannerData.allCommission }}</p>
+              <!-- <p>{{ bannerData.allCommission == null ? '0' : bannerData.allCommission }}</p> -->
+              <p>\</p>
             </li>
           </ul>
         </div>

@@ -139,7 +139,6 @@
         this.selected = "1";
         this.status = "";
         this.orderType = type
-        this.searchTxt_no = ''
       },
       // 全部
       allOrder() {
@@ -171,6 +170,7 @@
        */
       clearText() {
         this.searchTxt_no = "";
+        this.searchTxt = ''
       },
       /**
        * 搜索
