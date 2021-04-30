@@ -13,8 +13,8 @@ module.exports = {
 
     proxyTable: {
       '/API': {
-        target: 'http://kf.aimergroup.com/doublev2v-crm-v2-web-shopping-guide', // 生产环境接口
-        // target: 'http://ykftest.aimergroup.com:8081/doublev2v-crm-v2-web-shopping-guide', //测试环境接口
+        // target: 'http://kf.aimergroup.com/doublev2v-crm-v2-web-shopping-guide', // 生产环境接口
+        target: 'http://ykftest.aimergroup.com:8081/doublev2v-crm-v2-web-shopping-guide', //测试环境接口
         secure: false,
         // 是否跨域
         changeOrigin: true,

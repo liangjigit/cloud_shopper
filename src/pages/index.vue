@@ -40,8 +40,8 @@
         <div class="leftLine">
           <div class="workbench_title">工作台</div>
           <ul class="workbench_ul">
-            <li class="workbench_ul_li" v-for="item in workbenchList" :name="item.applicationName" :key="item.id" :id="item.appId"
-              @click.stop="workbenchEvent($event, item.code)">
+            <li class="workbench_ul_li" v-for="item in workbenchList" :name="item.applicationName" :key="item.id"
+              :id="item.appId" @click.stop="workbenchEvent($event, item.code)">
               <img v-lazy="imgURL + item.applicationLogo" alt class="_ulImg" />
               <div class="workbench_ul_name">{{ item.applicationName }}</div>
             </li>
@@ -53,7 +53,8 @@
         <div class="leftLine">
           <div class="workbench_title dataCenter_title">数据中心</div>
           <ul class="dataCenter_ul">
-            <li v-for="item in dataCenterList" :name="item.applicationName" :key="item.id" :id="item.appId" @click.stop="dataCenter($event, item.code)">
+            <li v-for="item in dataCenterList" :name="item.applicationName" :key="item.id" :id="item.appId"
+              @click.stop="dataCenter($event, item.code)">
               <img v-lazy="imgURL + item.applicationLogo" alt class="_ulImg" />
               <div class="workbench_ul_name">{{ item.applicationName }}</div>
             </li>
@@ -84,8 +85,7 @@
       return {
         // 导购id
         MEMBERID: this.$route.query.id ?
-          this.$route.query.id :
-          this.GLOBAL.MEMBERID,
+          this.$route.query.id : this.GLOBAL.MEMBERID,
         imgURL: this.GLOBAL.imgURL,
         baseFormalURL: this.GLOBAL.baseFormalURL,
         // 工作台
@@ -338,7 +338,7 @@
             break;
           case "019":
             that.$router.push({
-              name:'areaManage',
+              name: 'areaManage',
               params: {
                 compMember: "019",
               },

@@ -46,8 +46,8 @@ import 'lib-flexible/flexible.js'
 import 'normalize.css'
 
 //用于移动端调试
-// import Vconsole from 'vconsole'
-// const vConsole = new Vconsole()
+import Vconsole from 'vconsole'
+const vConsole = new Vconsole()
 
 // 引入echarts
 import echarts from 'echarts'

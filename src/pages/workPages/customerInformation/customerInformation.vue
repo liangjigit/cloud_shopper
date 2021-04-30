@@ -440,6 +440,9 @@
     Toast,
     Indicator
   } from "mint-ui";
+  import {
+    WxRegistered
+  } from '../../../util/wxConfig.js'
   export default {
     name: "customerInformation",
     components: {
@@ -517,23 +520,18 @@
     created() {
       const _this = this
       this.href = location.origin;
-      this._url = this.href + "/doublev2v-crm-v2-wechat/wxcp/self";
+      this._url = location.origin + "/doublev2v-crm-v2-wechat/wxcp/self";
       this.memberid = this.$route.query.memberId;
       this.guideId = this.$route.query.guideId;
       this.compMember = this.$route.query.compMember;
-      //获取会员信息
-      this.getMemberInfo().then(function() {
-        _this.hasBestCard()
-      });
-      //获取卡券信息
-      this.getCardInfo();
-      //注册企业微信权限
-      this.getWeChat().then(function() {
-        _this.isSdk = true
-      });
-      this.getMemberConsumption();
-      this.getInvitedReview();
-      // this.getWeChatApp()
+      this.organizationId = window.localStorage.organizationId;
+      this.changeExternalUserId()
+      // // 注入微信权限
+      // this.getWxPermission().then(res => {
+      //   console.log('我进来了')
+      //   _this.isSdk = true
+      //   _this.isInChatUser()
+      // })
     },
     mounted() {
       window.onresize = function() {
@@ -541,6 +539,114 @@
       };
     },
     methods: {
+      //从聊天进入获取外部联系人userid转换云客服id
+      changeExternalUserId() {
+        this.$api.post('my/getWorkWeChatMember', {
+          guideId: "fb121af23e2711e9b9d1b82a72d782c1",
+          // 外部联系人 userId
+          externalUserId: "wmSJviCAAAloNARckWUNolrzXsrlnpMA"
+        }, res => {
+          // console.log(res)
+          const {
+            data,
+            errcode: code,
+            errmsg: message
+          } = res
+          if (code == 0) {
+            // console.log('我是数据',data)
+            this.memberid = data
+            this.initInformation()
+          } else {
+            this.$toast({
+              message,
+              position: "middle",
+            });
+          }
+        }, err => {
+          console.log(err)
+        })
+      },
+      //是否从企业微信聊天工具栏进入详情
+      isInChatUser() {
+        const _this = this
+        console.log('成功注入')
+        wx.invoke('launchMiniprogram', {
+          "appid": "wx9b801423992ecd1e", // 需跳转的小程序appid
+          "path": "pages/index/index", // 所需跳转的小程序内页面路径及参数。非必填
+        }, function(res) {
+          if (res.err_msg == "launchMiniprogram:ok") {
+            // 正常
+            console.log(res)
+          } else {
+            // 错误处理
+            console.log(res)
+          }
+        });
+        // wx.invoke('getCurExternalContact', {}, function(res) {
+        //   console.log('我进入了方法')
+        //   if (res.err_msg == "getCurExternalContact:ok") {
+        //     console.log('可以获取外部联系人userId')
+        //     // userId = res.userId; //返回当前外部联系人userId
+        //     // _this.$router.push({
+        //     //   path: "customerInformation",
+        //     //   query: {
+        //     //     memberId: '01569755888611eb8d2e005056b49afc',
+        //     //     guideId: '9f720035ca3011ea8d2e005056b49afc',
+        //     //     state: 0,
+        //     //     dataSource: '',
+        //     //   },
+        //     // });
+        //   } else {
+        //     console.log('我不是从聊天进入的')
+        //     //非聊天进入
+        //     _this.initInformation()
+        //   }
+        // });
+      },
+      //正常进入页面初始化
+      initInformation() {
+        const _this = this
+        //获取会员信息
+        this.getMemberInfo().then(function() {
+          _this.hasBestCard()
+        });
+        //获取卡券信息
+        this.getCardInfo();
+        this.getMemberConsumption();
+        this.getInvitedReview();
+      },
+      /**
+       * 给当前页面注入应用微信权限
+       */
+      getWxPermission() {
+        return new Promise((resolve, reject) => {
+          const url = location.href.split("#")[0];
+          // this.$api.post('my/getCpParameterApplication', {
+          //   url: loCa
+          // }
+          this.$api.post(
+            "my/getCpParameter", {
+              organizationId: this.organizationId,
+              url,
+            },
+            res => {
+              // console.log(res);
+              WxRegistered(res.data).then(response => {
+                resolve()
+              }).catch(err => {
+                // console.log(err)
+                this.$toast({
+                  message: "企业微信权限注入失败",
+                  position: "middle",
+                });
+              })
+            },
+            err => {
+              console.log(err);
+            }
+          );
+        })
+      },
       /**
        * 获取顶部会员数据
        */
@@ -648,67 +754,6 @@
               }
             }
           });
-      },
-      /**
-       * 给当前页面注入企业微信权限
-       */
-      getWeChat() {
-        const _this = this
-        return new Promise(function(resolve, reject) {
-          let loCa = location.href.split("#")[0];
-          _this.organizationId = window.localStorage.organizationId;
-          _this.$api.post(
-            "my/getCpParameter", {
-              organizationId: _this.organizationId,
-              url: loCa,
-            },
-            (res) => {
-              // console.log(res);
-              const info = res.data
-              //获取签名
-              const jsList = [
-                "selectExternalContact",
-                "openEnterpriseChat",
-                "setClipboardData",
-                "getCurExternalContact"
-              ]
-              wx.config({
-                beta: true, // 必须这么写，否则wx.invoke调用形式的jsapi会有问题
-                debug: false, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
-                appId: info.corpId, // 必填，企业微信的corpID
-                timestamp: info.timestamp, // 必填，生成签名的时间戳
-                nonceStr: info.random, // 必填，生成签名的随机串
-                signature: info.signature, // 必填，签名，见附录1
-                jsApiList: jsList, // 必填，需要使用的JS接口列表，所有JS接口列表见附录2
-              })
-              setTimeout(function() {
-                resolve()
-              }, 500)
-            },
-            (err) => {
-              console.log(err);
-            }
-          );
-        })
-      },
-      /**
-       * 复制手机号码
-       */
-      copyPhone() {
-        const _this = this;
-        wx.setClipboardData({
-          data: _this.memberInfo.phone, // 设置的
-          success: function(res) {
-            // console.log(res.errMsg);
-            _this.$toast({
-              message: "成功复制手机号码到剪切板",
-              position: "middle",
-            });
-          },
-          fail: function(err) {
-            console.log(err);
-          },
-        });
       },
       /**
        * 切换绑定关系code为017时
@@ -1066,6 +1111,25 @@
         })
       },
       /**
+       * 复制手机号码
+       */
+      copyPhone() {
+        const _this = this;
+        wx.setClipboardData({
+          data: _this.memberInfo.phone, // 设置的
+          success: function(res) {
+            // console.log(res.errMsg);
+            _this.$toast({
+              message: "成功复制手机号码到剪切板",
+              position: "middle",
+            });
+          },
+          fail: function(err) {
+            console.log(err);
+          },
+        });
+      },
+      /**
        * 判断是否企业微信聊天，创建会话群
        */
       chatWeChat() {
@@ -1142,110 +1206,6 @@
       },
 
 
-      /**
-       * 给当前页面注入应用微信权限
-       */
-      getWeChatApp() {
-        console.log(1111111)
-        const _this = this
-        let loCa = location.href.split("#")[0];
-        _this.organizationId = window.localStorage.organizationId;
-            wx.agentConfig({
-              corpid: 'ww0965c429fd719e09', // 必填，企业微信的corpid，必须与当前登录的企业一致
-              agentid: '1000003', // 必填，企业微信的应用id （e.g. 1000247）
-              timestamp: '1616577174653', // 必填，生成签名的时间戳
-              nonceStr: '1F47E0623', // 必填，生成签名的随机串
-              signature: '7eef8a2711664aeb96051dd6474efe1dee8be83c', // 必填，签名，见附录-JS-SDK使用权限签名算法
-              jsApiList: ["getCurExternalContact"], //必填
-              success: function(res) {
-                console.log(33333)
-                console.log(res)
-                // wx.invoke('launchMiniprogram', {
-                //   "appid": "wxb9cdf9a4c34263c5", // 需跳转的小程序appid
-                //   "path": "pages/index/index", // 所需跳转的小程序内页面路径及参数。非必填
-                // }, function(res) {
-                //   if (res.err_msg == "launchMiniprogram:ok") {
-                //     // 正常
-                //     console.log(res)
-                //   } else {
-                //     // 错误处理
-                //     console.log(res)
-                //   }
-                // });
-                wx.invoke('getCurExternalContact', {}, function(res) {
-                  if (res.err_msg == "getCurExternalContact:ok") {
-                    // userId = res.userId; //返回当前外部联系人userId
-                    alert(res.userId)
-                  } else {
-                    //错误处理
-                    alert(res.err_msg)
-                  }
-                });
-                // 回调
-              },
-              fail: function(res) {
-                console.log(44444)
-                console.log(res)
-                if (res.errMsg.indexOf('function not exist') > -1) {
-                  alert('版本过低请升级')
-                }
-              }
-            });
-        // _this.$api.post(
-        //   "my/getCpParameter", {
-        //     organizationId: _this.organizationId,
-        //     url: loCa,
-        //   }
-        //   // this.$api.post('my/getCpParameterApplication', {
-        //   //   url: loCa
-        //   // }
-        //   , res => {
-        //     console.log(22222)
-        //     console.log(res.data)
-        //     const info = res.data
-        //     wx.agentConfig({
-        //       corpid: info.corpId, // 必填，企业微信的corpid，必须与当前登录的企业一致
-        //       agentid: info.agentId, // 必填，企业微信的应用id （e.g. 1000247）
-        //       timestamp: info.timestamp, // 必填，生成签名的时间戳
-        //       nonceStr: info.random, // 必填，生成签名的随机串
-        //       signature: info.signature, // 必填，签名，见附录-JS-SDK使用权限签名算法
-        //       jsApiList: ["launchMiniprogram", "getCurExternalContact"], //必填
-        //       success: function(res) {
-        //         console.log(33333)
-        //         console.log(res)
-        //         // wx.invoke('launchMiniprogram', {
-        //         //   "appid": "wxb9cdf9a4c34263c5", // 需跳转的小程序appid
-        //         //   "path": "pages/index/index", // 所需跳转的小程序内页面路径及参数。非必填
-        //         // }, function(res) {
-        //         //   if (res.err_msg == "launchMiniprogram:ok") {
-        //         //     // 正常
-        //         //     console.log(res)
-        //         //   } else {
-        //         //     // 错误处理
-        //         //     console.log(res)
-        //         //   }
-        //         // });
-        //         wx.invoke('getCurExternalContact', {}, function(res) {
-        //           if (res.err_msg == "getCurExternalContact:ok") {
-        //             // userId = res.userId; //返回当前外部联系人userId
-        //             alert(res.userId)
-        //           } else {
-        //             //错误处理
-        //             alert(res.err_msg)
-        //           }
-        //         });
-        //         // 回调
-        //       },
-        //       fail: function(res) {
-        //         console.log(44444)
-        //         console.log(res)
-        //         if (res.errMsg.indexOf('function not exist') > -1) {
-        //           alert('版本过低请升级')
-        //         }
-        //       }
-        //     });
-        //   }, err => {})
-      },
 
       // btn1() {
       //   console.log(1111111);
