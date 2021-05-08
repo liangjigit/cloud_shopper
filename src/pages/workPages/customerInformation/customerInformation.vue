@@ -514,38 +514,54 @@
         //确认JSsdk初始化
         isSdk: false,
         //判断优享卡展示
-        isShowCard: false
+        isShowCard: false,
       };
     },
     created() {
-      const _this = this
       this.href = location.origin;
       this._url = location.origin + "/doublev2v-crm-v2-wechat/wxcp/self";
       this.memberid = this.$route.query.memberId;
       this.guideId = this.$route.query.guideId;
       this.compMember = this.$route.query.compMember;
       this.organizationId = window.localStorage.organizationId;
-      this.changeExternalUserId()
-      // // 注入微信权限
-      // this.getWxPermission().then(res => {
-      //   console.log('我进来了')
-      //   _this.isSdk = true
-      //   _this.isInChatUser()
-      // })
+      if (this.organizationId == undefined) {
+        this.$router.push({
+          name: "login",
+          query: {
+            fromCust: 'customerInformation',
+          }
+        })
+        return false
+      }
     },
     mounted() {
+      const _this = this
       window.onresize = function() {
         this.clientHeight = "${document.documentElement.clientHeight}";
       };
+      _this.$nextTick(() => {
+        window.setTimeout(function() {
+          // 注入微信权限
+          _this.getWxPermission().then(res => {
+            // console.log('微信权限注入成功')
+            _this.isInChatUser()
+          })
+        }, 500)
+      })
     },
     methods: {
       //从聊天进入获取外部联系人userid转换云客服id
-      changeExternalUserId() {
-        this.$api.post('my/getWorkWeChatMember', {
-          guideId: "fb121af23e2711e9b9d1b82a72d782c1",
+      changeExternalUserId(externalUserId) {
+        const _this = this
+        let user = window.localStorage.getItem("user");
+        user = user.replace(/"/g, "")
+        _this.$api.post('my/getWorkWeChatMember', {
+          guideId: user,
           // 外部联系人 userId
-          externalUserId: "wmSJviCAAAloNARckWUNolrzXsrlnpMA"
+          externalUserId
         }, res => {
+          _this.isSdk = true
+          // console.log('--------------------------')
           // console.log(res)
           const {
             data,
@@ -554,54 +570,78 @@
           } = res
           if (code == 0) {
             // console.log('我是数据',data)
-            this.memberid = data
-            this.initInformation()
+            _this.memberid = data
+            _this.initInformation()
+          }
+        }, err => {
+          _this.isSdk = false
+          const {
+            data,
+            errcode: code,
+            errmsg: message
+          } = err
+          if (code == 518) {
+            _this.$toast({
+              message: "企业微信接口查不到userid，无法查询会员信息，待技术后续优化",
+              position: "middle"
+            });
+          } else if (code == 519) {
+            _this.$toast({
+              message: "企业微信接口查不到unionid，无法查询会员信息，待技术后续优化",
+              position: "middle"
+            });
+          } else if (code == 520) {
+            _this.$messagebox({
+              title: '引导会员注册club，即可查询到会员信息（仅针对未注册club的会员）',
+              message: '点击进入CLUB，一键转发，注册绑定',
+              closeOnClickModal: false,
+              confirmButtonText: '进入CLUB'
+            }).then(action => {
+              if (action == 'confirm') {
+                //跳转裂变活动
+                wx.invoke('launchMiniprogram', {
+                  "appid": "wx9b801423992ecd1e", // 需跳转的小程序appid
+                  "path": "pages/index/index", // 所需跳转的小程序内页面路径及参数。非必填
+                }, function(res) {
+                  if (res.err_msg == "launchMiniprogram:ok") {
+                    // 正常
+                    console.log(res)
+                  } else {
+                    // 错误处理
+                    console.log(res)
+                  }
+                });
+              }
+            })
+          } else if (code == 300) {
+            _this.$toast({
+              message: "云客服查不到会员信息，待技术后续优化",
+              position: "middle"
+            });
           } else {
-            this.$toast({
+            _this.$toast({
               message,
               position: "middle",
             });
           }
-        }, err => {
-          console.log(err)
         })
       },
       //是否从企业微信聊天工具栏进入详情
       isInChatUser() {
         const _this = this
-        console.log('成功注入')
-        wx.invoke('launchMiniprogram', {
-          "appid": "wx9b801423992ecd1e", // 需跳转的小程序appid
-          "path": "pages/index/index", // 所需跳转的小程序内页面路径及参数。非必填
-        }, function(res) {
-          if (res.err_msg == "launchMiniprogram:ok") {
-            // 正常
-            console.log(res)
+        wx.invoke('getCurExternalContact', {}, function(res) {
+          // console.log('我进入聊天方法')
+          if (res.err_msg == "getCurExternalContact:ok") {
+            // console.log('可以获取外部联系人userId')
+            //返回当前外部联系人userId
+            _this.changeExternalUserId(res.userId)
           } else {
-            // 错误处理
-            console.log(res)
+            // console.log('我不是从聊天进入的')
+            _this.isSdk = true
+            //非聊天进入
+            _this.initInformation()
           }
         });
-        // wx.invoke('getCurExternalContact', {}, function(res) {
-        //   console.log('我进入了方法')
-        //   if (res.err_msg == "getCurExternalContact:ok") {
-        //     console.log('可以获取外部联系人userId')
-        //     // userId = res.userId; //返回当前外部联系人userId
-        //     // _this.$router.push({
-        //     //   path: "customerInformation",
-        //     //   query: {
-        //     //     memberId: '01569755888611eb8d2e005056b49afc',
-        //     //     guideId: '9f720035ca3011ea8d2e005056b49afc',
-        //     //     state: 0,
-        //     //     dataSource: '',
-        //     //   },
-        //     // });
-        //   } else {
-        //     console.log('我不是从聊天进入的')
-        //     //非聊天进入
-        //     _this.initInformation()
-        //   }
-        // });
       },
       //正常进入页面初始化
       initInformation() {
@@ -624,13 +664,16 @@
           // this.$api.post('my/getCpParameterApplication', {
           //   url: loCa
           // }
+          // console.log(this.organizationId)
+          // console.log(url)
           this.$api.post(
             "my/getCpParameter", {
               organizationId: this.organizationId,
               url,
             },
             res => {
-              // console.log(res);
+              // console.log('获取注入微信的参数')
+              // console.log(res.data);
               WxRegistered(res.data).then(response => {
                 resolve()
               }).catch(err => {
@@ -651,6 +694,7 @@
        * 获取顶部会员数据
        */
       getMemberInfo() {
+        if(!this.isSdk) return false
         const _this = this
         return new Promise(function(resolve, reject) {
           let user = window.localStorage.getItem("user");
@@ -688,6 +732,7 @@
        * 获取当前积分
        */
       getIntegral(cstId) {
+        if(!this.isSdk) return false
         this.$api.post(
           "findMemerIntegral", {
             cstId,
@@ -711,6 +756,7 @@
        * 输入备注名
        */
       openPrompt() {
+        if(!this.isSdk) return false
         const _this = this
         const htmlS = `
 				    <input placeholder="请输入备注名！" ref="remark" maxlength="5" type="text" id="remark">
@@ -759,6 +805,7 @@
        * 切换绑定关系code为017时
        */
       changeRelationship() {
+        if(!this.isSdk) return false
         const _this = this;
         if (this.compMember == "017") {
           let user = window.localStorage.getItem("user");
@@ -840,6 +887,7 @@
        * 删除个人资料中的标签
        */
       delCustom_label(e) {
+        if(!this.isSdk) return false
         if (this.isDlt) {
           // console.log(e.target.className);
           if (e.target.getAttribute("class") == "img") {
@@ -870,6 +918,7 @@
        * 个人资料标签加
        */
       add() {
+        if(!this.isSdk) return false
         this.$router.push({
           name: "addTag",
           query: {
@@ -882,6 +931,7 @@
        * 个人标签减
        */
       del() {
+        if(!this.isSdk) return false
         this.$nextTick(function() {
           let tagType = document.getElementById("infoTag-list");
           let public_lable = tagType.getElementsByClassName("public_lable");
@@ -897,6 +947,7 @@
        * 去往当前积分
        */
       toCurrentScore() {
+        if(!this.isSdk) return false
         this.$router.push({
           name: "currentScore",
           query: {
@@ -908,6 +959,7 @@
        * 查看更多卡券
        */
       seeMoreCoupon() {
+        if(!this.isSdk) return false
         this.$router.push({
           name: "seeMoreCoupon",
           query: {
@@ -920,6 +972,7 @@
        * 获取卡券信息
        */
       getCardInfo() {
+        if(!this.isSdk) return false
         this.$api.post(
           "/CardVoucher/findCouponByVip", {
             memberId: this.memberid,
@@ -942,6 +995,7 @@
        * 点击优惠券
        */
       details(idx) {
+        if(!this.isSdk) return false
         let htmls = ``;
         if (this.memberInfoFirst[idx].getLimit == null) {
           htmls += `<p><b>每人限领:</b>不限制</p>`;
@@ -986,6 +1040,7 @@
        * 获取消费记录数据
        */
       getMemberConsumption() {
+        if(!this.isSdk) return false
         this.$api.get(
           "/memberConsumption", {
             memberId: this.memberid,
@@ -1011,6 +1066,7 @@
        * 消费记录-查看更多
        */
       seeMoreOrder(e) {
+        if(!this.isSdk) return false
         let id = e.target.id;
         this.$router.push({
           name: "seeMoreOrder",
@@ -1024,6 +1080,7 @@
        * 邀约回访-新增
        */
       newOffer() {
+        if(!this.isSdk) return false
         this.$router.push({
           name: "newOffer",
           query: {
@@ -1036,6 +1093,7 @@
        * 获取联系轨迹数据
        */
       getInvitedReview() {
+        if(!this.isSdk) return false
         this.$api.get(
           "/invitedReview", {
             memberId: this.memberid,
@@ -1057,6 +1115,7 @@
        * 查看更多轨迹数据
        */
       seeMoreInvitation() {
+        if(!this.isSdk) return false
         this.$router.push({
           name: "seeMoreInvitation",
           query: {
@@ -1068,12 +1127,14 @@
        * 发送短信，选取短信模板
        */
       sendNote() {
+        if(!this.isSdk) return false
         this.$router.push("selectNote");
       },
       /**
        * 动态修改高度
        */
       changeFixed(clientHeight) {
+        if(!this.isSdk) return false
         //动态修改样式
         if (document.querySelector('.memberContact')) {
           this.$refs.homePage.style.height =
@@ -1084,6 +1145,7 @@
        * 隐藏删除标记
        */
       hide() {
+        if(!this.isSdk) return false
         this.isDlt = false;
         let tagType = document.getElementById("infoTag-list");
         let public_lable = tagType.getElementsByClassName("public_lable");
@@ -1097,6 +1159,7 @@
        * 判断是否有优享卡角标
        */
       hasBestCard() {
+        if(!this.isSdk) return false
         const _this = this
         _this.$api.post('findMemberBenefit', {
           vipId: _this.memberInfo.cardNum,
@@ -1114,6 +1177,7 @@
        * 复制手机号码
        */
       copyPhone() {
+        if(!this.isSdk) return false
         const _this = this;
         wx.setClipboardData({
           data: _this.memberInfo.phone, // 设置的
@@ -1133,6 +1197,7 @@
        * 判断是否企业微信聊天，创建会话群
        */
       chatWeChat() {
+        if(!this.isSdk) return false
         Indicator.open();
         const _this = this
         _this.$api.post('/my/getWorkWeChatParameter', {
@@ -1328,11 +1393,6 @@
       // 如果 `clientHeight` 发生改变，这个函数就会运行
       clientHeight() {
         this.changeFixed(this.clientHeight);
-      },
-      isSdk(v) {
-        if (v == true) {
-          console.log(111)
-        }
       }
     },
     filters: {
