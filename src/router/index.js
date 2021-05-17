@@ -388,7 +388,17 @@ export default new VueRouter({
         title: '邀约管理',
         keepAlive: false
       }
-    }
+    },
+    // {
+    //   //从详情页进入club小程序
+    //   path: '/launchMiniProgram',
+    //   name: 'launchMiniProgram',
+    //   component: () => import('@/pages/workPages/customerInformation/launchMiniProgram/launchMiniProgram'),
+    //   meta: {
+    //     title: '去往club小程序',
+    //     keepAlive: false
+    //   }
+    // }
     // ------------------------------------------------------------------------------------------
     //以下待使用路由
     // {

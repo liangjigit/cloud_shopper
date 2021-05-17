@@ -17,8 +17,12 @@
                 <img :src="searchCustomers.avatar" alt class="memberHead" />
               </div>
               <div class="memberData">
-                <span class="memberName">{{searchCustomers.name}}<span class="unbind"
-                    v-if="searchCustomers.unbindSoon == 1 && searchCustomers.unbindPeriod == true">即将解绑</span></span>
+                <span class="memberName">{{searchCustomers.name}}
+                  <!-- <span class="unbind"
+                    v-if="searchCustomers.unbindSoon == 1 && searchCustomers.unbindPeriod == true">即将解绑</span> -->
+                  <span class="unbind"
+                    v-if="searchCustomers.unbindSoon == 1">即将解绑</span>
+                </span>
                 <span class="memberCard">{{searchCustomers.gradeName}}</span>
                 <span class="memberPay">
                   累计消费：¥

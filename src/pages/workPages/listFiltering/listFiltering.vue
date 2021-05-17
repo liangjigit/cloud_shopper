@@ -36,7 +36,9 @@
               </div>
               <div class="memberData" style="margin-left: 0.2rem; width: 33%">
                 <span class="memberName">{{ item.name }}
-                  <span class="unbind" v-if="item.unbindSoon == 1 && item.unbindPeriod == true">即将解绑</span></span>
+                  <!-- <span class="unbind" v-if="item.unbindSoon == 1 && item.unbindPeriod == true">即将解绑</span> -->
+                  <span class="unbind" v-if="item.unbindSoon == 1">即将解绑</span>
+                </span>
                 <span class="memberCard">{{ item.card }}</span>
                 <span class="memberPay">
                   累计消费：¥
@@ -69,8 +71,11 @@
                 <img :src="item.avatar" alt class="memberHead" />
               </div>
               <div class="memberData" style="margin-left: 0.2rem; width: 30%">
-                <span class="memberName">{{ item.name }}<span class="unbind"
-                    v-if="item.unbindSoon == 1 && item.unbindPeriod == true">即将解绑</span></span>
+                <span class="memberName">{{ item.name }}
+                  <!-- <span class="unbind"
+                    v-if="item.unbindSoon == 1 && item.unbindPeriod == true">即将解绑</span> -->
+                  <span class="unbind" v-if="item.unbindSoon == 1">即将解绑</span>
+                </span>
                 <span class="memberCard">{{ item.card }}</span>
                 <span class="memberPay">
                   累计消费：¥
@@ -103,8 +108,11 @@
                 <img :src="item.avatar" alt class="memberHead" />
               </div>
               <div class="memberData" style="margin-left: 0.2rem; width: 30%">
-                <span class="memberName">{{ item.name }}<span class="unbind"
-                    v-if="item.unbindSoon == 1 && item.unbindPeriod == true">即将解绑</span></span>
+                <span class="memberName">{{ item.name }}
+                  <!-- <span class="unbind"
+                    v-if="item.unbindSoon == 1 && item.unbindPeriod == true">即将解绑</span> -->
+                  <span class="unbind" v-if="item.unbindSoon == 1">即将解绑</span>
+                </span>
                 <span class="memberCard">{{ item.card }}</span>
                 <span class="memberPay">
                   累计消费：¥
@@ -509,9 +517,9 @@
       //解绑
       unbindSoon() {
         if (this.param.unbindSoon == null) {
-          this.$set(this.param,'unbindSoon','1')
+          this.$set(this.param, 'unbindSoon', '1')
         } else {
-          this.$set(this.param,'unbindSoon',null)
+          this.$set(this.param, 'unbindSoon', null)
         }
         // console.log(this.param.unbindSoon)
       },

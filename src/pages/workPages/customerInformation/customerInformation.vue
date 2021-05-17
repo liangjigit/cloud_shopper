@@ -431,6 +431,17 @@
           memberInfo.cpUserId == null
         "></a> -->
     </div>
+    <!-- 去club小程序 -->
+    <div id="launchMiniprogram" v-if="isShowLaunchMini" @click="isShowLaunchMini = false">
+      <main>
+        <header>
+          <p>引导会员注册club，即可查询到会员信息(仅针对未注册club的会员)</p>
+        </header>
+        <footer>
+          <a @click.stop="toMini">点击进入CLUB，一键转发，注册绑定</a>
+        </footer>
+      </main>
+    </div>
   </div>
 </template>
 <script>
@@ -450,6 +461,7 @@
     },
     data() {
       return {
+        isShowLaunchMini: false,
         public_lable: "public_lable",
         wximg: "wximg",
         ban_in: "ban_in",
@@ -524,6 +536,9 @@
       this.guideId = this.$route.query.guideId;
       this.compMember = this.$route.query.compMember;
       this.organizationId = window.localStorage.organizationId;
+    },
+    mounted() {
+      const _this = this
       if (this.organizationId == undefined) {
         this.$router.push({
           name: "login",
@@ -533,12 +548,7 @@
         })
         return false
       }
-    },
-    mounted() {
-      const _this = this
-      window.onresize = function() {
-        this.clientHeight = "${document.documentElement.clientHeight}";
-      };
+      Indicator.open()
       _this.$nextTick(() => {
         window.setTimeout(function() {
           // 注入微信权限
@@ -548,8 +558,26 @@
           })
         }, 500)
       })
+      window.onresize = function() {
+        this.clientHeight = "${document.documentElement.clientHeight}";
+      };
     },
     methods: {
+      //跳转裂变活动
+      toMini() {
+        wx.invoke('launchMiniprogram', {
+          "appid": "wx9b801423992ecd1e", // 需跳转的小程序appid
+          "path": "pages/index/index", // 所需跳转的小程序内页面路径及参数。非必填
+        }, function(res) {
+          if (res.err_msg == "launchMiniprogram:ok") {
+            // 正常
+            console.log(res)
+          } else {
+            // 错误处理
+            console.log(res)
+          }
+        });
+      },
       //从聊天进入获取外部联系人userid转换云客服id
       changeExternalUserId(externalUserId) {
         const _this = this
@@ -574,6 +602,7 @@
             _this.initInformation()
           }
         }, err => {
+          Indicator.close()
           _this.isSdk = false
           const {
             data,
@@ -581,48 +610,15 @@
             errmsg: message
           } = err
           if (code == 518) {
-            _this.$toast({
-              message: "企业微信接口查不到userid，无法查询会员信息，待技术后续优化",
-              position: "middle"
-            });
+            MessageBox.alert('企业微信接口查不到userid，无法查询会员信息，待技术后续优化', '提示');
           } else if (code == 519) {
-            _this.$toast({
-              message: "企业微信接口查不到unionid，无法查询会员信息，待技术后续优化",
-              position: "middle"
-            });
+            MessageBox.alert('企业微信接口查不到unionid，无法查询会员信息，待技术后续优化', '提示');
           } else if (code == 520) {
-            _this.$messagebox({
-              title: '引导会员注册club，即可查询到会员信息（仅针对未注册club的会员）',
-              message: '点击进入CLUB，一键转发，注册绑定',
-              closeOnClickModal: false,
-              confirmButtonText: '进入CLUB'
-            }).then(action => {
-              if (action == 'confirm') {
-                //跳转裂变活动
-                wx.invoke('launchMiniprogram', {
-                  "appid": "wx9b801423992ecd1e", // 需跳转的小程序appid
-                  "path": "pages/index/index", // 所需跳转的小程序内页面路径及参数。非必填
-                }, function(res) {
-                  if (res.err_msg == "launchMiniprogram:ok") {
-                    // 正常
-                    console.log(res)
-                  } else {
-                    // 错误处理
-                    console.log(res)
-                  }
-                });
-              }
-            })
+            _this.isShowLaunchMini = true
           } else if (code == 300) {
-            _this.$toast({
-              message: "云客服查不到会员信息，待技术后续优化",
-              position: "middle"
-            });
+            MessageBox.alert('云客服查不到会员信息，待技术后续优化', '提示');
           } else {
-            _this.$toast({
-              message,
-              position: "middle",
-            });
+            MessageBox.alert(message, '提示');
           }
         })
       },
@@ -678,6 +674,7 @@
                 resolve()
               }).catch(err => {
                 // console.log(err)
+                Indicator.close()
                 this.$toast({
                   message: "企业微信权限注入失败",
                   position: "middle",
@@ -685,6 +682,7 @@
               })
             },
             err => {
+              Indicator.close()
               console.log(err);
             }
           );
@@ -694,7 +692,7 @@
        * 获取顶部会员数据
        */
       getMemberInfo() {
-        if(!this.isSdk) return false
+        if (!this.isSdk) return false
         const _this = this
         return new Promise(function(resolve, reject) {
           let user = window.localStorage.getItem("user");
@@ -722,6 +720,7 @@
               }
             },
             (err) => {
+              Indicator.close()
               console.log(err);
               reject()
             }
@@ -732,7 +731,7 @@
        * 获取当前积分
        */
       getIntegral(cstId) {
-        if(!this.isSdk) return false
+        if (!this.isSdk) return false
         this.$api.post(
           "findMemerIntegral", {
             cstId,
@@ -756,7 +755,7 @@
        * 输入备注名
        */
       openPrompt() {
-        if(!this.isSdk) return false
+        if (!this.isSdk) return false
         const _this = this
         const htmlS = `
 				    <input placeholder="请输入备注名！" ref="remark" maxlength="5" type="text" id="remark">
@@ -805,7 +804,7 @@
        * 切换绑定关系code为017时
        */
       changeRelationship() {
-        if(!this.isSdk) return false
+        if (!this.isSdk) return false
         const _this = this;
         if (this.compMember == "017") {
           let user = window.localStorage.getItem("user");
@@ -887,7 +886,7 @@
        * 删除个人资料中的标签
        */
       delCustom_label(e) {
-        if(!this.isSdk) return false
+        if (!this.isSdk) return false
         if (this.isDlt) {
           // console.log(e.target.className);
           if (e.target.getAttribute("class") == "img") {
@@ -918,7 +917,7 @@
        * 个人资料标签加
        */
       add() {
-        if(!this.isSdk) return false
+        if (!this.isSdk) return false
         this.$router.push({
           name: "addTag",
           query: {
@@ -931,7 +930,7 @@
        * 个人标签减
        */
       del() {
-        if(!this.isSdk) return false
+        if (!this.isSdk) return false
         this.$nextTick(function() {
           let tagType = document.getElementById("infoTag-list");
           let public_lable = tagType.getElementsByClassName("public_lable");
@@ -947,7 +946,7 @@
        * 去往当前积分
        */
       toCurrentScore() {
-        if(!this.isSdk) return false
+        if (!this.isSdk) return false
         this.$router.push({
           name: "currentScore",
           query: {
@@ -959,7 +958,7 @@
        * 查看更多卡券
        */
       seeMoreCoupon() {
-        if(!this.isSdk) return false
+        if (!this.isSdk) return false
         this.$router.push({
           name: "seeMoreCoupon",
           query: {
@@ -972,12 +971,13 @@
        * 获取卡券信息
        */
       getCardInfo() {
-        if(!this.isSdk) return false
+        if (!this.isSdk) return false
         this.$api.post(
           "/CardVoucher/findCouponByVip", {
             memberId: this.memberid,
           },
           (res) => {
+            Indicator.close()
             // console.log(res.data);
             if (res.errcode == 0) {
               this.memberInfoFirst = res.data.filter(function(n, i) {
@@ -987,6 +987,7 @@
             }
           },
           (err) => {
+            Indicator.close()
             console.log(err);
           }
         );
@@ -995,7 +996,7 @@
        * 点击优惠券
        */
       details(idx) {
-        if(!this.isSdk) return false
+        if (!this.isSdk) return false
         let htmls = ``;
         if (this.memberInfoFirst[idx].getLimit == null) {
           htmls += `<p><b>每人限领:</b>不限制</p>`;
@@ -1040,13 +1041,14 @@
        * 获取消费记录数据
        */
       getMemberConsumption() {
-        if(!this.isSdk) return false
+        if (!this.isSdk) return false
         this.$api.get(
           "/memberConsumption", {
             memberId: this.memberid,
             requestName: "1",
           },
           (res) => {
+            Indicator.close()
             if (res.errcode == 0) {
               const info = res.data;
               this.memberConsumption = info;
@@ -1058,6 +1060,7 @@
             }
           },
           (err) => {
+            Indicator.close()
             console.log(err);
           }
         );
@@ -1066,7 +1069,7 @@
        * 消费记录-查看更多
        */
       seeMoreOrder(e) {
-        if(!this.isSdk) return false
+        if (!this.isSdk) return false
         let id = e.target.id;
         this.$router.push({
           name: "seeMoreOrder",
@@ -1080,7 +1083,7 @@
        * 邀约回访-新增
        */
       newOffer() {
-        if(!this.isSdk) return false
+        if (!this.isSdk) return false
         this.$router.push({
           name: "newOffer",
           query: {
@@ -1093,13 +1096,14 @@
        * 获取联系轨迹数据
        */
       getInvitedReview() {
-        if(!this.isSdk) return false
+        if (!this.isSdk) return false
         this.$api.get(
           "/invitedReview", {
             memberId: this.memberid,
             requestName: "2",
           },
           (res) => {
+            Indicator.close()
             if (res.errcode == 0) {
               const info = res.data;
               this.invitedReview = info;
@@ -1107,6 +1111,7 @@
             }
           },
           (err) => {
+            Indicator.close()
             console.log(err);
           }
         );
@@ -1115,7 +1120,7 @@
        * 查看更多轨迹数据
        */
       seeMoreInvitation() {
-        if(!this.isSdk) return false
+        if (!this.isSdk) return false
         this.$router.push({
           name: "seeMoreInvitation",
           query: {
@@ -1127,14 +1132,14 @@
        * 发送短信，选取短信模板
        */
       sendNote() {
-        if(!this.isSdk) return false
+        if (!this.isSdk) return false
         this.$router.push("selectNote");
       },
       /**
        * 动态修改高度
        */
       changeFixed(clientHeight) {
-        if(!this.isSdk) return false
+        if (!this.isSdk) return false
         //动态修改样式
         if (document.querySelector('.memberContact')) {
           this.$refs.homePage.style.height =
@@ -1145,7 +1150,7 @@
        * 隐藏删除标记
        */
       hide() {
-        if(!this.isSdk) return false
+        if (!this.isSdk) return false
         this.isDlt = false;
         let tagType = document.getElementById("infoTag-list");
         let public_lable = tagType.getElementsByClassName("public_lable");
@@ -1159,17 +1164,19 @@
        * 判断是否有优享卡角标
        */
       hasBestCard() {
-        if(!this.isSdk) return false
+        if (!this.isSdk) return false
         const _this = this
         _this.$api.post('findMemberBenefit', {
           vipId: _this.memberInfo.cardNum,
           type: "AMYXK"
         }, res => {
+          Indicator.close()
           console.log(res)
           if (res.errcode == 0) {
             res.data.length ? _this.isShowCard = true : _this.isShowCard = false
           }
         }, err => {
+          Indicator.close()
           // console.log(err)
         })
       },
@@ -1177,7 +1184,7 @@
        * 复制手机号码
        */
       copyPhone() {
-        if(!this.isSdk) return false
+        if (!this.isSdk) return false
         const _this = this;
         wx.setClipboardData({
           data: _this.memberInfo.phone, // 设置的
@@ -1197,7 +1204,7 @@
        * 判断是否企业微信聊天，创建会话群
        */
       chatWeChat() {
-        if(!this.isSdk) return false
+        if (!this.isSdk) return false
         Indicator.open();
         const _this = this
         _this.$api.post('/my/getWorkWeChatParameter', {
