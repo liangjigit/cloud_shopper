@@ -43,7 +43,7 @@
 @media screen and (max-width: 540px) {
   #banner {
     text-align: center;
-    height: 318px;
+    height: 6rem;
     border-top: 1px solid rgb(242, 242, 241);
     .bannerText {
       position: absolute;
@@ -64,8 +64,9 @@
     .bannerModule {
       position: absolute;
       display: flex;
-      justify-content: center;
-      width: 100%;
+      // justify-content: center;
+      width: 65%;
+      left: 5.5%;
       height: 1.1rem;
       top: 2.4rem;
       ul {
@@ -102,12 +103,59 @@
         }
       }
     }
+    .bannerModule-footer {
+      position: absolute;
+      display: flex;
+      justify-content: center;
+      width: 100%;
+      height: 1.1rem;
+      top: 4rem;
+      ul {
+        width: 96%;
+        height: 100%;
+        display: flex;
+        justify-content: space-between;
+        li {
+          display: flex;
+          flex-direction: column;
+          height: 100%;
+        }
+        li:nth-child(odd) {
+          justify-content: space-between;
+          p:nth-child(1) {
+            .van-icon{
+              color: blue;
+            }
+            color: #8499a0;
+            font-size: 0.4rem;
+            font-weight: bolder;
+            display: flex;
+            align-items: center;
+          }
+          p:nth-child(2) {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: white;
+            border-radius: 5px;
+            width: 2rem;
+            height: 0.6rem;
+            align-self: center;
+          }
+        }
+        li:nth-child(even) {
+          justify-content: flex-end;
+          color: white;
+          margin-top: -0.14rem;
+        }
+      }
+    }
   }
 }
 @media screen and (min-width: 541px) {
   #banner {
     text-align: center;
-    height: 430px;
+    height: 8rem;
     border-top: 1px solid rgb(242, 242, 241);
     .bannerText {
       position: absolute;
@@ -130,8 +178,9 @@
     .bannerModule {
       position: absolute;
       display: flex;
-      justify-content: center;
-      width: 100%;
+      // justify-content: center;
+      width: 65%;
+      left: 2%;
       height: 1.7rem;
       top: 3.3rem;
       ul {
@@ -149,6 +198,7 @@
           p:nth-child(1) {
             color: #8499a0;
             font-size: 0.4rem;
+            font-weight: bolder;
           }
           p:nth-child(2) {
             display: flex;
@@ -168,13 +218,61 @@
         }
       }
     }
+    .bannerModule-footer {
+      position: absolute;
+      display: flex;
+      justify-content: center;
+      width: 100%;
+      height: 1.7rem;
+      top: 5.5rem;
+      ul {
+        width: 96%;
+        height: 100%;
+        display: flex;
+        justify-content: space-between;
+        li {
+          display: flex;
+          flex-direction: column;
+          height: 100%;
+        }
+        li:nth-child(odd) {
+          justify-content: space-between;
+          p:nth-child(1) {
+            .van-icon{
+              color:blue
+            }
+            color: #8499a0;
+            font-size: 0.4rem;
+            font-weight: bolder;
+            display: flex;
+            align-items: center;
+          }
+          p:nth-child(2) {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: white;
+            border-radius: 5px;
+            width: 2.6rem;
+            height: 1rem;
+            font-size: 0.4rem;
+            align-items: center;
+          }
+        }
+        li:nth-child(even) {
+          justify-content: flex-end;
+          color: white;
+          margin-top: -0.14rem;
+        }
+      }
+    }
   }
 }
 
 @media screen and (min-width: 970px) {
   #banner {
     text-align: center;
-    height: 600px;
+    height: 9rem;
     border-top: 1px solid rgb(242, 242, 241);
 
     .bannerText {
@@ -196,8 +294,9 @@
     .bannerModule {
       position: absolute;
       display: flex;
-      justify-content: center;
-      width: 100%;
+      // justify-content: center;
+      left: 2%;
+      width: 61.5%;
       height: 1.7rem;
       top: 4.8rem;
       ul {
@@ -215,6 +314,7 @@
           p:nth-child(1) {
             color: #8499a0;
             font-size: 0.4rem;
+            font-weight: bolder;
           }
           p:nth-child(2) {
             display: flex;
@@ -225,6 +325,54 @@
             width: 2.6rem;
             height: 1rem;
             font-size: 0.4rem;
+          }
+        }
+        li:nth-child(even) {
+          justify-content: flex-end;
+          color: white;
+          margin-top: -0.14rem;
+        }
+      }
+    }
+    .bannerModule-footer {
+      position: absolute;
+      display: flex;
+      justify-content: center;
+      width: 100%;
+      height: 1.7rem;
+      top: 7rem;
+      ul {
+        width: 96%;
+        height: 100%;
+        display: flex;
+        justify-content: space-between;
+        li {
+          display: flex;
+          flex-direction: column;
+          height: 100%;
+        }
+        li:nth-child(odd) {
+          justify-content: space-between;
+          p:nth-child(1) {
+            .van-icon{
+              color:blue
+            }
+            color: #8499a0;
+            font-size: 0.4rem;
+            font-weight: bolder;
+            display: flex;
+            align-items: center;
+          }
+          p:nth-child(2) {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: white;
+            border-radius: 5px;
+            width: 2.6rem;
+            height: 1rem;
+            font-size: 0.4rem;
+            align-self:center ;
           }
         }
         li:nth-child(even) {

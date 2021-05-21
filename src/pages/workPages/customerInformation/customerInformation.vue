@@ -566,7 +566,7 @@
       //跳转裂变活动
       toMini() {
         wx.invoke('launchMiniprogram', {
-          "appid": "wx9b801423992ecd1e", // 需跳转的小程序appid
+          "appid": "wx646bff4c4000079f", // 需跳转的小程序appid
           "path": "pages/index/index", // 所需跳转的小程序内页面路径及参数。非必填
         }, function(res) {
           if (res.err_msg == "launchMiniprogram:ok") {

@@ -389,6 +389,26 @@ export default new VueRouter({
         keepAlive: false
       }
     },
+    {
+      //从首页进入佣金详情
+      path: '/moneyDetail',
+      name: 'moneyDetail',
+      component: () => import('@/pages/workPages/moneyDetail/moneyDetail'),
+      meta: {
+        title: '佣金明细',
+        keepAlive: false
+      }
+    },
+    {
+      //退货详情
+      path: '/tuiHuoDetail',
+      name: 'tuiHuoDetail',
+      component: () => import('@/pages/workPages/moneyDetail/tuiHuoDetail'),
+      meta: {
+        title: '退货明细',
+        keepAlive: false
+      }
+    }
     // {
     //   //从详情页进入club小程序
     //   path: '/launchMiniProgram',
