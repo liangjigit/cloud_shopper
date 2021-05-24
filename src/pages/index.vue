@@ -13,12 +13,12 @@
           <ul>
             <li>
               <p>昨日销售</p>
-              <p>{{ bannerData.yesterdaySale == null ? '0' : bannerData.yesterdaySale}}</p>
+              <p>{{ bannerData.yesterdaySale ? bannerData.yesterdaySale : '0'}}</p>
             </li>
             <li>|</li>
             <li>
               <p>本月销售</p>
-              <p>{{ bannerData.monthSale == null ? '0' : bannerData.monthSale }}</p>
+              <p>{{ bannerData.monthSale ? bannerData.monthSale : '0'}}</p>
             </li>
             <!-- <li style="opacity: 0;">|</li>
             <li style="opacity: 0;">
@@ -40,21 +40,21 @@
               <p>昨日预估佣金
                 <van-icon name="question" @click="goMoneyDetail('D')" />
               </p>
-              <p>{{ (moneyData.D && moneyData.D.commission) ? moneyData.D.commission : '0' }}</p>
+              <p>{{ bannerData.commission_D ? bannerData.commission_D : '0' }}</p>
             </li>
             <li>|</li>
             <li>
               <p>本月预估佣金
-                <van-icon name="question" @click="goMoneyDetail('Y')" />
+                <van-icon name="question" @click="goMoneyDetail('M')" />
               </p>
-              <p>{{ (moneyData.Y && moneyData.Y.commission) ? moneyData.Y.commission : '0'}}</p>
+              <p>{{ bannerData.commission_M ? bannerData.commission_M : '0'}}</p>
             </li>
             <li>|</li>
             <li>
               <p>上月佣金
                 <van-icon name="question" @click="goMoneyDetail('LM')" />
               </p>
-              <p>{{ (moneyData.LM && moneyData.LM.commission) ? moneyData.LM.commission : '0' }}</p>
+              <p>{{ bannerData.commission_LM ? bannerData.commission_LM : '0' }}</p>
             </li>
           </ul>
         </div>
@@ -121,13 +121,6 @@
         isFirstEnter: false,
         //首页销售数据
         bannerData: {},
-        //首页佣金数据
-        moneyData: {
-          D: null,
-          Y: null,
-          LM: null
-        },
-        allMoneyData: null
       };
     },
 
@@ -135,7 +128,7 @@
       if (from.name != "mine" && from.name != "login" && from.name != null) {
         //非第一次进入index进入该判断
         to.meta.isBack = true;
-        window.sessionStorage.removeItem('moneyData')
+        window.sessionStorage.removeItem('dateType')
       }
       next();
     },
@@ -149,9 +142,6 @@
           let user = localStorage.getItem("user");
           this.MEMBERID = user.replace(/\"/g, "");
           this.getSales();
-          this.getMoney('D')
-          this.getMoney('M')
-          this.getMoney('LM')
           this.workbench(this.MEMBERID);
         }
         this.$route.meta.isBack = false;
@@ -164,22 +154,8 @@
     },
 
     methods: {
-      /**
-       * 去佣金数据详情
-       */
-      goMoneyDetail(dateType) {
-        const _this = this
-        let params = {
-          data: _this.allMoneyData,
-          dateType
-        }
-        window.sessionStorage.setItem('moneyData', JSON.stringify(params))
-        this.$router.push({
-          name: 'moneyDetail'
-        })
-      },
       /*
-       * 获得首页销售数据
+       * 获得首页销售,佣金数据
        */
       getSales() {
         const that = this;
@@ -188,7 +164,7 @@
             guideId: that.MEMBERID,
           },
           function(res) {
-            // console.log(res.data);
+            // console.log('获取首页的销售数据', res.data);
             that.bannerData = res.data;
           },
           function(err) {
@@ -196,34 +172,13 @@
           }
         );
       },
-      /*
-       * 获得首页佣金数据
+      /**
+       * 去佣金数据详情
        */
-      getMoney(dateType) {
-        const _this = this
-        _this.$api.post('/my/getAllTypeCommission', {
-          userId: _this.MEMBERID,
-          // 时间类型编码
-          timeType: dateType
-        }, res => {
-          const {
-            ALL
-          } = res.data
-          // console.log(ALL)
-          _this.allMoneyData = res.data
-          switch (dateType) {
-            case 'D':
-              _this.moneyData.D = ALL
-              break;
-            case 'M':
-              _this.moneyData.Y = ALL
-              break;
-            case 'LM':
-              _this.moneyData.LM = ALL
-              break;
-          }
-        }, err => {
-          console.log(err)
+      goMoneyDetail(dateType) {
+        window.sessionStorage.setItem('dateType',dateType)
+        this.$router.push({
+          name: 'moneyDetail'
         })
       },
 

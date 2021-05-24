@@ -3,17 +3,11 @@
     <main>
       <article>
         <header>订单号</header>
-        <p>12312312412341241</p>
-        <p>12312312412341241</p>
-        <p>12312312412341241</p>
-        <p>12312312412341241</p>
+        <p v-for="(item,index) in data" :index="index">{{item.orderno}}</p>
       </article>
       <article>
         <header>退货佣金</header>
-        <p>-500元</p>
-        <p>-500元</p>
-        <p>-500元</p>
-        <p>-500元</p>
+        <p v-for="(item,index) in data" :index="index">{{item.commission}}元</p>
       </article>
     </main>
   </div>
@@ -25,11 +19,12 @@
     data() {
       return {
         dateType: '',
-        MEMBERID: ''
+        MEMBERID: '',
+        data: []
       }
     },
     created() {
-      this.dateType = this.$route.query.dateType
+      this.dateType = window.sessionStorage.getItem('dateType')
       let user = localStorage.getItem("user");
       this.MEMBERID = user.replace(/\"/g, "");
       this.getData()
@@ -42,7 +37,12 @@
           // 时间类型编码
           timeType: this.dateType
         }, res => {
-          // console.log(res)
+          // console.log('退货', res)
+          const {
+            data
+          } = res
+          this.data = data
+          // console.log(data)
         }, err => {
           console.log(err)
         })
@@ -66,9 +66,12 @@
         display: flex;
         flex-direction: column;
         align-items: center;
-        justify-content: space-between;
+        justify-content: flex-start;
         font-size: 0.4rem;
         font-weight: bold;
+        p{
+          margin-top: 1rem;
+        }
       }
     }
   }
