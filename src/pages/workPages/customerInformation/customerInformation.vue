@@ -530,15 +530,13 @@
       };
     },
     created() {
+      const _this = this
       this.href = location.origin;
       this._url = location.origin + "/doublev2v-crm-v2-wechat/wxcp/self";
       this.memberid = this.$route.query.memberId;
       this.guideId = this.$route.query.guideId;
       this.compMember = this.$route.query.compMember;
       this.organizationId = window.localStorage.organizationId;
-    },
-    mounted() {
-      const _this = this
       if (this.organizationId == undefined) {
         this.$router.push({
           name: "login",
@@ -549,15 +547,21 @@
         return false
       }
       Indicator.open()
-      _this.$nextTick(() => {
-        window.setTimeout(function() {
-          // 注入微信权限
-          _this.getWxPermission().then(res => {
-            // console.log('微信权限注入成功')
-            _this.isInChatUser()
-          })
-        }, 500)
+      this.getWxPermission().then(res => {
+        // console.log('微信权限注入成功')
+        _this.isInChatUser()
       })
+    },
+    mounted() {
+      // _this.$nextTick(() => {
+      //   window.setTimeout(function() {
+      //     // 注入微信权限
+      //     _this.getWxPermission().then(res => {
+      //       // console.log('微信权限注入成功')
+      //       _this.isInChatUser()
+      //     })
+      //   }, 500)
+      // })
       window.onresize = function() {
         this.clientHeight = "${document.documentElement.clientHeight}";
       };
@@ -566,7 +570,8 @@
       //跳转裂变活动
       toMini() {
         wx.invoke('launchMiniprogram', {
-          "appid": "wx646bff4c4000079f", // 需跳转的小程序appid
+          // "appid": "wx646bff4c4000079f", // 需跳转的小程序appid
+          "appid": "wx9b801423992ecd1e", // 需跳转的小程序appid
           "path": "pages/index/index", // 所需跳转的小程序内页面路径及参数。非必填
         }, function(res) {
           if (res.err_msg == "launchMiniprogram:ok") {

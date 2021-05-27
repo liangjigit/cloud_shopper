@@ -105,7 +105,7 @@
       if (this.$route.meta.isBack || this.isFirstEnter) {
         this.$refs.myAllOrder.myOrderList = [];
         this.$refs.myAllOrder.page = 1;
-        this.$refs.myAllOrder.allOrderMoreData();
+        // this.$refs.myAllOrder.allOrderMoreData();
       }
       this.$route.meta.isBack = false;
       this.isFirstEnter = false;
