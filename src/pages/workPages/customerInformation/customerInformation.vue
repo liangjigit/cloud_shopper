@@ -530,7 +530,6 @@
       };
     },
     created() {
-      const _this = this
       this.href = location.origin;
       this._url = location.origin + "/doublev2v-crm-v2-wechat/wxcp/self";
       this.memberid = this.$route.query.memberId;
@@ -547,21 +546,29 @@
         return false
       }
       Indicator.open()
-      this.getWxPermission().then(res => {
-        // console.log('微信权限注入成功')
-        _this.isInChatUser()
-      })
     },
     mounted() {
-      // _this.$nextTick(() => {
-      //   window.setTimeout(function() {
-      //     // 注入微信权限
-      //     _this.getWxPermission().then(res => {
-      //       // console.log('微信权限注入成功')
-      //       _this.isInChatUser()
-      //     })
-      //   }, 500)
-      // })
+      const _this = this
+      _this.$nextTick(() => {
+        window.setTimeout(function() {
+          if (_this.$route.query.state) {
+            _this.isSdk = true
+            _this.initInformation()
+            _this.getWxPermission()
+          } else {
+            // 注入微信权限
+            _this.getWxPermission().then(res => {
+              // console.log('微信权限注入成功')
+              _this.isInChatUser()
+            }).catch(err => {
+              _this.$toast({
+                message: "企业微信权限注入失败",
+                position: "middle",
+              })
+            })
+          }
+        }, 500)
+      })
       window.onresize = function() {
         this.clientHeight = "${document.documentElement.clientHeight}";
       };
@@ -570,8 +577,8 @@
       //跳转裂变活动
       toMini() {
         wx.invoke('launchMiniprogram', {
-          // "appid": "wx646bff4c4000079f", // 需跳转的小程序appid
-          "appid": "wx9b801423992ecd1e", // 需跳转的小程序appid
+          "appid": "wx646bff4c4000079f", // 需跳转的小程序appid正式
+          // "appid": "wx9b801423992ecd1e", // 需跳转的小程序appid
           "path": "pages/index/index", // 所需跳转的小程序内页面路径及参数。非必填
         }, function(res) {
           if (res.err_msg == "launchMiniprogram:ok") {
@@ -661,34 +668,25 @@
        */
       getWxPermission() {
         return new Promise((resolve, reject) => {
-          const url = location.href.split("#")[0];
-          // this.$api.post('my/getCpParameterApplication', {
-          //   url: loCa
-          // }
-          // console.log(this.organizationId)
-          // console.log(url)
+          const url = location.href.split("#")[0]
           this.$api.post(
             "my/getCpParameter", {
               organizationId: this.organizationId,
               url,
             },
             res => {
-              // console.log('获取注入微信的参数')
               // console.log(res.data);
               WxRegistered(res.data).then(response => {
                 resolve()
               }).catch(err => {
                 // console.log(err)
                 Indicator.close()
-                this.$toast({
-                  message: "企业微信权限注入失败",
-                  position: "middle",
-                });
+                reject()
               })
             },
             err => {
               Indicator.close()
-              console.log(err);
+              // console.log(err);
             }
           );
         })

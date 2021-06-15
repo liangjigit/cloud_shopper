@@ -13,12 +13,12 @@ module.exports = {
 
     proxyTable: {
       '/API': {
-        // target: 'http://kf.aimergroup.com/doublev2v-crm-v2-web-shopping-guide', // 生产环境接口
-        target: 'http://ykftest.aimergroup.com:8081/doublev2v-crm-v2-web-shopping-guide', //测试环境接口
+        target: 'http://kf.aimergroup.com/doublev2v-crm-v2-web-shopping-guide', // 生产环境接口
+        // target: 'http://ykftest.aimergroup.com:8081/doublev2v-crm-v2-web-shopping-guide', //测试环境接口
         secure: false,
         // 是否跨域
         changeOrigin: true,
-        //这里理解成用‘/api’代替target里面的地址，后面组件中我们掉接口时直接用api代替 
+        //这里理解成用‘/api’代替target里面的地址，后面组件中我们掉接口时直接用api代替
         //比如我要调用'http://40.00.100.133:3002/user/login'，直接写‘/api/user/login’即可
         pathRewrite: {
           '^/API': '' //需要rewrite的,

@@ -81,9 +81,9 @@
                     <p class="cardFeature cardOnly" v-if="(item.typeCode=='000'||item.typeCode=='001')&&item.payOver==null">无门槛</p>
                     <p class="cardFeature cardOnly" v-if="item.typeCode=='000'&&item.payOver!=null">满{{item.payOver}}元使用</p>
                     <p class="cardFeature cardOnly" v-if="item.typeCode=='001'&&item.payOver!=null">满{{item.payOver}}元使用</p>
-                    <p class="cardFeature cardOnly" v-if="item.useRange==0">通用</p>
+                    <!-- <p class="cardFeature cardOnly" v-if="item.useRange==0">通用</p>
                     <p class="cardFeature cardOnly" v-if="item.useRange==1">线上</p>
-                    <p class="cardFeature cardOnly" v-if="item.useRange==2">线下</p>
+                    <p class="cardFeature cardOnly" v-if="item.useRange==2">线下</p> -->
                   </div>
                 </div>
                 <p class="closeTime">发券截止：{{item.closingDate}}</p>

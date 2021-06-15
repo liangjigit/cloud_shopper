@@ -50,11 +50,17 @@
               <p>{{ bannerData.commission_M ? bannerData.commission_M : '0'}}</p>
             </li>
             <li>|</li>
-            <li>
+            <!-- <li>
               <p>上月佣金
                 <van-icon name="question" @click="goMoneyDetail('LM')" />
               </p>
               <p>{{ bannerData.commission_LM ? bannerData.commission_LM : '0' }}</p>
+            </li> -->
+            <li>
+              <p>上月佣金
+                <van-icon name="question" />
+              </p>
+              <p>\</p>
             </li>
           </ul>
         </div>
